@@ -20,9 +20,9 @@
   --color-text-1: #111;
   --color-text-2: #444;
   --color-text-3: #363636;
-  --clock-logo: url("/images/background/clock_logo.png");
-  --qweather-logo: url("/images/background/clock_logo.png");
-  --character: url("/images/background/character.png");
+  --clock-logo: url("../images/background/clock_logo.png");
+  --qweather-logo: url("../images/background/clock_logo.png");
+  --character: url("../images/background/character.png");
 }
 @media (prefers-color-scheme: dark) {
   :root {
