@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="x5-fullscreen" content="true">
+<meta name="full-screen" content="yes">
+<meta name="theme-color" content="#317EFB" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=0" name="viewport">
+<meta name="description" content="思考过程[Medium] Construct Binary Tree from Preorder and Inorder Traversal (105)🤔 我的原始思路前序第一元素是根节点，中序中根节点前的是左子树，后的是右子树左子树长度 &#x3D; 中序中根的位置 - 中序起始用这个长度在前序中划分左右子树区间递归重复，map 缓存中序值索引 🔍 我的思考过程 前序第一个元素 &#x3D;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode 学习记录 2026-05-13">
+<meta property="og:url" content="https://xiaomengxmeng.github.io/ZeroDream/2026/05/13/LeetCode/LeetCode-%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-2026-05-13/index.html">
+<meta property="og:site_name" content="ZeroDream Blog">
+<meta property="og:description" content="思考过程[Medium] Construct Binary Tree from Preorder and Inorder Traversal (105)🤔 我的原始思路前序第一元素是根节点，中序中根节点前的是左子树，后的是右子树左子树长度 &#x3D; 中序中根的位置 - 中序起始用这个长度在前序中划分左右子树区间递归重复，map 缓存中序值索引 🔍 我的思考过程 前序第一个元素 &#x3D;">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-05-13T15:00:00.000Z">
+<meta property="article:modified_time" content="2026-07-01T17:19:52.125Z">
+<meta property="article:author" content="ZeroDream">
+<meta property="article:tag" content="LeetCode">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="学习记录">
+<meta name="twitter:card" content="summary">
+
+
+<title >LeetCode 学习记录 2026-05-13</title>
+
+<!-- Favicon -->
+
+    <link href='/ZeroDream/images/favicon.ico?v=2.2.6' rel='icon' type='image/png' sizes='16x16' ></link>
+
+
+    <link href='/ZeroDream/images/favicon.ico?v=2.2.6' rel='icon' type='image/png' sizes='32x32' ></link>
+
+
+
+
+<!-- Plugin -->
+
+
+
+
+    
+<link rel="stylesheet" href="/ZeroDream/css/plugins/bootstrap.row.css">
+
+    
+<link rel="stylesheet" href="https://unpkg.com/@fancyapps/ui@4.0/dist/fancybox.css">
+
+    
+    
+
+
+
+
+<!-- Icon -->
+
+    
+<link rel="stylesheet" href="/ZeroDream/css/plugins/font-awesome.min.css">
+
+
+
+
+<!-- Variable -->
+<script>window.ASYNC_CONFIG = {"hostname":"xiaomengxmeng.github.io","author":"ZeroDream","root":"/ZeroDream/","typed_text":null,"theme_version":"2.2.6","theme":{"switch":true,"default":"style-light"},"favicon":{"logo":"/images/favicon.ico","icon16":"/images/favicon.ico","icon32":"/images/favicon.ico","apple_touch_icon":null,"webmanifest":null,"visibilitychange":true,"hidden":"/failure.ico","show_text":"(/≧▽≦/)咦！又好了！","hide_text":"(●—●)喔哟，崩溃啦！"},"i18n":{"placeholder":"搜索文章...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）","author":"本文作者：","copyright_link":"本文链接：","copyright_license_title":"版权声明：","copyright_license_content":"本博客所有文章除特别声明外，均默认采用 undefined 许可协议。","copy_success":"复制成功","copy_failure":"复制失败","open_read_mode":"进入阅读模式","exit_read_mode":"退出阅读模式","notice_outdate_message":"距离上次更新已经 undefined 天了, 文章内容可能已经过时。","sticky":"置顶","just":"刚刚","min":"分钟前","hour":"小时前","day":"天前","month":"个月前"},"swup":false,"plugin":{"flickr_justified_gallery":"https://unpkg.com/flickr-justified-gallery@latest/dist/fjGallery.min.js"},"icons":{"sun":"far fa-sun","moon":"far fa-moon","play":"fas fa-play","email":"far fa-envelope","next":"fas fa-arrow-right","calendar":"far fa-calendar-alt","clock":"far fa-clock","user":"far fa-user","back_top":"fas fa-arrow-up","close":"fas fa-times","search":"fas fa-search","reward":"fas fa-hand-holding-usd","toc_tag":"fas fa-th-list","read":"fas fa-book-reader","arrows":"fas fa-arrows-alt-h","double_arrows":"fas fa-angle-double-down","copy":"fas fa-copy"},"icontype":"font","highlight":{"plugin":"highlighjs","theme":true,"copy":true,"lang":true,"title":"default","height_limit":false},"toc":{"post_title":true},"live_time":{"start_time":"","prefix":"博客已萌萌哒运行 undefined 天"},"danmu":{"enable":false,"el":".trm-banner"}};</script>
+<script id="async-page-config">window.PAGE_CONFIG = {"isPost":true,"isHome":false,"postUpdate":"2026-07-02 01:19:52"};</script>
+
+<!-- Theme mode css -->
+<link data-swup-theme rel="stylesheet" href="/ZeroDream/css/index.css?v=2.2.6" id="trm-switch-style">
+<script>
+    let defaultMode = ASYNC_CONFIG.theme.default !=='auto' ?  ASYNC_CONFIG.theme.default : (window.matchMedia("(prefers-color-scheme: light)").matches ? 'style-light' : 'style-dark')
+    let catchMode = localStorage.getItem('theme-mode') || defaultMode;
+    let type = catchMode === 'style-dark' ? 'add' : 'remove';
+    document.documentElement.classList[type]('dark')
+</script>
+
+<!-- CDN -->
+
+
+    
+    
+
+
+
+<!-- Site Analytics -->
+
+ 
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+
+  <!-- app wrapper -->
+  <div class="trm-app-frame">
+
+    <!-- page preloader -->
+    <div class="trm-preloader">
+    <div class="trm-holder">
+        <div class="preloader">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+</div>
+    <!-- page preloader end -->
+
+    <!-- change mode preloader -->
+    <div class="trm-mode-swich-animation-frame">
+    <div class="trm-mode-swich-animation">
+        <i class="i-sun"><i class="iconfont far fa-sun"></i></i>
+        <div class="trm-horizon"></div>
+        <i class="i-moon"><i class="iconfont far fa-moon"></i></i>
+    </div>
+</div>
+    <!-- change mode preloader end -->
+
+      <!-- scroll container -->
+      <div id="trm-dynamic-content" class="trm-swup-animation">
+        <div id="trm-scroll-container" class="trm-scroll-container" style="opacity: 0">
+            <!-- top bar -->
+            <header class="trm-top-bar">
+	<div class="container">
+		<div class="trm-left-side">
+			<!-- logo -->
+<a href="/ZeroDream/" class="trm-logo-frame trm-anima-link">
+    
+        <img alt="logo" src="/ZeroDream/images/favicon.ico">
+    
+    
+        <div class="trm-logo-text">
+            小梦<span>随笔</span>
+        </div>
+    
+</a>
+<!-- logo end -->
+		</div>
+		<div class="trm-right-side">
+			<!-- menu -->
+<div class="trm-menu">
+    <nav>
+        <ul>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/ZeroDream/" target="">
+                    首页
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/ZeroDream/archives/" target="">
+                    归档
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/ZeroDream/tags/" target="">
+                    menu.tags
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/ZeroDream/categories/" target="">
+                    menu.categories
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/ZeroDream/about/" target="">
+                    关于
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/ZeroDream/links/" target="">
+                    友链
+                </a>
+                
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+<!-- menu end -->
+			
+    <!-- mode switcher place -->
+    <div class="trm-mode-switcher-place">
+        <div class="trm-mode-switcher">
+            <i class="iconfont far fa-sun"></i>
+            <input class="tgl tgl-light" id="trm-swich" type="checkbox">
+            <label class="trm-swich" for="trm-swich"></label>
+            <i class="iconfont far fa-moon"></i>
+        </div>
+    </div>
+    <!-- mode switcher place end -->
+
+			
+     
+
+		</div>
+		<div class="trm-menu-btn">
+			<span></span>
+		</div>
+	</div>
+</header>
+            <!-- top bar end -->
+
+            <!-- body -->
+            
+<div class="trm-content-start">
+    <!-- banner -->
+    <div class="trm-banner">
+    
+    <!-- banner cover -->
+    <img style="object-position:top;object-fit:cover;" alt="banner" class="trm-banner-cover" src="/ZeroDream/images/background/%E5%A5%B3%E9%AB%98%E4%B8%89%E4%BA%BA.png">
+    <!-- banner cover end -->
+    
+
+    <!-- banner content -->
+    <div class="trm-banner-content trm-overlay">
+        <div class="container">
+            <div class="row">
+                
+                <div class="col-lg-4"></div>
+                
+                <div class="col-lg-8">
+
+                    <!-- banner title -->
+                    <div class="trm-banner-text ">
+                        <div class="trm-label trm-mb-20">
+                            NEWS LETTER
+                        </div>
+                        <h1 class="trm-mb-30 trm-hsmb-font">
+                            LeetCode 学习记录 2026-05-13
+                        </h1>
+
+                        
+                            <ul class="trm-breadcrumbs trm-label">
+                                <li>
+                                    <a href="/ZeroDream/" class="trm-anima-link">Home</a>
+                                </li>
+                                <li>
+                                    <span>
+                                        2026
+                                    </span>
+                                </li>
+                            </ul>
+                        
+                    </div>
+                    <!-- banner title end -->
+
+                    <!-- scroll hint -->
+                    <span id="scroll-triger" class="trm-scroll-hint-frame">
+                        <div class="trm-scroll-hint"></div>
+                        <span class="trm-label">Scroll down</span>
+                    </span>
+                    <!-- scroll hint end -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- banner content end -->
+</div>
+    <!-- banner end -->
+    <div class="container">
+        <div class="row">
+            
+                <div class="trm-page-sidebar col-lg-4 hidden-sm">
+                    <!-- main card -->
+                    <div class="trm-main-card-frame trm-sidebar">
+    <div class="trm-main-card"> 
+        <!-- card header -->
+<div class="trm-mc-header">
+    <div class="trm-avatar-frame trm-mb-20">
+        <img alt="Avatar" class="trm-avatar trm-light-icon" src="/ZeroDream/images/head/head.jpg"> <img alt="Avatar" class="trm-avatar trm-dark-icon" src="/ZeroDream/images/head/darkhead.jpg">
+    </div>
+    <h5 class="trm-name trm-mb-15">
+        ZeroDream
+    </h5>
+    
+</div>
+<!-- card header end -->
+        <!-- sidebar social -->
+
+<div class="trm-divider trm-mb-40 trm-mt-40"></div>
+<div class="trm-social">
+    
+        <a href="https://github.com" title="Github" rel="nofollow" target="_blank">
+            <i class="iconfont fab fa-github"></i>
+        </a>
+    
+</div>
+
+<!-- sidebar social end -->
+        <!-- info -->
+<div class="trm-divider trm-mb-40 trm-mt-40"></div>
+<ul class="trm-table trm-mb-20">
+    
+        <li>
+            <div class="trm-label">
+                地址:
+            </div>
+            <div class="trm-label trm-label-light">
+                中国 江西
+            </div>
+        </li>
+    
+        <li>
+            <div class="trm-label">
+                职业:
+            </div>
+            <div class="trm-label trm-label-light">
+                开发者
+            </div>
+        </li>
+    
+</ul>
+<!-- info end -->
+
+        
+    <div class="trm-divider trm-mb-40 trm-mt-40"></div>
+    <!-- action button -->
+    <div class="text-center">
+        <a href="mailto:xuanmeng404@163.com" class="trm-btn">
+            联系我
+            <i class="iconfont far fa-envelope"></i>
+        </a>
+    </div>
+    <!-- action button end -->
+
+    </div>
+</div>
+                    <!-- main card end -->
+                </div>
+            
+            <div class="trm-page-content col-lg-8">
+                <div id="trm-content" class="trm-content">
+                    <div class="trm-post-info row hidden-sm">
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-calendar-alt trm-icon"></i><br>
+            05/13
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-clock trm-icon"></i><br>
+            23:00
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div id="post-author" class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-user trm-icon"></i><br>
+            ZeroDream
+        </div>
+    </div>
+</div>
+<div class="trm-card ">
+    <article id="article-container" class="trm-publication">
+    <h2 id="思考过程"><a href="#思考过程" class="headerlink" title="思考过程"></a>思考过程</h2><h3 id="Medium-Construct-Binary-Tree-from-Preorder-and-Inorder-Traversal-105"><a href="#Medium-Construct-Binary-Tree-from-Preorder-and-Inorder-Traversal-105" class="headerlink" title="[Medium] Construct Binary Tree from Preorder and Inorder Traversal (105)"></a>[Medium] Construct Binary Tree from Preorder and Inorder Traversal (105)</h3><h4 id="🤔-我的原始思路"><a href="#🤔-我的原始思路" class="headerlink" title="🤔 我的原始思路"></a>🤔 我的原始思路</h4><p>前序第一元素是根节点，中序中根节点前的是左子树，后的是右子树<br>左子树长度 &#x3D; 中序中根的位置 - 中序起始<br>用这个长度在前序中划分左右子树区间<br>递归重复，map 缓存中序值索引</p>
+<h4 id="🔍-我的思考过程"><a href="#🔍-我的思考过程" class="headerlink" title="🔍 我的思考过程"></a>🔍 我的思考过程</h4><ol>
+<li>前序第一个元素 &#x3D; 根节点，中序找到根的位置 &#x3D; mid</li>
+<li>mid 把中序切为左右两半，分别对应左右子树</li>
+<li>前序指针 pre_idx 传引用，每取一个根就后移一位</li>
+<li>递归时先构建左子树再构建右子树（因为前序是根→左→右）</li>
+<li>提前用 unordered_map 缓存 值→索引，O(1) 定位根</li>
+</ol>
+<h4 id="💡-对比收获"><a href="#💡-对比收获" class="headerlink" title="💡 对比收获"></a>💡 对比收获</h4><p>代码正确 ✅</p>
+<ol>
+<li><strong>前序定根，中序分左右</strong> — 构造题最核心的口诀</li>
+<li>用 <code>in_left &gt; in_right</code> 作为递归终止条件，判断当前中序区间是否有效</li>
+<li><code>pre_idx</code> 传引用是关键，保证全局递增不回溯</li>
+<li>必须先构建左子树后构建右子树 — 前序顺序决定的</li>
+<li>哈希表缓存中序索引是标准优化手法</li>
+</ol>
+<h3 id="Medium-Path-Sum-II-113"><a href="#Medium-Path-Sum-II-113" class="headerlink" title="[Medium] Path Sum II (113)"></a>[Medium] Path Sum II (113)</h3><h4 id="🤔-我的原始思路-1"><a href="#🤔-我的原始思路-1" class="headerlink" title="🤔 我的原始思路"></a>🤔 我的原始思路</h4><p>关键在于记录路径</p>
+<p>如何记录路径：用 vector<int> path 记录当前路径<br>什么时候把路径加入结果集：叶子节点且和为 targetSum<br>回溯时怎么取消对路径的修改：path.pop_back()</int></p>
+<h4 id="🔍-我的思考过程-1"><a href="#🔍-我的思考过程-1" class="headerlink" title="🔍 我的思考过程"></a>🔍 我的思考过程</h4><ol>
+<li>DFS 深度优先搜索</li>
+<li>关键：入栈和出栈路径节点（push_back &#x2F; pop_back 配对）</li>
+<li>只有叶子节点（左右都为空）且 sum &#x3D;&#x3D; 0 时才存路径</li>
+<li>path 传引用，每次递归完左右子树后 pop_back 回溯</li>
+<li>与 112 的区别：112 只要 bool 返回值，113 要所有路径</li>
+</ol>
+<h4 id="💡-对比收获-1"><a href="#💡-对比收获-1" class="headerlink" title="💡 对比收获"></a>💡 对比收获</h4><p>代码正确 ✅</p>
+<ol>
+<li><strong>有加就有减</strong>：push_back 和 pop_back 必须配对出现</li>
+<li>回溯是递归的”撤销操作”，保证 path 始终只包含当前路径上的节点</li>
+<li><code>res.push_back(path)</code> 存的是副本，后续 pop 不影响已存的路径</li>
+<li>和 112 对比学习效果好：一个 bool 回溯，一个收集全部路径</li>
+</ol>
+<h2 id="学习记录"><a href="#学习记录" class="headerlink" title="学习记录"></a>学习记录</h2><h3 id="Medium-Construct-Binary-Tree-from-Preorder-and-Inorder-Traversal-105-1"><a href="#Medium-Construct-Binary-Tree-from-Preorder-and-Inorder-Traversal-105-1" class="headerlink" title="[Medium] Construct Binary Tree from Preorder and Inorder Traversal (105)"></a>[Medium] Construct Binary Tree from Preorder and Inorder Traversal (105)</h3><h4 id="🎯-核心思路"><a href="#🎯-核心思路" class="headerlink" title="🎯 核心思路"></a>🎯 核心思路</h4><p><strong>前序定根，中序分左右</strong>。前序第一个元素是根，在中序中找到根的位置 <code>mid</code>，左边是左子树，右边是右子树。递归构建。</p>
+<h4 id="🔑-关键代码片段"><a href="#🔑-关键代码片段" class="headerlink" title="🔑 关键代码片段"></a>🔑 关键代码片段</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">TreeNode* <span class="title">buildTree</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; preorder, vector&lt;<span class="type">int</span>&gt;&amp; inorder)</span> </span>&#123;</span><br><span class="line">    unordered_map&lt;<span class="type">int</span>, <span class="type">int</span>&gt; in_map;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; inorder.<span class="built_in">size</span>(); i++)</span><br><span class="line">        in_map[inorder[i]] = i;</span><br><span class="line">    <span class="type">int</span> pre_idx = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">build</span>(preorder, <span class="number">0</span>, inorder.<span class="built_in">size</span>() - <span class="number">1</span>, pre_idx, in_map);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">TreeNode* <span class="title">build</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; preorder, <span class="type">int</span> in_left, <span class="type">int</span> in_right,</span></span></span><br><span class="line"><span class="params"><span class="function">                <span class="type">int</span>&amp; pre_idx, unordered_map&lt;<span class="type">int</span>, <span class="type">int</span>&gt;&amp; in_map)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (in_left &gt; in_right) <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">    <span class="type">int</span> root_val = preorder[pre_idx++];</span><br><span class="line">    TreeNode* root = <span class="keyword">new</span> <span class="built_in">TreeNode</span>(root_val);</span><br><span class="line">    <span class="type">int</span> mid = in_map[root_val];</span><br><span class="line">    root-&gt;left  = <span class="built_in">build</span>(preorder, in_left, mid - <span class="number">1</span>, pre_idx, in_map);</span><br><span class="line">    root-&gt;right = <span class="built_in">build</span>(preorder, mid + <span class="number">1</span>, in_right, pre_idx, in_map);</span><br><span class="line">    <span class="keyword">return</span> root;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="🧠-细节详解"><a href="#🧠-细节详解" class="headerlink" title="🧠 细节详解"></a>🧠 细节详解</h4><h5 id="①-mid-到底是什么？怎么来的？"><a href="#①-mid-到底是什么？怎么来的？" class="headerlink" title="① mid 到底是什么？怎么来的？"></a>① <code>mid</code> 到底是什么？怎么来的？</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">前序 preorder = [3, 9, 20, 15, 7]</span><br><span class="line">中序 inorder  = [9, 3, 15, 20, 7]</span><br><span class="line">                  0  1   2   3  4</span><br></pre></td></tr></table></figure>
+
+<p><code>mid</code> &#x3D; <strong>根节点在中序数组中的索引位置</strong>。通过哈希表 O(1) 查到：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">in_map[9]=0, in_map[3]=1, in_map[15]=2, in_map[20]=3, in_map[7]=4</span><br><span class="line"></span><br><span class="line">int root_val = preorder[pre_idx];   // 当前根的值，比如第一次是 3</span><br><span class="line">int mid = in_map[root_val];         // mid = in_map[3] = 1</span><br></pre></td></tr></table></figure>
+
+<p>得到 <code>mid = 1</code> 后，中序数组被切成两半：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">中序: [9, 3, 15, 20, 7]</span><br><span class="line">         ↑  ↑</span><br><span class="line">      左边  右边</span><br><span class="line">    in_left..mid-1  mid+1..in_right</span><br><span class="line">    = [0..0]        = [2..4]</span><br><span class="line">    = [9]           = [15,20,7]</span><br><span class="line">    = 左子树         = 右子树</span><br></pre></td></tr></table></figure>
+
+<h5 id="②-完整递归推演（以-3-9-20-15-7-9-3-15-20-7-为例）"><a href="#②-完整递归推演（以-3-9-20-15-7-9-3-15-20-7-为例）" class="headerlink" title="② 完整递归推演（以 [3,9,20,15,7] &#x2F; [9,3,15,20,7] 为例）"></a>② 完整递归推演（以 [3,9,20,15,7] &#x2F; [9,3,15,20,7] 为例）</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">第 1 层: pre_idx=0, in_left=0, in_right=4</span><br><span class="line">  root_val = preorder[0] = 3, pre_idx→1</span><br><span class="line">  mid = in_map[3] = 1</span><br><span class="line">  左子树区间 [0..0] = [9]    右子树区间 [2..4] = [15,20,7]</span><br><span class="line"></span><br><span class="line">第 2 层(左): pre_idx=1, in_left=0, in_right=0</span><br><span class="line">  root_val = preorder[1] = 9, pre_idx→2</span><br><span class="line">  mid = in_map[9] = 0</span><br><span class="line">  左子树区间 [0..-1] = nullptr  右子树区间 [1..0] = nullptr</span><br><span class="line">  → 返回节点 9</span><br><span class="line"></span><br><span class="line">回到第 1 层, root-&gt;left = 9</span><br><span class="line"></span><br><span class="line">第 3 层(右): pre_idx=2, in_left=2, in_right=4</span><br><span class="line">  root_val = preorder[2] = 20, pre_idx→3</span><br><span class="line">  mid = in_map[20] = 3</span><br><span class="line">  左子树区间 [2..2] = [15]  右子树区间 [4..4] = [7]</span><br><span class="line"></span><br><span class="line">  ...递归构建 15 和 7...</span><br></pre></td></tr></table></figure>
+
+<h5 id="③-为什么-pre-idx-必须传引用？"><a href="#③-为什么-pre-idx-必须传引用？" class="headerlink" title="③ 为什么 pre_idx 必须传引用？"></a>③ 为什么 <code>pre_idx</code> 必须传引用？</h5><p>因为前序指针要<strong>全局递增</strong>，每取一个根就后移，不能回溯：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">preorder = [3, 9, 20, 15, 7]</span><br><span class="line">            0   1   2   3  4</span><br><span class="line"></span><br><span class="line">build 顺序: 取3(pre_idx=0) → 取9(pre_idx=1) → ... → 取7(pre_idx=4)</span><br><span class="line"></span><br><span class="line">传引用: pre_idx 一路递增，不会回到之前的值  ✅</span><br><span class="line">传值  : 每层递归有自己的 pre_idx，回溯后会重复取值  ❌</span><br></pre></td></tr></table></figure>
+
+<h5 id="④-为什么必须先构建左子树？"><a href="#④-为什么必须先构建左子树？" class="headerlink" title="④ 为什么必须先构建左子树？"></a>④ 为什么必须先构建左子树？</h5><p>前序顺序是 <strong>根→左→右</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">preorder = [根, 左子树..., 右子树...]</span><br><span class="line">              3   9    |  20, 15, 7</span><br><span class="line">              ↑       ↑</span><br><span class="line">          pre_idx=0  pre_idx=1</span><br></pre></td></tr></table></figure>
+
+<p>先 <code>root-&gt;left</code> 把左子树节点 <code>9</code> 消耗掉，<code>pre_idx</code> 指向 <code>20</code>，再构建右子树就正好取到右树根 <code>20</code>。</p>
+<h4 id="📚-学到的知识点"><a href="#📚-学到的知识点" class="headerlink" title="📚 学到的知识点"></a>📚 学到的知识点</h4><ul>
+<li><strong>前序</strong>：第一个是根，后面按左→右排列</li>
+<li><strong>中序</strong>：根左边是左子树，右边是右子树</li>
+<li><strong>用 <code>mid</code> 切分中序区间</strong>：左子树 <code>[in_left, mid-1]</code>，右子树 <code>[mid+1, in_right]</code></li>
+<li><strong><code>pre_idx</code> 传引用</strong>：全局递增，每取一个根就后移，不能回溯</li>
+<li><strong>递归顺序</strong>：必须先左后右（前序顺序决定）</li>
+</ul>
+<h4 id="⚠️-易错点-反思"><a href="#⚠️-易错点-反思" class="headerlink" title="⚠️ 易错点 &amp; 反思"></a>⚠️ 易错点 &amp; 反思</h4><ul>
+<li>❌ <code>pre_idx</code> 忘记传引用 → 递归回溯后重复取值</li>
+<li>❌ 先构建右子树再构建左子树 → 前序顺序破坏，取错根</li>
+<li>💡 <strong>口诀</strong>：”前序定根，中序分左右；传引用指针，先左再右走”</li>
+</ul>
+<h4 id="🔗-关联题目"><a href="#🔗-关联题目" class="headerlink" title="🔗 关联题目"></a>🔗 关联题目</h4><ul>
+<li>[106] Construct Tree from Inorder &amp; Postorder - 中序+后序构造，思路类似</li>
+<li>[108] Sorted Array to BST - 二分递归构建</li>
+</ul>
+<h3 id="Medium-Path-Sum-II-113-1"><a href="#Medium-Path-Sum-II-113-1" class="headerlink" title="[Medium] Path Sum II (113)"></a>[Medium] Path Sum II (113)</h3><h4 id="🎯-核心思路-1"><a href="#🎯-核心思路-1" class="headerlink" title="🎯 核心思路"></a>🎯 核心思路</h4><p><strong>DFS + 回溯记录路径</strong>。与 [112] Path Sum 不同，113 不仅要判断有没有，还要把所有路径记录下来。用 <code>vector&lt;int&gt; path</code> 追踪当前路径，到达叶子节点且和为目标值时存入结果集，递归返回前 <code>pop_back()</code> 回溯。</p>
+<h4 id="🔑-关键代码片段-1"><a href="#🔑-关键代码片段-1" class="headerlink" title="🔑 关键代码片段"></a>🔑 关键代码片段</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs</span><span class="params">(TreeNode* root, <span class="type">int</span> sum, vector&lt;<span class="type">int</span>&gt;&amp; path, vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; res)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!root) <span class="keyword">return</span>;</span><br><span class="line">    path.<span class="built_in">push_back</span>(root-&gt;val);     <span class="comment">// ① 路径记录当前节点</span></span><br><span class="line">    sum -= root-&gt;val;              <span class="comment">// ② 减去当前值</span></span><br><span class="line">    <span class="keyword">if</span> (!root-&gt;left &amp;&amp; !root-&gt;right &amp;&amp; sum == <span class="number">0</span>)   <span class="comment">// ③ 叶子 + 符合条件</span></span><br><span class="line">        res.<span class="built_in">push_back</span>(path);                        <span class="comment">//    存路径</span></span><br><span class="line">    <span class="built_in">dfs</span>(root-&gt;left,  sum, path, res);               <span class="comment">// ④ 递归左</span></span><br><span class="line">    <span class="built_in">dfs</span>(root-&gt;right, sum, path, res);               <span class="comment">// ⑤ 递归右</span></span><br><span class="line">    path.<span class="built_in">pop_back</span>();                 <span class="comment">// ⑥ 回溯！撤销当前节点，恢复状态</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="🧠-细节详解-1"><a href="#🧠-细节详解-1" class="headerlink" title="🧠 细节详解"></a>🧠 细节详解</h4><h5 id="①-为什么必须-pop-back-？"><a href="#①-为什么必须-pop-back-？" class="headerlink" title="① 为什么必须 pop_back()？"></a>① 为什么必须 <code>pop_back()</code>？</h5><p>DFS 遍历树时，<code>path</code> 会沿一条路径向下走。如果没有 <code>pop_back</code>，从一个节点<strong>返回</strong>时，<code>path</code> 中还带着它：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">5 → 5,4 → 5,4,11 → 5,4,11,7 → (7 走完) → 5,4,11,7,2 ❌</span><br><span class="line">                                    ↑ 没 pop 7，path 没回退！</span><br></pre></td></tr></table></figure>
+
+<p>有 <code>pop_back</code> 后：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">5 → 5,4 → 5,4,11 → 5,4,11,7 → (pop 7) → 5,4,11 → 5,4,11,2 → ...</span><br><span class="line">                                                         ↑ 正确！</span><br></pre></td></tr></table></figure>
+
+<p><strong>核心思想：有加就有减，递归前后状态要一致。</strong></p>
+<h5 id="②-叶子节点的判断"><a href="#②-叶子节点的判断" class="headerlink" title="② 叶子节点的判断"></a>② 叶子节点的判断</h5><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!root-&gt;left &amp;&amp; !root-&gt;right &amp;&amp; sum == <span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>!root-&gt;left &amp;&amp; !root-&gt;right</code>：左右都没有孩子，才是叶子</li>
+<li>只有叶子才检查，非叶子节点即使 sum&#x3D;&#x3D;0 也不算路径完成</li>
+</ul>
+<h5 id="③-与-112-Path-Sum-对比"><a href="#③-与-112-Path-Sum-对比" class="headerlink" title="③ 与 [112] Path Sum 对比"></a>③ 与 [112] Path Sum 对比</h5><table>
+<thead>
+<tr>
+<th align="center">对比</th>
+<th align="left">[112] Path Sum</th>
+<th align="left">[113] Path Sum II</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">返回值</td>
+<td align="left"><code>bool</code> 有没有</td>
+<td align="left"><code>vector&lt;vector&lt;int&gt;&gt;</code> 所有路径</td>
+</tr>
+<tr>
+<td align="center">路径记录</td>
+<td align="left">不需要</td>
+<td align="left"><code>vector&lt;int&gt; path</code> 记录当前路径</td>
+</tr>
+<tr>
+<td align="center">回溯</td>
+<td align="left">不需要</td>
+<td align="left">需要 <code>pop_back()</code></td>
+</tr>
+<tr>
+<td align="center">提前返回</td>
+<td align="left">找到就返回 true</td>
+<td align="left">必须遍历所有可能路径</td>
+</tr>
+</tbody></table>
+<h4 id="⚠️-易错点-反思-1"><a href="#⚠️-易错点-反思-1" class="headerlink" title="⚠️ 易错点 &amp; 反思"></a>⚠️ 易错点 &amp; 反思</h4><ul>
+<li>❌ 忘记 <code>pop_back()</code> → path 越走越长</li>
+<li>❌ 非叶子节点也检查路径和 → 要求的是<strong>根到叶子</strong>的完整路径</li>
+<li>❌ <code>res.push_back(path)</code> 不用 <code>path</code> 副本？→ <code>res</code> 存的是 <code>path</code> 的<strong>拷贝</strong>，后续的 pop 不影响已存的路径</li>
+<li>💡 <strong>回溯模板</strong>：push → 递归 → pop，三步固定搭配</li>
+</ul>
+
+</article>
+    
+    
+
+</div>
+<div class="trm-post-next-prev row">
+    <div class="col-lg-12">
+        <!-- title -->
+        <h5 class="trm-title-with-divider">
+            其他文章
+            <span data-number="02"></span>
+        </h5>
+    </div>
+    
+        <div class="col-lg-6">
+    <div class="trm-blog-card trm-scroll-animation">
+        <a href="/ZeroDream/2026/05/14/LeetCode/LeetCode-%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-2026-05-14/" class="trm-cover-frame trm-anima-link">
+            
+            
+                <img alt="cover" class="no-fancybox" src="/ZeroDream/images/post/leetcode/cover-18.png">
+            
+        </a>
+        
+        <div class="trm-card-descr">
+            <div class="trm-label trm-category trm-mb-20">
+                <a href=" /ZeroDream/categories/LeetCode/">
+                    LeetCode
+                </a>
+            </div>
+            <h5>
+                <a href="/ZeroDream/2026/05/14/LeetCode/LeetCode-%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-2026-05-14/" class="trm-anima-link">
+                    LeetCode 学习记录 2026-05-14
+                </a>
+            </h5>
+            <div class="trm-divider trm-mb-20 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>26/05/14</li>
+                <li>23:00</li>
+                
+                
+            </ul>
+        </div>
+    </div>
+</div>
+    
+    
+        <div class="col-lg-6">
+    <div class="trm-blog-card trm-scroll-animation">
+        <a href="/ZeroDream/2026/05/12/LeetCode/LeetCode-%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-2026-05-12/" class="trm-cover-frame trm-anima-link">
+            
+            
+                <img alt="cover" class="no-fancybox" src="/ZeroDream/images/post/leetcode/cover-20.png">
+            
+        </a>
+        
+        <div class="trm-card-descr">
+            <div class="trm-label trm-category trm-mb-20">
+                <a href=" /ZeroDream/categories/LeetCode/">
+                    LeetCode
+                </a>
+            </div>
+            <h5>
+                <a href="/ZeroDream/2026/05/12/LeetCode/LeetCode-%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-2026-05-12/" class="trm-anima-link">
+                    LeetCode 学习记录 2026-05-12
+                </a>
+            </h5>
+            <div class="trm-divider trm-mb-20 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>26/05/12</li>
+                <li>23:00</li>
+                
+                
+            </ul>
+        </div>
+    </div>
+</div>
+    
+</div>
+
+    
+
+    <div id="giscus-wrap" class="trm-card trm-scroll-animation comment-container"></div>
+<script data-swup-reload-script>
+    function loadGiscus() {
+        let nowTheme = document.documentElement.classList.contains('dark') ? '' : ''
+        const config = {
+            src: 'https://giscus.app/client.js',
+            "data-repo": 'xiaomengxmeng/ZeroDream',
+            "data-repo-id": 'R_kgDOQHFw4Q',
+            "data-category": 'Announcements',
+            "data-category-id": 'DIC_kwDOQHFw4c4CxyP3',
+            "data-mapping": 'pathname',
+            "data-reactions-enabled": '1',
+            "data-emit-metadata": '0',
+            "data-theme": nowTheme,
+            "data-lang": 'zh-CN',
+            crossorigin: "anonymous",
+            async: true
+        }
+        let ele = document.createElement('script')
+        for (let key in config) {
+            ele.setAttribute(key, config[key])
+        }
+        document.getElementById('giscus-wrap').insertAdjacentElement('afterbegin', ele)
+    }
+
+    function changeGiscusTheme() {
+        let theme = document.documentElement.classList.contains('dark') ? '' : ''
+
+        function sendMessage(message) {
+            const iframe = document.querySelector('iframe.giscus-frame');
+            if (!iframe) return;
+            iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+
+        sendMessage({
+            setConfig: {
+                theme: theme
+            }
+        });
+    }
+
+    loadGiscus();
+</script>
+
+
+
+                    <div class="trm-divider footer-divider"></div>
+
+                    <!-- footer -->
+                    <footer class="trm-footer-card trm-scroll-animation">
+
+    
+
+    
+
+    
+        <div class="trm-footer-item">
+            <span>
+                由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v7.3.0
+            </span>
+            <span class="footer-separator" data-separator=" | "></span>
+            <span> 
+                主题 - 
+                <a rel="noopener" href='https://github.com/MaLuns/hexo-theme-async' target='_blank'>Async</a>
+                v2.2.6
+            </span>
+        </div>
+      
+
+     
+
+     
+</footer>
+                    <!-- footer end -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+            <!-- body end -->
+
+            
+
+            
+<div class="trm-fixed-container">
+    
+    
+        <div class="trm-fixed-btn" data-title="阅读模式" onclick="asyncFun.switchReadMode()">
+            <i class="iconfont fas fa-book-reader"></i>
+        </div>
+    
+    
+    <div id="trm-back-top" class="trm-fixed-btn" data-title="回到顶部">
+        <i class="iconfont fas fa-arrow-up"></i>
+    </div>
+</div>
+        </div>
+      </div>
+      <!-- scroll container end -->
+  </div>
+  <!-- app wrapper end -->
+
+  
+    <div class="trm-search-popup">
+        <div class="trm-search-wrapper">
+            <div class="form trm-search-form">
+                <div class="trm-search-input-icon">
+                    <i class="iconfont fas fa-search"></i>
+                </div>
+                <input class="trm-search-input" type="text" placeholder="搜索文章...">
+                <div class="trm-search-btn-close">
+                    <i class="iconfont fas fa-times"></i>
+                </div>
+            </div>
+            <div class="trm-search-result-container">
+                <div class="trm-search-empty">
+                    请输入关键词进行搜索
+                </div>
+            </div>
+            <div class="trm-search-footer">
+                <div class="trm-search-stats"></div>
+                <ul class="trm-search-commands">
+                    <li>
+                        <kbd class="command-palette-commands-key">
+                            <svg width="15" height="15" aria-label="Escape key" role="img">
+                                <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="1.2">
+                                    <path
+                                        d="M13.6167 8.936c-.1065.3583-.6883.962-1.4875.962-.7993 0-1.653-.9165-1.653-2.1258v-.5678c0-1.2548.7896-2.1016 1.653-2.1016.8634 0 1.3601.4778 1.4875 1.0724M9 6c-.1352-.4735-.7506-.9219-1.46-.8972-.7092.0246-1.344.57-1.344 1.2166s.4198.8812 1.3445.9805C8.465 7.3992 8.968 7.9337 9 8.5c.032.5663-.454 1.398-1.4595 1.398C6.6593 9.898 6 9 5.963 8.4851m-1.4748.5368c-.2635.5941-.8099.876-1.5443.876s-1.7073-.6248-1.7073-2.204v-.4603c0-1.0416.721-2.131 1.7073-2.131.9864 0 1.6425 1.031 1.5443 2.2492h-2.956">
+                                    </path>
+                                </g>
+                            </svg>
+                        </kbd>
+                        <span class="command-palette-Label">to close</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+  <!-- Plugin -->
+
+
+
+
+    
+    
+<script src="https://unpkg.com/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+
+    
+
+    
+
+    
+
+    <!-- 数学公式 -->
+    
+
+    <!-- 评论插件 -->
+    
+        
+
+        
+    
+
+		
+
+
+
+
+    <!-- Service Worker -->
+    
+    <!-- baidu push -->
+    
+
+
+<script id="async-script" src="/ZeroDream/js/main.js?v=2.2.6"></script>
+
+<!-- CDN -->
+
+
+    
+
+    
+
+    
+
+
+
+</body>
+
+</html>

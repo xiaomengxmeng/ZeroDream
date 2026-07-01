@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="x5-fullscreen" content="true">
+<meta name="full-screen" content="yes">
+<meta name="theme-color" content="#317EFB" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=0" name="viewport">
+<meta name="description" content="思考过程[Medium] Longest Substring Without Repeating Characters (3)🤔 我的原始思路[在此记录你的初步想法]变长滑动窗口数组记录窗口中的字符重复字符窗口右边界移动？如何判断窗口中是否有重复字符？ 用数组记录窗口中的字符，若数组中存在该字符，说明窗口中存在重复字符，否则不存在重复字符遇到重复字符时，窗口右边界移动，直到窗口中不存在重复字符窗">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode 学习记录 2026-04-16">
+<meta property="og:url" content="https://xiaomengxmeng.github.io/ZeroDream/2026/04/16/LeetCode/LeetCode-%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-2026-04-16/index.html">
+<meta property="og:site_name" content="ZeroDream Blog">
+<meta property="og:description" content="思考过程[Medium] Longest Substring Without Repeating Characters (3)🤔 我的原始思路[在此记录你的初步想法]变长滑动窗口数组记录窗口中的字符重复字符窗口右边界移动？如何判断窗口中是否有重复字符？ 用数组记录窗口中的字符，若数组中存在该字符，说明窗口中存在重复字符，否则不存在重复字符遇到重复字符时，窗口右边界移动，直到窗口中不存在重复字符窗">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-04-16T15:00:00.000Z">
+<meta property="article:modified_time" content="2026-07-01T17:19:52.125Z">
+<meta property="article:author" content="ZeroDream">
+<meta property="article:tag" content="LeetCode">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="学习记录">
+<meta name="twitter:card" content="summary">
+
+
+<title >LeetCode 学习记录 2026-04-16</title>
+
+<!-- Favicon -->
+
+    <link href='/ZeroDream/images/favicon.ico?v=2.2.6' rel='icon' type='image/png' sizes='16x16' ></link>
+
+
+    <link href='/ZeroDream/images/favicon.ico?v=2.2.6' rel='icon' type='image/png' sizes='32x32' ></link>
+
+
+
+
+<!-- Plugin -->
+
+
+
+
+    
+<link rel="stylesheet" href="/ZeroDream/css/plugins/bootstrap.row.css">
+
+    
+<link rel="stylesheet" href="https://unpkg.com/@fancyapps/ui@4.0/dist/fancybox.css">
+
+    
+    
+
+
+
+
+<!-- Icon -->
+
+    
+<link rel="stylesheet" href="/ZeroDream/css/plugins/font-awesome.min.css">
+
+
+
+
+<!-- Variable -->
+<script>window.ASYNC_CONFIG = {"hostname":"xiaomengxmeng.github.io","author":"ZeroDream","root":"/ZeroDream/","typed_text":null,"theme_version":"2.2.6","theme":{"switch":true,"default":"style-light"},"favicon":{"logo":"/images/favicon.ico","icon16":"/images/favicon.ico","icon32":"/images/favicon.ico","apple_touch_icon":null,"webmanifest":null,"visibilitychange":true,"hidden":"/failure.ico","show_text":"(/≧▽≦/)咦！又好了！","hide_text":"(●—●)喔哟，崩溃啦！"},"i18n":{"placeholder":"搜索文章...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）","author":"本文作者：","copyright_link":"本文链接：","copyright_license_title":"版权声明：","copyright_license_content":"本博客所有文章除特别声明外，均默认采用 undefined 许可协议。","copy_success":"复制成功","copy_failure":"复制失败","open_read_mode":"进入阅读模式","exit_read_mode":"退出阅读模式","notice_outdate_message":"距离上次更新已经 undefined 天了, 文章内容可能已经过时。","sticky":"置顶","just":"刚刚","min":"分钟前","hour":"小时前","day":"天前","month":"个月前"},"swup":false,"plugin":{"flickr_justified_gallery":"https://unpkg.com/flickr-justified-gallery@latest/dist/fjGallery.min.js"},"icons":{"sun":"far fa-sun","moon":"far fa-moon","play":"fas fa-play","email":"far fa-envelope","next":"fas fa-arrow-right","calendar":"far fa-calendar-alt","clock":"far fa-clock","user":"far fa-user","back_top":"fas fa-arrow-up","close":"fas fa-times","search":"fas fa-search","reward":"fas fa-hand-holding-usd","toc_tag":"fas fa-th-list","read":"fas fa-book-reader","arrows":"fas fa-arrows-alt-h","double_arrows":"fas fa-angle-double-down","copy":"fas fa-copy"},"icontype":"font","highlight":{"plugin":"highlighjs","theme":true,"copy":true,"lang":true,"title":"default","height_limit":false},"toc":{"post_title":true},"live_time":{"start_time":"","prefix":"博客已萌萌哒运行 undefined 天"},"danmu":{"enable":false,"el":".trm-banner"}};</script>
+<script id="async-page-config">window.PAGE_CONFIG = {"isPost":true,"isHome":false,"postUpdate":"2026-07-02 01:19:52"};</script>
+
+<!-- Theme mode css -->
+<link data-swup-theme rel="stylesheet" href="/ZeroDream/css/index.css?v=2.2.6" id="trm-switch-style">
+<script>
+    let defaultMode = ASYNC_CONFIG.theme.default !=='auto' ?  ASYNC_CONFIG.theme.default : (window.matchMedia("(prefers-color-scheme: light)").matches ? 'style-light' : 'style-dark')
+    let catchMode = localStorage.getItem('theme-mode') || defaultMode;
+    let type = catchMode === 'style-dark' ? 'add' : 'remove';
+    document.documentElement.classList[type]('dark')
+</script>
+
+<!-- CDN -->
+
+
+    
+    
+
+
+
+<!-- Site Analytics -->
+
+ 
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+
+  <!-- app wrapper -->
+  <div class="trm-app-frame">
+
+    <!-- page preloader -->
+    <div class="trm-preloader">
+    <div class="trm-holder">
+        <div class="preloader">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+</div>
+    <!-- page preloader end -->
+
+    <!-- change mode preloader -->
+    <div class="trm-mode-swich-animation-frame">
+    <div class="trm-mode-swich-animation">
+        <i class="i-sun"><i class="iconfont far fa-sun"></i></i>
+        <div class="trm-horizon"></div>
+        <i class="i-moon"><i class="iconfont far fa-moon"></i></i>
+    </div>
+</div>
+    <!-- change mode preloader end -->
+
+      <!-- scroll container -->
+      <div id="trm-dynamic-content" class="trm-swup-animation">
+        <div id="trm-scroll-container" class="trm-scroll-container" style="opacity: 0">
+            <!-- top bar -->
+            <header class="trm-top-bar">
+	<div class="container">
+		<div class="trm-left-side">
+			<!-- logo -->
+<a href="/ZeroDream/" class="trm-logo-frame trm-anima-link">
+    
+        <img alt="logo" src="/ZeroDream/images/favicon.ico">
+    
+    
+        <div class="trm-logo-text">
+            小梦<span>随笔</span>
+        </div>
+    
+</a>
+<!-- logo end -->
+		</div>
+		<div class="trm-right-side">
+			<!-- menu -->
+<div class="trm-menu">
+    <nav>
+        <ul>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/ZeroDream/" target="">
+                    首页
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/ZeroDream/archives/" target="">
+                    归档
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/ZeroDream/tags/" target="">
+                    menu.tags
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/ZeroDream/categories/" target="">
+                    menu.categories
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/ZeroDream/about/" target="">
+                    关于
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/ZeroDream/links/" target="">
+                    友链
+                </a>
+                
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+<!-- menu end -->
+			
+    <!-- mode switcher place -->
+    <div class="trm-mode-switcher-place">
+        <div class="trm-mode-switcher">
+            <i class="iconfont far fa-sun"></i>
+            <input class="tgl tgl-light" id="trm-swich" type="checkbox">
+            <label class="trm-swich" for="trm-swich"></label>
+            <i class="iconfont far fa-moon"></i>
+        </div>
+    </div>
+    <!-- mode switcher place end -->
+
+			
+     
+
+		</div>
+		<div class="trm-menu-btn">
+			<span></span>
+		</div>
+	</div>
+</header>
+            <!-- top bar end -->
+
+            <!-- body -->
+            
+<div class="trm-content-start">
+    <!-- banner -->
+    <div class="trm-banner">
+    
+    <!-- banner cover -->
+    <img style="object-position:top;object-fit:cover;" alt="banner" class="trm-banner-cover" src="/ZeroDream/images/background/%E5%A5%B3%E9%AB%98%E4%B8%89%E4%BA%BA.png">
+    <!-- banner cover end -->
+    
+
+    <!-- banner content -->
+    <div class="trm-banner-content trm-overlay">
+        <div class="container">
+            <div class="row">
+                
+                <div class="col-lg-4"></div>
+                
+                <div class="col-lg-8">
+
+                    <!-- banner title -->
+                    <div class="trm-banner-text ">
+                        <div class="trm-label trm-mb-20">
+                            NEWS LETTER
+                        </div>
+                        <h1 class="trm-mb-30 trm-hsmb-font">
+                            LeetCode 学习记录 2026-04-16
+                        </h1>
+
+                        
+                            <ul class="trm-breadcrumbs trm-label">
+                                <li>
+                                    <a href="/ZeroDream/" class="trm-anima-link">Home</a>
+                                </li>
+                                <li>
+                                    <span>
+                                        2026
+                                    </span>
+                                </li>
+                            </ul>
+                        
+                    </div>
+                    <!-- banner title end -->
+
+                    <!-- scroll hint -->
+                    <span id="scroll-triger" class="trm-scroll-hint-frame">
+                        <div class="trm-scroll-hint"></div>
+                        <span class="trm-label">Scroll down</span>
+                    </span>
+                    <!-- scroll hint end -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- banner content end -->
+</div>
+    <!-- banner end -->
+    <div class="container">
+        <div class="row">
+            
+                <div class="trm-page-sidebar col-lg-4 hidden-sm">
+                    <!-- main card -->
+                    <div class="trm-main-card-frame trm-sidebar">
+    <div class="trm-main-card"> 
+        <!-- card header -->
+<div class="trm-mc-header">
+    <div class="trm-avatar-frame trm-mb-20">
+        <img alt="Avatar" class="trm-avatar trm-light-icon" src="/ZeroDream/images/head/head.jpg"> <img alt="Avatar" class="trm-avatar trm-dark-icon" src="/ZeroDream/images/head/darkhead.jpg">
+    </div>
+    <h5 class="trm-name trm-mb-15">
+        ZeroDream
+    </h5>
+    
+</div>
+<!-- card header end -->
+        <!-- sidebar social -->
+
+<div class="trm-divider trm-mb-40 trm-mt-40"></div>
+<div class="trm-social">
+    
+        <a href="https://github.com" title="Github" rel="nofollow" target="_blank">
+            <i class="iconfont fab fa-github"></i>
+        </a>
+    
+</div>
+
+<!-- sidebar social end -->
+        <!-- info -->
+<div class="trm-divider trm-mb-40 trm-mt-40"></div>
+<ul class="trm-table trm-mb-20">
+    
+        <li>
+            <div class="trm-label">
+                地址:
+            </div>
+            <div class="trm-label trm-label-light">
+                中国 江西
+            </div>
+        </li>
+    
+        <li>
+            <div class="trm-label">
+                职业:
+            </div>
+            <div class="trm-label trm-label-light">
+                开发者
+            </div>
+        </li>
+    
+</ul>
+<!-- info end -->
+
+        
+    <div class="trm-divider trm-mb-40 trm-mt-40"></div>
+    <!-- action button -->
+    <div class="text-center">
+        <a href="mailto:xuanmeng404@163.com" class="trm-btn">
+            联系我
+            <i class="iconfont far fa-envelope"></i>
+        </a>
+    </div>
+    <!-- action button end -->
+
+    </div>
+</div>
+                    <!-- main card end -->
+                </div>
+            
+            <div class="trm-page-content col-lg-8">
+                <div id="trm-content" class="trm-content">
+                    <div class="trm-post-info row hidden-sm">
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-calendar-alt trm-icon"></i><br>
+            04/16
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-clock trm-icon"></i><br>
+            23:00
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div id="post-author" class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-user trm-icon"></i><br>
+            ZeroDream
+        </div>
+    </div>
+</div>
+<div class="trm-card ">
+    <article id="article-container" class="trm-publication">
+    <h2 id="思考过程"><a href="#思考过程" class="headerlink" title="思考过程"></a>思考过程</h2><h3 id="Medium-Longest-Substring-Without-Repeating-Characters-3"><a href="#Medium-Longest-Substring-Without-Repeating-Characters-3" class="headerlink" title="[Medium] Longest Substring Without Repeating Characters (3)"></a>[Medium] Longest Substring Without Repeating Characters (3)</h3><h4 id="🤔-我的原始思路"><a href="#🤔-我的原始思路" class="headerlink" title="🤔 我的原始思路"></a>🤔 我的原始思路</h4><p>[在此记录你的初步想法]<br>变长滑动窗口<br>数组记录窗口中的字符<br>重复字符窗口右边界移动？<br>如何判断窗口中是否有重复字符？ 用数组记录窗口中的字符，若数组中存在该字符，说明窗口中存在重复字符，否则不存在重复字符<br>遇到重复字符时，窗口右边界移动，直到窗口中不存在重复字符<br>窗口大小何时变化？<br>窗口左边界如何移动</p>
+<h4 id="🔍-我的思考过程"><a href="#🔍-我的思考过程" class="headerlink" title="🔍 我的思考过程"></a>🔍 我的思考过程</h4><p><strong>Step 1: 问题分析</strong></p>
+<ol>
+<li>核心要求：找最长不重复子串</li>
+<li>与 Find Anagrams 的区别：窗口大小可变</li>
+<li>关键：遇到重复字符时，左边界如何移动</li>
+</ol>
+<p><strong>Step 2: 设计方案（变长滑动窗口）</strong></p>
+<ul>
+<li><strong>右边界</strong>：不断向右扩展</li>
+<li><strong>左边界</strong>：遇到重复字符时跳跃更新</li>
+<li><strong>pos 数组</strong>：记录每个字符最后出现的位置</li>
+<li><strong>更新规则</strong>：<ul>
+<li>若 <code>pos[s[i]] &gt;= left</code>，说明重复字符在窗口内</li>
+<li><code>left = pos[s[i]] + 1</code>，跳到重复字符之后</li>
+</ul>
+</li>
+</ul>
+<p><strong>Step 3: 代码实现</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">lengthOfLongestSubstring</span><span class="params">(string s)</span> </span>&#123;</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">pos</span><span class="params">(<span class="number">128</span>, <span class="number">-1</span>)</span></span>;  <span class="comment">// 记录字符最后位置</span></span><br><span class="line">    <span class="type">int</span> left = <span class="number">0</span>;              <span class="comment">// 窗口左边界</span></span><br><span class="line">    <span class="type">int</span> maxLen = <span class="number">0</span>;            <span class="comment">// 最大长度</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; s.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (pos[s[i]] &gt;= left) &#123;</span><br><span class="line">            left = pos[s[i]] + <span class="number">1</span>;  <span class="comment">// 跳到重复字符之后</span></span><br><span class="line">        &#125;</span><br><span class="line">        pos[s[i]] = i;</span><br><span class="line">        maxLen = <span class="built_in">max</span>(maxLen, i - left + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> maxLen;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Step 4: Bug 修复</strong></p>
+<ul>
+<li>❌ 原始代码：<code>left = i</code> — 跳到了当前位置，窗口变空</li>
+<li>✅ 修复后：<code>left = pos[s[i]] + 1</code> — 跳到重复字符之后</li>
+</ul>
+<p><strong>示例追踪</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">s = &quot;abcabcbb&quot;</span><br><span class="line">i=3: &#x27;a&#x27; → pos=0 &gt;= left(0), left=1, 窗口=&quot;bca&quot;</span><br><span class="line">i=4: &#x27;b&#x27; → pos=1 &gt;= left(1), left=2, 窗口=&quot;cab&quot;</span><br></pre></td></tr></table></figure>
+
+<h4 id="💡-对比收获"><a href="#💡-对比收获" class="headerlink" title="💡 对比收获"></a>💡 对比收获</h4><p><strong>与 Find Anagrams 的对比</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>Find Anagrams (438)</th>
+<th>Longest Substring (3)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>窗口大小</td>
+<td>固定</td>
+<td>可变</td>
+</tr>
+<tr>
+<td>左边界移动</td>
+<td>每次移动1步</td>
+<td>遇重复时跳跃</td>
+</tr>
+<tr>
+<td>数据结构</td>
+<td>count 数组</td>
+<td>pos 数组</td>
+</tr>
+</tbody></table>
+<p><strong>新学到的知识点</strong>：</p>
+<ol>
+<li><strong>变长滑动窗口</strong>：左右边界独立移动</li>
+<li><strong>跳跃更新</strong>：<code>left = pos[c] + 1</code>，O(1) 跳过重复字符</li>
+<li><strong>pos 数组技巧</strong>：记录最后位置，快速判断是否在窗口内</li>
+<li><strong>窗口大小计算</strong>：<code>i - left + 1</code></li>
+</ol>
+<h3 id="Medium-Permutation-in-String-567"><a href="#Medium-Permutation-in-String-567" class="headerlink" title="[Medium] Permutation in String (567)"></a>[Medium] Permutation in String (567)</h3><h4 id="🤔-我的原始思路-1"><a href="#🤔-我的原始思路-1" class="headerlink" title="🤔 我的原始思路"></a>🤔 我的原始思路</h4><p>这道题只需要判断异位词是否存在，几乎一样<br>核心 固定大小滑动窗口 判断窗口是否是s1的排列<br>关键 一样处理进入窗口和离开窗口的字符后是否匹配 </p>
+<h4 id="🔍-我的思考过程-1"><a href="#🔍-我的思考过程-1" class="headerlink" title="🔍 我的思考过程"></a>🔍 我的思考过程</h4><p><strong>Step 1: 问题分析</strong></p>
+<ol>
+<li>核心要求：判断 s2 是否包含 s1 的排列</li>
+<li>与 Find Anagrams 的关系：几乎完全相同</li>
+<li>区别：只需要返回 true&#x2F;false，不需要所有索引</li>
+</ol>
+<p><strong>Step 2: 设计方案</strong></p>
+<ul>
+<li><strong>窗口大小</strong>：固定为 s1.size()</li>
+<li><strong>核心逻辑</strong>：与 Find Anagrams 完全相同</li>
+<li><strong>优化</strong>：找到匹配立即返回 true</li>
+</ul>
+<p><strong>Step 3: 代码实现</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">bool</span> <span class="title">checkInclusion</span><span class="params">(string s1, string s2)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (s<span class="number">1.</span><span class="built_in">size</span>() &gt; s<span class="number">2.</span><span class="built_in">size</span>()) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">count</span><span class="params">(<span class="number">26</span>)</span></span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">char</span> c : s1) count[c - <span class="string">&#x27;a&#x27;</span>]++;</span><br><span class="line">    </span><br><span class="line">    <span class="type">int</span> s1_count = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> c : count) <span class="keyword">if</span> (c != <span class="number">0</span>) s1_count++;</span><br><span class="line">    </span><br><span class="line">    <span class="type">int</span> match = <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 初始化窗口</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; s<span class="number">1.</span><span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">        count[s2[i] - <span class="string">&#x27;a&#x27;</span>]--;</span><br><span class="line">        <span class="keyword">if</span> (count[s2[i] - <span class="string">&#x27;a&#x27;</span>] == <span class="number">0</span>) match++;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (count[s2[i] - <span class="string">&#x27;a&#x27;</span>] == <span class="number">-1</span>) match--;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (match == s1_count) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 滑动窗口</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = s<span class="number">1.</span><span class="built_in">size</span>(); i &lt; s<span class="number">2.</span><span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">        <span class="comment">// 进入字符</span></span><br><span class="line">        count[s2[i] - <span class="string">&#x27;a&#x27;</span>]--;</span><br><span class="line">        <span class="keyword">if</span> (count[s2[i] - <span class="string">&#x27;a&#x27;</span>] == <span class="number">0</span>) match++;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (count[s2[i] - <span class="string">&#x27;a&#x27;</span>] == <span class="number">-1</span>) match--;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 离开字符</span></span><br><span class="line">        count[s2[i - s<span class="number">1.</span><span class="built_in">size</span>()] - <span class="string">&#x27;a&#x27;</span>]++;</span><br><span class="line">        <span class="keyword">if</span> (count[s2[i - s<span class="number">1.</span><span class="built_in">size</span>()] - <span class="string">&#x27;a&#x27;</span>] == <span class="number">0</span>) match++;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (count[s2[i - s<span class="number">1.</span><span class="built_in">size</span>()] - <span class="string">&#x27;a&#x27;</span>] == <span class="number">1</span>) match--;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> (match == s1_count) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Step 4: Bug 修复</strong></p>
+<ul>
+<li>❌ 离开字符时检查 <code>== -1</code>，应该是 <code>== 1</code></li>
+<li>✅ <code>count[c]++</code> 后，从 0→1 表示从匹配变成不足</li>
+</ul>
+<h4 id="💡-对比收获-1"><a href="#💡-对比收获-1" class="headerlink" title="💡 对比收获"></a>💡 对比收获</h4><p><strong>与 Find Anagrams 的对比</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>Find Anagrams (438)</th>
+<th>Permutation in String (567)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>返回值</td>
+<td>所有起始索引</td>
+<td>是否存在</td>
+</tr>
+<tr>
+<td>核心逻辑</td>
+<td>完全相同</td>
+<td>完全相同</td>
+</tr>
+<tr>
+<td>优化</td>
+<td>无</td>
+<td>找到即返回</td>
+</tr>
+</tbody></table>
+<p><strong>新学到的知识点</strong>：</p>
+<ol>
+<li><strong>代码复用</strong>：相同模式可以解决不同问题</li>
+<li><strong>提前返回优化</strong>：找到答案立即返回，减少不必要的遍历</li>
+<li><strong>离开字符的 match 更新</strong>：<code>count[c]++</code> 后检查 <code>== 1</code></li>
+</ol>
+<h2 id="学习记录"><a href="#学习记录" class="headerlink" title="学习记录"></a>学习记录</h2><h3 id="Medium-Longest-Substring-Without-Repeating-Characters-3-1"><a href="#Medium-Longest-Substring-Without-Repeating-Characters-3-1" class="headerlink" title="[Medium] Longest Substring Without Repeating Characters (3)"></a>[Medium] Longest Substring Without Repeating Characters (3)</h3><h4 id="🎯-核心思路"><a href="#🎯-核心思路" class="headerlink" title="🎯 核心思路"></a>🎯 核心思路</h4><p>使用变长滑动窗口。右边界不断扩展，遇到重复字符时左边界跳跃更新到重复字符之后。用 pos 数组记录每个字符最后出现的位置，O(1) 判断是否在窗口内。时间复杂度 O(n)，空间复杂度 O(1)。</p>
+<h4 id="🔑-关键代码片段"><a href="#🔑-关键代码片段" class="headerlink" title="🔑 关键代码片段"></a>🔑 关键代码片段</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">lengthOfLongestSubstring</span><span class="params">(string s)</span> </span>&#123;</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">pos</span><span class="params">(<span class="number">128</span>, <span class="number">-1</span>)</span></span>;</span><br><span class="line">    <span class="type">int</span> left = <span class="number">0</span>, maxLen = <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; s.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (pos[s[i]] &gt;= left) &#123;</span><br><span class="line">            left = pos[s[i]] + <span class="number">1</span>;  <span class="comment">// 跳到重复字符之后</span></span><br><span class="line">        &#125;</span><br><span class="line">        pos[s[i]] = i;</span><br><span class="line">        maxLen = <span class="built_in">max</span>(maxLen, i - left + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> maxLen;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="📚-学到的知识点"><a href="#📚-学到的知识点" class="headerlink" title="📚 学到的知识点"></a>📚 学到的知识点</h4><ul>
+<li><strong>变长滑动窗口</strong>：左右边界独立移动</li>
+<li><strong>跳跃更新</strong>：<code>left = pos[c] + 1</code>，O(1) 跳过重复字符</li>
+<li><strong>pos 数组技巧</strong>：记录最后位置，快速判断是否在窗口内</li>
+<li><strong>窗口大小计算</strong>：<code>i - left + 1</code></li>
+</ul>
+<h4 id="⚠️-易错点-反思"><a href="#⚠️-易错点-反思" class="headerlink" title="⚠️ 易错点 &amp; 反思"></a>⚠️ 易错点 &amp; 反思</h4><ul>
+<li>❌ <code>left = i</code> 导致窗口变空，应该是 <code>left = pos[s[i]] + 1</code></li>
+<li>💡 <strong>关键技巧</strong>：<code>pos[s[i]] &gt;= left</code> 判断重复字符是否在窗口内</li>
+<li>💡 <strong>与固定窗口的区别</strong>：左边界可以跳跃，不是每次移动1步</li>
+</ul>
+<h4 id="🔗-关联题目"><a href="#🔗-关联题目" class="headerlink" title="🔗 关联题目"></a>🔗 关联题目</h4><ul>
+<li>[438] Find All Anagrams - 固定窗口滑动</li>
+<li>[567] Permutation in String - 固定窗口</li>
+<li>[76] Minimum Window Substring - 变长窗口进阶</li>
+</ul>
+<h3 id="Medium-Permutation-in-String-567-1"><a href="#Medium-Permutation-in-String-567-1" class="headerlink" title="[Medium] Permutation in String (567)"></a>[Medium] Permutation in String (567)</h3><h4 id="🎯-核心思路-1"><a href="#🎯-核心思路-1" class="headerlink" title="🎯 核心思路"></a>🎯 核心思路</h4><p>与 Find Anagrams 几乎完全相同，固定窗口大小滑动，用 matched 变量增量更新匹配状态。区别是只需返回是否存在，找到即返回 true。时间复杂度 O(n)，空间复杂度 O(1)。</p>
+<h4 id="🔑-关键代码片段-1"><a href="#🔑-关键代码片段-1" class="headerlink" title="🔑 关键代码片段"></a>🔑 关键代码片段</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">bool</span> <span class="title">checkInclusion</span><span class="params">(string s1, string s2)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (s<span class="number">1.</span><span class="built_in">size</span>() &gt; s<span class="number">2.</span><span class="built_in">size</span>()) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">count</span><span class="params">(<span class="number">26</span>)</span></span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">char</span> c : s1) count[c - <span class="string">&#x27;a&#x27;</span>]++;</span><br><span class="line">    </span><br><span class="line">    <span class="type">int</span> s1_count = <span class="number">0</span>, match = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> c : count) <span class="keyword">if</span> (c != <span class="number">0</span>) s1_count++;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 初始化 + 滑动窗口（与 Find Anagrams 相同）</span></span><br><span class="line">    <span class="comment">// 找到匹配立即返回 true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="📚-学到的知识点-1"><a href="#📚-学到的知识点-1" class="headerlink" title="📚 学到的知识点"></a>📚 学到的知识点</h4><ul>
+<li><strong>代码复用</strong>：相同滑动窗口模式解决不同问题</li>
+<li><strong>提前返回优化</strong>：找到答案立即返回</li>
+<li><strong>离开字符的 match 更新</strong>：<code>count[c]++</code> 后检查 <code>== 1</code></li>
+</ul>
+<h4 id="⚠️-易错点-反思-1"><a href="#⚠️-易错点-反思-1" class="headerlink" title="⚠️ 易错点 &amp; 反思"></a>⚠️ 易错点 &amp; 反思</h4><ul>
+<li>❌ 离开字符时检查 <code>== -1</code>，应该是 <code>== 1</code></li>
+<li>💡 <strong>与 Find Anagrams 的关系</strong>：核心逻辑完全相同，只是返回值不同</li>
+<li>💡 <strong>模式识别</strong>：看到”排列&#x2F;异位词”就要想到滑动窗口 + 频率统计</li>
+</ul>
+<h4 id="🔗-关联题目-1"><a href="#🔗-关联题目-1" class="headerlink" title="🔗 关联题目"></a>🔗 关联题目</h4><ul>
+<li>[438] Find All Anagrams - 相同逻辑，返回所有索引</li>
+<li>[242] Valid Anagram - 频率统计基础</li>
+<li>[567] Permutation in String - 本题</li>
+</ul>
+
+</article>
+    
+    
+
+</div>
+<div class="trm-post-next-prev row">
+    <div class="col-lg-12">
+        <!-- title -->
+        <h5 class="trm-title-with-divider">
+            其他文章
+            <span data-number="02"></span>
+        </h5>
+    </div>
+    
+        <div class="col-lg-6">
+    <div class="trm-blog-card trm-scroll-animation">
+        <a href="/ZeroDream/2026/04/17/LeetCode/LeetCode-%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-2026-04-17/" class="trm-cover-frame trm-anima-link">
+            
+            
+                <img alt="cover" class="no-fancybox" src="/ZeroDream/images/post/leetcode/cover-01.png">
+            
+        </a>
+        
+        <div class="trm-card-descr">
+            <div class="trm-label trm-category trm-mb-20">
+                <a href=" /ZeroDream/categories/LeetCode/">
+                    LeetCode
+                </a>
+            </div>
+            <h5>
+                <a href="/ZeroDream/2026/04/17/LeetCode/LeetCode-%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-2026-04-17/" class="trm-anima-link">
+                    LeetCode 学习记录 2026-04-17
+                </a>
+            </h5>
+            <div class="trm-divider trm-mb-20 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>26/04/17</li>
+                <li>23:00</li>
+                
+                
+            </ul>
+        </div>
+    </div>
+</div>
+    
+    
+        <div class="col-lg-6">
+    <div class="trm-blog-card trm-scroll-animation">
+        <a href="/ZeroDream/2026/04/15/LeetCode/LeetCode-%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-2026-04-15/" class="trm-cover-frame trm-anima-link">
+            
+            
+                <img alt="cover" class="no-fancybox" src="/ZeroDream/images/post/leetcode/cover-19.png">
+            
+        </a>
+        
+        <div class="trm-card-descr">
+            <div class="trm-label trm-category trm-mb-20">
+                <a href=" /ZeroDream/categories/LeetCode/">
+                    LeetCode
+                </a>
+            </div>
+            <h5>
+                <a href="/ZeroDream/2026/04/15/LeetCode/LeetCode-%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-2026-04-15/" class="trm-anima-link">
+                    LeetCode 学习记录 2026-04-15
+                </a>
+            </h5>
+            <div class="trm-divider trm-mb-20 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>26/04/15</li>
+                <li>23:00</li>
+                
+                
+            </ul>
+        </div>
+    </div>
+</div>
+    
+</div>
+
+    
+
+    <div id="giscus-wrap" class="trm-card trm-scroll-animation comment-container"></div>
+<script data-swup-reload-script>
+    function loadGiscus() {
+        let nowTheme = document.documentElement.classList.contains('dark') ? '' : ''
+        const config = {
+            src: 'https://giscus.app/client.js',
+            "data-repo": 'xiaomengxmeng/ZeroDream',
+            "data-repo-id": 'R_kgDOQHFw4Q',
+            "data-category": 'Announcements',
+            "data-category-id": 'DIC_kwDOQHFw4c4CxyP3',
+            "data-mapping": 'pathname',
+            "data-reactions-enabled": '1',
+            "data-emit-metadata": '0',
+            "data-theme": nowTheme,
+            "data-lang": 'zh-CN',
+            crossorigin: "anonymous",
+            async: true
+        }
+        let ele = document.createElement('script')
+        for (let key in config) {
+            ele.setAttribute(key, config[key])
+        }
+        document.getElementById('giscus-wrap').insertAdjacentElement('afterbegin', ele)
+    }
+
+    function changeGiscusTheme() {
+        let theme = document.documentElement.classList.contains('dark') ? '' : ''
+
+        function sendMessage(message) {
+            const iframe = document.querySelector('iframe.giscus-frame');
+            if (!iframe) return;
+            iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+
+        sendMessage({
+            setConfig: {
+                theme: theme
+            }
+        });
+    }
+
+    loadGiscus();
+</script>
+
+
+
+                    <div class="trm-divider footer-divider"></div>
+
+                    <!-- footer -->
+                    <footer class="trm-footer-card trm-scroll-animation">
+
+    
+
+    
+
+    
+        <div class="trm-footer-item">
+            <span>
+                由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v7.3.0
+            </span>
+            <span class="footer-separator" data-separator=" | "></span>
+            <span> 
+                主题 - 
+                <a rel="noopener" href='https://github.com/MaLuns/hexo-theme-async' target='_blank'>Async</a>
+                v2.2.6
+            </span>
+        </div>
+      
+
+     
+
+     
+</footer>
+                    <!-- footer end -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+            <!-- body end -->
+
+            
+
+            
+<div class="trm-fixed-container">
+    
+    
+        <div class="trm-fixed-btn" data-title="阅读模式" onclick="asyncFun.switchReadMode()">
+            <i class="iconfont fas fa-book-reader"></i>
+        </div>
+    
+    
+    <div id="trm-back-top" class="trm-fixed-btn" data-title="回到顶部">
+        <i class="iconfont fas fa-arrow-up"></i>
+    </div>
+</div>
+        </div>
+      </div>
+      <!-- scroll container end -->
+  </div>
+  <!-- app wrapper end -->
+
+  
+    <div class="trm-search-popup">
+        <div class="trm-search-wrapper">
+            <div class="form trm-search-form">
+                <div class="trm-search-input-icon">
+                    <i class="iconfont fas fa-search"></i>
+                </div>
+                <input class="trm-search-input" type="text" placeholder="搜索文章...">
+                <div class="trm-search-btn-close">
+                    <i class="iconfont fas fa-times"></i>
+                </div>
+            </div>
+            <div class="trm-search-result-container">
+                <div class="trm-search-empty">
+                    请输入关键词进行搜索
+                </div>
+            </div>
+            <div class="trm-search-footer">
+                <div class="trm-search-stats"></div>
+                <ul class="trm-search-commands">
+                    <li>
+                        <kbd class="command-palette-commands-key">
+                            <svg width="15" height="15" aria-label="Escape key" role="img">
+                                <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="1.2">
+                                    <path
+                                        d="M13.6167 8.936c-.1065.3583-.6883.962-1.4875.962-.7993 0-1.653-.9165-1.653-2.1258v-.5678c0-1.2548.7896-2.1016 1.653-2.1016.8634 0 1.3601.4778 1.4875 1.0724M9 6c-.1352-.4735-.7506-.9219-1.46-.8972-.7092.0246-1.344.57-1.344 1.2166s.4198.8812 1.3445.9805C8.465 7.3992 8.968 7.9337 9 8.5c.032.5663-.454 1.398-1.4595 1.398C6.6593 9.898 6 9 5.963 8.4851m-1.4748.5368c-.2635.5941-.8099.876-1.5443.876s-1.7073-.6248-1.7073-2.204v-.4603c0-1.0416.721-2.131 1.7073-2.131.9864 0 1.6425 1.031 1.5443 2.2492h-2.956">
+                                    </path>
+                                </g>
+                            </svg>
+                        </kbd>
+                        <span class="command-palette-Label">to close</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+  <!-- Plugin -->
+
+
+
+
+    
+    
+<script src="https://unpkg.com/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+
+    
+
+    
+
+    
+
+    <!-- 数学公式 -->
+    
+
+    <!-- 评论插件 -->
+    
+        
+
+        
+    
+
+		
+
+
+
+
+    <!-- Service Worker -->
+    
+    <!-- baidu push -->
+    
+
+
+<script id="async-script" src="/ZeroDream/js/main.js?v=2.2.6"></script>
+
+<!-- CDN -->
+
+
+    
+
+    
+
+    
+
+
+
+</body>
+
+</html>

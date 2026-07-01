@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="x5-fullscreen" content="true">
+<meta name="full-screen" content="yes">
+<meta name="theme-color" content="#317EFB" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=0" name="viewport">
+<meta name="description" content="思考过程[Easy] Move Zeroes (283)🤔 我的原始思路一个指针记录当前遍历位置，另一个指针记录当前0的起始索引从后往前遍历 不能使用额外空间原数组上修改 🔍 我的思考过程Step 1: 问题分析  核心要求：把 0 移到末尾，保持非零元素顺序 关键约束：原地操作，O(1) 空间 双指针思路：快指针遍历，慢指针记录放置位置  Step 2: 设计方案（快慢指针）  慢指针：指向">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode 学习记录 2026-04-17">
+<meta property="og:url" content="https://xiaomengxmeng.github.io/ZeroDream/2026/04/17/LeetCode/LeetCode-%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-2026-04-17/index.html">
+<meta property="og:site_name" content="ZeroDream Blog">
+<meta property="og:description" content="思考过程[Easy] Move Zeroes (283)🤔 我的原始思路一个指针记录当前遍历位置，另一个指针记录当前0的起始索引从后往前遍历 不能使用额外空间原数组上修改 🔍 我的思考过程Step 1: 问题分析  核心要求：把 0 移到末尾，保持非零元素顺序 关键约束：原地操作，O(1) 空间 双指针思路：快指针遍历，慢指针记录放置位置  Step 2: 设计方案（快慢指针）  慢指针：指向">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-04-17T15:00:00.000Z">
+<meta property="article:modified_time" content="2026-07-01T17:19:52.125Z">
+<meta property="article:author" content="ZeroDream">
+<meta property="article:tag" content="LeetCode">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="学习记录">
+<meta name="twitter:card" content="summary">
+
+
+<title >LeetCode 学习记录 2026-04-17</title>
+
+<!-- Favicon -->
+
+    <link href='/ZeroDream/images/favicon.ico?v=2.2.6' rel='icon' type='image/png' sizes='16x16' ></link>
+
+
+    <link href='/ZeroDream/images/favicon.ico?v=2.2.6' rel='icon' type='image/png' sizes='32x32' ></link>
+
+
+
+
+<!-- Plugin -->
+
+
+
+
+    
+<link rel="stylesheet" href="/ZeroDream/css/plugins/bootstrap.row.css">
+
+    
+<link rel="stylesheet" href="https://unpkg.com/@fancyapps/ui@4.0/dist/fancybox.css">
+
+    
+    
+
+
+
+
+<!-- Icon -->
+
+    
+<link rel="stylesheet" href="/ZeroDream/css/plugins/font-awesome.min.css">
+
+
+
+
+<!-- Variable -->
+<script>window.ASYNC_CONFIG = {"hostname":"xiaomengxmeng.github.io","author":"ZeroDream","root":"/ZeroDream/","typed_text":null,"theme_version":"2.2.6","theme":{"switch":true,"default":"style-light"},"favicon":{"logo":"/images/favicon.ico","icon16":"/images/favicon.ico","icon32":"/images/favicon.ico","apple_touch_icon":null,"webmanifest":null,"visibilitychange":true,"hidden":"/failure.ico","show_text":"(/≧▽≦/)咦！又好了！","hide_text":"(●—●)喔哟，崩溃啦！"},"i18n":{"placeholder":"搜索文章...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）","author":"本文作者：","copyright_link":"本文链接：","copyright_license_title":"版权声明：","copyright_license_content":"本博客所有文章除特别声明外，均默认采用 undefined 许可协议。","copy_success":"复制成功","copy_failure":"复制失败","open_read_mode":"进入阅读模式","exit_read_mode":"退出阅读模式","notice_outdate_message":"距离上次更新已经 undefined 天了, 文章内容可能已经过时。","sticky":"置顶","just":"刚刚","min":"分钟前","hour":"小时前","day":"天前","month":"个月前"},"swup":false,"plugin":{"flickr_justified_gallery":"https://unpkg.com/flickr-justified-gallery@latest/dist/fjGallery.min.js"},"icons":{"sun":"far fa-sun","moon":"far fa-moon","play":"fas fa-play","email":"far fa-envelope","next":"fas fa-arrow-right","calendar":"far fa-calendar-alt","clock":"far fa-clock","user":"far fa-user","back_top":"fas fa-arrow-up","close":"fas fa-times","search":"fas fa-search","reward":"fas fa-hand-holding-usd","toc_tag":"fas fa-th-list","read":"fas fa-book-reader","arrows":"fas fa-arrows-alt-h","double_arrows":"fas fa-angle-double-down","copy":"fas fa-copy"},"icontype":"font","highlight":{"plugin":"highlighjs","theme":true,"copy":true,"lang":true,"title":"default","height_limit":false},"toc":{"post_title":true},"live_time":{"start_time":"","prefix":"博客已萌萌哒运行 undefined 天"},"danmu":{"enable":false,"el":".trm-banner"}};</script>
+<script id="async-page-config">window.PAGE_CONFIG = {"isPost":true,"isHome":false,"postUpdate":"2026-07-02 01:19:52"};</script>
+
+<!-- Theme mode css -->
+<link data-swup-theme rel="stylesheet" href="/ZeroDream/css/index.css?v=2.2.6" id="trm-switch-style">
+<script>
+    let defaultMode = ASYNC_CONFIG.theme.default !=='auto' ?  ASYNC_CONFIG.theme.default : (window.matchMedia("(prefers-color-scheme: light)").matches ? 'style-light' : 'style-dark')
+    let catchMode = localStorage.getItem('theme-mode') || defaultMode;
+    let type = catchMode === 'style-dark' ? 'add' : 'remove';
+    document.documentElement.classList[type]('dark')
+</script>
+
+<!-- CDN -->
+
+
+    
+    
+
+
+
+<!-- Site Analytics -->
+
+ 
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+
+  <!-- app wrapper -->
+  <div class="trm-app-frame">
+
+    <!-- page preloader -->
+    <div class="trm-preloader">
+    <div class="trm-holder">
+        <div class="preloader">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+</div>
+    <!-- page preloader end -->
+
+    <!-- change mode preloader -->
+    <div class="trm-mode-swich-animation-frame">
+    <div class="trm-mode-swich-animation">
+        <i class="i-sun"><i class="iconfont far fa-sun"></i></i>
+        <div class="trm-horizon"></div>
+        <i class="i-moon"><i class="iconfont far fa-moon"></i></i>
+    </div>
+</div>
+    <!-- change mode preloader end -->
+
+      <!-- scroll container -->
+      <div id="trm-dynamic-content" class="trm-swup-animation">
+        <div id="trm-scroll-container" class="trm-scroll-container" style="opacity: 0">
+            <!-- top bar -->
+            <header class="trm-top-bar">
+	<div class="container">
+		<div class="trm-left-side">
+			<!-- logo -->
+<a href="/ZeroDream/" class="trm-logo-frame trm-anima-link">
+    
+        <img alt="logo" src="/ZeroDream/images/favicon.ico">
+    
+    
+        <div class="trm-logo-text">
+            小梦<span>随笔</span>
+        </div>
+    
+</a>
+<!-- logo end -->
+		</div>
+		<div class="trm-right-side">
+			<!-- menu -->
+<div class="trm-menu">
+    <nav>
+        <ul>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/ZeroDream/" target="">
+                    首页
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/ZeroDream/archives/" target="">
+                    归档
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/ZeroDream/tags/" target="">
+                    menu.tags
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/ZeroDream/categories/" target="">
+                    menu.categories
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/ZeroDream/about/" target="">
+                    关于
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/ZeroDream/links/" target="">
+                    友链
+                </a>
+                
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+<!-- menu end -->
+			
+    <!-- mode switcher place -->
+    <div class="trm-mode-switcher-place">
+        <div class="trm-mode-switcher">
+            <i class="iconfont far fa-sun"></i>
+            <input class="tgl tgl-light" id="trm-swich" type="checkbox">
+            <label class="trm-swich" for="trm-swich"></label>
+            <i class="iconfont far fa-moon"></i>
+        </div>
+    </div>
+    <!-- mode switcher place end -->
+
+			
+     
+
+		</div>
+		<div class="trm-menu-btn">
+			<span></span>
+		</div>
+	</div>
+</header>
+            <!-- top bar end -->
+
+            <!-- body -->
+            
+<div class="trm-content-start">
+    <!-- banner -->
+    <div class="trm-banner">
+    
+    <!-- banner cover -->
+    <img style="object-position:top;object-fit:cover;" alt="banner" class="trm-banner-cover" src="/ZeroDream/images/background/%E5%A5%B3%E9%AB%98%E4%B8%89%E4%BA%BA.png">
+    <!-- banner cover end -->
+    
+
+    <!-- banner content -->
+    <div class="trm-banner-content trm-overlay">
+        <div class="container">
+            <div class="row">
+                
+                <div class="col-lg-4"></div>
+                
+                <div class="col-lg-8">
+
+                    <!-- banner title -->
+                    <div class="trm-banner-text ">
+                        <div class="trm-label trm-mb-20">
+                            NEWS LETTER
+                        </div>
+                        <h1 class="trm-mb-30 trm-hsmb-font">
+                            LeetCode 学习记录 2026-04-17
+                        </h1>
+
+                        
+                            <ul class="trm-breadcrumbs trm-label">
+                                <li>
+                                    <a href="/ZeroDream/" class="trm-anima-link">Home</a>
+                                </li>
+                                <li>
+                                    <span>
+                                        2026
+                                    </span>
+                                </li>
+                            </ul>
+                        
+                    </div>
+                    <!-- banner title end -->
+
+                    <!-- scroll hint -->
+                    <span id="scroll-triger" class="trm-scroll-hint-frame">
+                        <div class="trm-scroll-hint"></div>
+                        <span class="trm-label">Scroll down</span>
+                    </span>
+                    <!-- scroll hint end -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- banner content end -->
+</div>
+    <!-- banner end -->
+    <div class="container">
+        <div class="row">
+            
+                <div class="trm-page-sidebar col-lg-4 hidden-sm">
+                    <!-- main card -->
+                    <div class="trm-main-card-frame trm-sidebar">
+    <div class="trm-main-card"> 
+        <!-- card header -->
+<div class="trm-mc-header">
+    <div class="trm-avatar-frame trm-mb-20">
+        <img alt="Avatar" class="trm-avatar trm-light-icon" src="/ZeroDream/images/head/head.jpg"> <img alt="Avatar" class="trm-avatar trm-dark-icon" src="/ZeroDream/images/head/darkhead.jpg">
+    </div>
+    <h5 class="trm-name trm-mb-15">
+        ZeroDream
+    </h5>
+    
+</div>
+<!-- card header end -->
+        <!-- sidebar social -->
+
+<div class="trm-divider trm-mb-40 trm-mt-40"></div>
+<div class="trm-social">
+    
+        <a href="https://github.com" title="Github" rel="nofollow" target="_blank">
+            <i class="iconfont fab fa-github"></i>
+        </a>
+    
+</div>
+
+<!-- sidebar social end -->
+        <!-- info -->
+<div class="trm-divider trm-mb-40 trm-mt-40"></div>
+<ul class="trm-table trm-mb-20">
+    
+        <li>
+            <div class="trm-label">
+                地址:
+            </div>
+            <div class="trm-label trm-label-light">
+                中国 江西
+            </div>
+        </li>
+    
+        <li>
+            <div class="trm-label">
+                职业:
+            </div>
+            <div class="trm-label trm-label-light">
+                开发者
+            </div>
+        </li>
+    
+</ul>
+<!-- info end -->
+
+        
+    <div class="trm-divider trm-mb-40 trm-mt-40"></div>
+    <!-- action button -->
+    <div class="text-center">
+        <a href="mailto:xuanmeng404@163.com" class="trm-btn">
+            联系我
+            <i class="iconfont far fa-envelope"></i>
+        </a>
+    </div>
+    <!-- action button end -->
+
+    </div>
+</div>
+                    <!-- main card end -->
+                </div>
+            
+            <div class="trm-page-content col-lg-8">
+                <div id="trm-content" class="trm-content">
+                    <div class="trm-post-info row hidden-sm">
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-calendar-alt trm-icon"></i><br>
+            04/17
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-clock trm-icon"></i><br>
+            23:00
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div id="post-author" class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-user trm-icon"></i><br>
+            ZeroDream
+        </div>
+    </div>
+</div>
+<div class="trm-card ">
+    <article id="article-container" class="trm-publication">
+    <h2 id="思考过程"><a href="#思考过程" class="headerlink" title="思考过程"></a>思考过程</h2><h3 id="Easy-Move-Zeroes-283"><a href="#Easy-Move-Zeroes-283" class="headerlink" title="[Easy] Move Zeroes (283)"></a>[Easy] Move Zeroes (283)</h3><h4 id="🤔-我的原始思路"><a href="#🤔-我的原始思路" class="headerlink" title="🤔 我的原始思路"></a>🤔 我的原始思路</h4><p>一个指针记录当前遍历位置，另一个指针记录当前0的起始索引<br>从后往前遍历 不能使用额外空间原数组上修改</p>
+<h4 id="🔍-我的思考过程"><a href="#🔍-我的思考过程" class="headerlink" title="🔍 我的思考过程"></a>🔍 我的思考过程</h4><p><strong>Step 1: 问题分析</strong></p>
+<ol>
+<li>核心要求：把 0 移到末尾，保持非零元素顺序</li>
+<li>关键约束：原地操作，O(1) 空间</li>
+<li>双指针思路：快指针遍历，慢指针记录放置位置</li>
+</ol>
+<p><strong>Step 2: 设计方案（快慢指针）</strong></p>
+<ul>
+<li><strong>慢指针</strong>：指向下一个非零元素应该放置的位置</li>
+<li><strong>快指针</strong>：遍历数组</li>
+<li><strong>规则</strong>：<ul>
+<li>快指针遇到非零 → 放到慢指针位置，慢指针++</li>
+<li>快指针遇到 0 → 跳过</li>
+</ul>
+</li>
+<li><strong>为什么从前往后</strong>：保持元素原始顺序</li>
+</ul>
+<p><strong>Step 3: 代码实现</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">moveZeroes</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> slow = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> fast = <span class="number">0</span>; fast &lt; nums.<span class="built_in">size</span>(); fast++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (nums[fast] != <span class="number">0</span>) &#123;</span><br><span class="line">            nums[slow] = nums[fast];</span><br><span class="line">            slow++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (slow &lt; nums.<span class="built_in">size</span>()) &#123;</span><br><span class="line">        nums[slow++] = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Step 4: 为什么从前往后能保持顺序？</strong></p>
+<ul>
+<li>原始顺序：第1个非零、第2个非零、第3个非零…</li>
+<li>从前往后遍历：按遇到顺序依次放入 → 顺序不变</li>
+<li>从后往前遍历：先遇到的放前面 → 顺序反转</li>
+</ul>
+<p><strong>示例追踪</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">nums = [0, 1, 0, 3, 12]</span><br><span class="line">fast=1: 1 → slow=0 → [1, ...]</span><br><span class="line">fast=3: 3 → slow=1 → [1, 3, ...]</span><br><span class="line">fast=4: 12 → slow=2 → [1, 3, 12, ...]</span><br><span class="line">最后填0 → [1, 3, 12, 0, 0]</span><br></pre></td></tr></table></figure>
+
+<h4 id="💡-对比收获"><a href="#💡-对比收获" class="headerlink" title="💡 对比收获"></a>💡 对比收获</h4><p><strong>新学到的知识点</strong>：</p>
+<ol>
+<li><strong>快慢指针模式</strong>：一个遍历，一个记录位置</li>
+<li><strong>原地操作技巧</strong>：先覆盖非零元素，后填 0</li>
+<li><strong>顺序保持原理</strong>：从前往后遍历 &#x3D; 保持原顺序</li>
+<li><strong>双指针分类</strong>：快慢指针、左右指针（不同场景）</li>
+</ol>
+<h3 id="Easy-Remove-Element-27"><a href="#Easy-Remove-Element-27" class="headerlink" title="[Easy] Remove Element (27)"></a>[Easy] Remove Element (27)</h3><h4 id="🤔-我的原始思路-1"><a href="#🤔-我的原始思路-1" class="headerlink" title="🤔 我的原始思路"></a>🤔 我的原始思路</h4><ul>
+<li>快慢指针</li>
+<li>从前往后遍历</li>
+<li>移除特定val</li>
+<li>返回 移除后的新长度</li>
+</ul>
+<h4 id="🔍-我的思考过程-1"><a href="#🔍-我的思考过程-1" class="headerlink" title="🔍 我的思考过程"></a>🔍 我的思考过程</h4><p><strong>Step 1: 问题分析</strong></p>
+<ol>
+<li>核心要求：原地移除所有等于 val 的元素</li>
+<li>与 Move Zeroes 的关系：几乎完全相同</li>
+<li>区别：不需要最后填 0，只需返回新长度</li>
+</ol>
+<p><strong>Step 2: 设计方案</strong></p>
+<ul>
+<li><strong>快慢指针</strong>：与 Move Zeroes 相同</li>
+<li><strong>条件</strong>：<code>nums[fast] != val</code></li>
+<li><strong>返回</strong>：slow（新长度）</li>
+</ul>
+<p><strong>Step 3: 代码实现</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">removeElement</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> val)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> slow = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> fast = <span class="number">0</span>; fast &lt; nums.<span class="built_in">size</span>(); fast++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (nums[fast] != val) &#123;</span><br><span class="line">            nums[slow] = nums[fast];</span><br><span class="line">            slow++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> slow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Step 4: 与 Move Zeroes 对比</strong></p>
+<ul>
+<li>Move Zeroes：移除 0，最后需要填 0</li>
+<li>Remove Element：移除 val，不需要填 0</li>
+<li>核心逻辑完全相同</li>
+</ul>
+<h4 id="💡-对比收获-1"><a href="#💡-对比收获-1" class="headerlink" title="💡 对比收获"></a>💡 对比收获</h4><p><strong>新学到的知识点</strong>：</p>
+<ol>
+<li><strong>快慢指针通用模式</strong>：原地移除&#x2F;过滤元素</li>
+<li><strong>代码简化</strong>：不需要填 0 时更简洁</li>
+<li><strong>模式识别</strong>：原地操作 + 保持顺序 → 快慢指针</li>
+</ol>
+<h3 id="Easy-Reverse-Linked-List-206"><a href="#Easy-Reverse-Linked-List-206" class="headerlink" title="[Easy] Reverse Linked List (206)"></a>[Easy] Reverse Linked List (206)</h3><h4 id="🤔-我的原始思路-2"><a href="#🤔-我的原始思路-2" class="headerlink" title="🤔 我的原始思路"></a>🤔 我的原始思路</h4><p>链表离散存放 ，上一个节点中存放着指向下一个节点的地址指针<br>数组顺序存放 可以随机访问<br>反转链表 需要保存 当前节点 指向的节点 之前指向当前节点 的节点<br>遍历过程需要3个指针 </p>
+<h4 id="🔍-我的思考过程-2"><a href="#🔍-我的思考过程-2" class="headerlink" title="🔍 我的思考过程"></a>🔍 我的思考过程</h4><p><strong>Step 1: 问题分析</strong></p>
+<ol>
+<li>核心要求：反转单链表</li>
+<li>链表特点：离散存放，只能顺序访问</li>
+<li>关键：改变每个节点的 next 指针</li>
+</ol>
+<p><strong>Step 2: 设计方案（三指针法）</strong></p>
+<ul>
+<li><strong>prev</strong>：前一个节点（初始 nullptr）</li>
+<li><strong>cur</strong>：当前节点</li>
+<li><strong>next</strong>：下一个节点（临时保存，防止丢失）</li>
+</ul>
+<p><strong>Step 3: 代码实现</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ListNode* <span class="title">reverseList</span><span class="params">(ListNode* head)</span> </span>&#123;</span><br><span class="line">    ListNode* prev = <span class="literal">nullptr</span>;</span><br><span class="line">    ListNode* cur = head;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> (cur != <span class="literal">nullptr</span>) &#123;</span><br><span class="line">        ListNode* next = cur-&gt;next;  <span class="comment">// 保存下一个节点</span></span><br><span class="line">        cur-&gt;next = prev;            <span class="comment">// 反转指针</span></span><br><span class="line">        prev = cur;                  <span class="comment">// 移动 prev</span></span><br><span class="line">        cur = next;                  <span class="comment">// 移动 cur</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> prev;  <span class="comment">// 返回新的头节点</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Step 4: 关键修正</strong></p>
+<ul>
+<li>❌ prev 初始指向头节点 → 会造成循环引用</li>
+<li>✅ prev 初始为 nullptr → 原头节点的 next 应该指向 nullptr</li>
+<li>❌ 循环条件 <code>cur-&gt;next == nullptr</code> → 最后一个节点未处理</li>
+<li>✅ 循环条件 <code>cur == nullptr</code> → 所有节点都被处理</li>
+</ul>
+<p><strong>示例追踪</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">原始：1 → 2 → 3 → nullptr</span><br><span class="line"></span><br><span class="line">第1轮：prev=nullptr, cur=1</span><br><span class="line">  next=2, 1-&gt;nullptr, prev=1, cur=2</span><br><span class="line">  结果：nullptr ← 1   2 → 3 → nullptr</span><br><span class="line"></span><br><span class="line">第2轮：prev=1, cur=2</span><br><span class="line">  next=3, 2-&gt;1, prev=2, cur=3</span><br><span class="line">  结果：nullptr ← 1 ← 2   3 → nullptr</span><br><span class="line"></span><br><span class="line">第3轮：prev=2, cur=3</span><br><span class="line">  next=nullptr, 3-&gt;2, prev=3, cur=nullptr</span><br><span class="line">  结果：nullptr ← 1 ← 2 ← 3</span><br><span class="line"></span><br><span class="line">结束：cur=nullptr, 返回 prev=3</span><br></pre></td></tr></table></figure>
+
+<h4 id="💡-对比收获-2"><a href="#💡-对比收获-2" class="headerlink" title="💡 对比收获"></a>💡 对比收获</h4><p><strong>新学到的知识点</strong>：</p>
+<ol>
+<li><strong>链表操作核心</strong>：改变指针方向</li>
+<li><strong>三指针法</strong>：prev、cur、next 配合</li>
+<li><strong>临时保存</strong>：改变指针前先保存 next，防止丢失</li>
+<li><strong>返回值</strong>：prev 是新的头节点</li>
+</ol>
+<h2 id="学习记录"><a href="#学习记录" class="headerlink" title="学习记录"></a>学习记录</h2><h3 id="Easy-Move-Zeroes-283-1"><a href="#Easy-Move-Zeroes-283-1" class="headerlink" title="[Easy] Move Zeroes (283)"></a>[Easy] Move Zeroes (283)</h3><h4 id="🎯-核心思路"><a href="#🎯-核心思路" class="headerlink" title="🎯 核心思路"></a>🎯 核心思路</h4><p>使用快慢指针。快指针遍历数组，慢指针记录下一个非零元素应放置的位置。遇到非零元素放到慢指针位置，最后把慢指针之后的位置填 0。时间复杂度 O(n)，空间复杂度 O(1)。</p>
+<h4 id="🔑-关键代码片段"><a href="#🔑-关键代码片段" class="headerlink" title="🔑 关键代码片段"></a>🔑 关键代码片段</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">moveZeroes</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> slow = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> fast = <span class="number">0</span>; fast &lt; nums.<span class="built_in">size</span>(); fast++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (nums[fast] != <span class="number">0</span>) &#123;</span><br><span class="line">            nums[slow++] = nums[fast];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (slow &lt; nums.<span class="built_in">size</span>()) &#123;</span><br><span class="line">        nums[slow++] = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="📚-学到的知识点"><a href="#📚-学到的知识点" class="headerlink" title="📚 学到的知识点"></a>📚 学到的知识点</h4><ul>
+<li><strong>快慢指针模式</strong>：一个遍历，一个记录位置</li>
+<li><strong>原地操作技巧</strong>：先覆盖非零元素，后填 0</li>
+<li><strong>顺序保持原理</strong>：从前往后遍历 &#x3D; 保持原顺序</li>
+<li><strong>双指针分类</strong>：快慢指针、左右指针</li>
+</ul>
+<h4 id="⚠️-易错点-反思"><a href="#⚠️-易错点-反思" class="headerlink" title="⚠️ 易错点 &amp; 反思"></a>⚠️ 易错点 &amp; 反思</h4><ul>
+<li>❌ 从后往前遍历会反转顺序</li>
+<li>💡 <strong>关键技巧</strong>：慢指针记录”下一个放置位置”</li>
+<li>💡 <strong>模式识别</strong>：原地移动&#x2F;删除元素 → 快慢指针</li>
+</ul>
+<h4 id="🔗-关联题目"><a href="#🔗-关联题目" class="headerlink" title="🔗 关联题目"></a>🔗 关联题目</h4><ul>
+<li>[27] Remove Element - 类似的快慢指针</li>
+<li>[26] Remove Duplicates - 快慢指针去重</li>
+<li>[80] Remove Duplicates II - 快慢指针进阶</li>
+</ul>
+<h3 id="Easy-Remove-Element-27-1"><a href="#Easy-Remove-Element-27-1" class="headerlink" title="[Easy] Remove Element (27)"></a>[Easy] Remove Element (27)</h3><h4 id="🎯-核心思路-1"><a href="#🎯-核心思路-1" class="headerlink" title="🎯 核心思路"></a>🎯 核心思路</h4><p>与 Move Zeroes 几乎相同，使用快慢指针原地移除等于 val 的元素。快指针遍历，慢指针记录放置位置。区别是不需要最后填 0，直接返回 slow 作为新长度。时间复杂度 O(n)，空间复杂度 O(1)。</p>
+<h4 id="🔑-关键代码片段-1"><a href="#🔑-关键代码片段-1" class="headerlink" title="🔑 关键代码片段"></a>🔑 关键代码片段</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">removeElement</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> val)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> slow = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> fast = <span class="number">0</span>; fast &lt; nums.<span class="built_in">size</span>(); fast++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (nums[fast] != val) &#123;</span><br><span class="line">            nums[slow++] = nums[fast];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> slow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="📚-学到的知识点-1"><a href="#📚-学到的知识点-1" class="headerlink" title="📚 学到的知识点"></a>📚 学到的知识点</h4><ul>
+<li><strong>快慢指针通用模式</strong>：原地移除&#x2F;过滤元素</li>
+<li><strong>代码简化</strong>：不需要填 0 时更简洁</li>
+<li><strong>模式识别</strong>：原地操作 + 保持顺序 → 快慢指针</li>
+</ul>
+<h4 id="⚠️-易错点-反思-1"><a href="#⚠️-易错点-反思-1" class="headerlink" title="⚠️ 易错点 &amp; 反思"></a>⚠️ 易错点 &amp; 反思</h4><ul>
+<li>💡 <strong>与 Move Zeroes 的关系</strong>：核心逻辑完全相同，只是目标不同</li>
+<li>💡 <strong>返回值</strong>：slow 就是新长度</li>
+</ul>
+<h4 id="🔗-关联题目-1"><a href="#🔗-关联题目-1" class="headerlink" title="🔗 关联题目"></a>🔗 关联题目</h4><ul>
+<li>[283] Move Zeroes - 快慢指针基础</li>
+<li>[26] Remove Duplicates - 快慢指针去重</li>
+<li>[80] Remove Duplicates II - 快慢指针进阶</li>
+</ul>
+<h3 id="Easy-Reverse-Linked-List-206-1"><a href="#Easy-Reverse-Linked-List-206-1" class="headerlink" title="[Easy] Reverse Linked List (206)"></a>[Easy] Reverse Linked List (206)</h3><h4 id="🎯-核心思路-2"><a href="#🎯-核心思路-2" class="headerlink" title="🎯 核心思路"></a>🎯 核心思路</h4><p>使用三指针法反转链表。prev 指向前一个节点，cur 指向当前节点，next 临时保存下一个节点。每次循环：保存 next → 反转指针 → 移动 prev 和 cur。时间复杂度 O(n)，空间复杂度 O(1)。</p>
+<h4 id="🔑-关键代码片段-2"><a href="#🔑-关键代码片段-2" class="headerlink" title="🔑 关键代码片段"></a>🔑 关键代码片段</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ListNode* <span class="title">reverseList</span><span class="params">(ListNode* head)</span> </span>&#123;</span><br><span class="line">    ListNode* prev = <span class="literal">nullptr</span>;</span><br><span class="line">    ListNode* cur = head;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> (cur != <span class="literal">nullptr</span>) &#123;</span><br><span class="line">        ListNode* next = cur-&gt;next;</span><br><span class="line">        cur-&gt;next = prev;</span><br><span class="line">        prev = cur;</span><br><span class="line">        cur = next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> prev;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="📚-学到的知识点-2"><a href="#📚-学到的知识点-2" class="headerlink" title="📚 学到的知识点"></a>📚 学到的知识点</h4><ul>
+<li><strong>链表操作核心</strong>：改变指针方向</li>
+<li><strong>三指针法</strong>：prev、cur、next 配合</li>
+<li><strong>临时保存</strong>：改变指针前先保存 next，防止丢失</li>
+<li><strong>返回值</strong>：prev 是新的头节点</li>
+</ul>
+<h4 id="⚠️-易错点-反思-2"><a href="#⚠️-易错点-反思-2" class="headerlink" title="⚠️ 易错点 &amp; 反思"></a>⚠️ 易错点 &amp; 反思</h4><ul>
+<li>❌ prev 初始指向头节点会造成循环引用</li>
+<li>❌ 循环条件 <code>cur-&gt;next == nullptr</code> 会漏掉最后一个节点</li>
+<li>💡 <strong>关键技巧</strong>：先保存 next，再改变指针</li>
+<li>💡 <strong>链表 vs 数组</strong>：链表只能顺序访问，操作时注意保存指针</li>
+</ul>
+<h4 id="🔗-关联题目-2"><a href="#🔗-关联题目-2" class="headerlink" title="🔗 关联题目"></a>🔗 关联题目</h4><ul>
+<li>[92] Reverse Linked List II - 反转部分链表</li>
+<li>[25] Reverse Nodes in k-Group - K个一组反转</li>
+<li>[24] Swap Nodes in Pairs - 两两交换节点</li>
+</ul>
+
+</article>
+    
+    
+
+</div>
+<div class="trm-post-next-prev row">
+    <div class="col-lg-12">
+        <!-- title -->
+        <h5 class="trm-title-with-divider">
+            其他文章
+            <span data-number="02"></span>
+        </h5>
+    </div>
+    
+        <div class="col-lg-6">
+    <div class="trm-blog-card trm-scroll-animation">
+        <a href="/ZeroDream/2026/04/17/LeetCode/LeetCode-%E5%91%A8%E6%80%BB%E7%BB%93/" class="trm-cover-frame trm-anima-link">
+            
+            
+                <img alt="cover" class="no-fancybox" src="/ZeroDream/images/post/leetcode/cover-02.png">
+            
+        </a>
+        
+        <div class="trm-card-descr">
+            <div class="trm-label trm-category trm-mb-20">
+                <a href=" /ZeroDream/categories/LeetCode/">
+                    LeetCode
+                </a>
+            </div>
+            <h5>
+                <a href="/ZeroDream/2026/04/17/LeetCode/LeetCode-%E5%91%A8%E6%80%BB%E7%BB%93/" class="trm-anima-link">
+                    LeetCode 周总结
+                </a>
+            </h5>
+            <div class="trm-divider trm-mb-20 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>26/04/17</li>
+                <li>23:00</li>
+                
+                
+            </ul>
+        </div>
+    </div>
+</div>
+    
+    
+        <div class="col-lg-6">
+    <div class="trm-blog-card trm-scroll-animation">
+        <a href="/ZeroDream/2026/04/16/LeetCode/LeetCode-%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-2026-04-16/" class="trm-cover-frame trm-anima-link">
+            
+            
+                <img alt="cover" class="no-fancybox" src="/ZeroDream/images/post/leetcode/cover-20.png">
+            
+        </a>
+        
+        <div class="trm-card-descr">
+            <div class="trm-label trm-category trm-mb-20">
+                <a href=" /ZeroDream/categories/LeetCode/">
+                    LeetCode
+                </a>
+            </div>
+            <h5>
+                <a href="/ZeroDream/2026/04/16/LeetCode/LeetCode-%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-2026-04-16/" class="trm-anima-link">
+                    LeetCode 学习记录 2026-04-16
+                </a>
+            </h5>
+            <div class="trm-divider trm-mb-20 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>26/04/16</li>
+                <li>23:00</li>
+                
+                
+            </ul>
+        </div>
+    </div>
+</div>
+    
+</div>
+
+    
+
+    <div id="giscus-wrap" class="trm-card trm-scroll-animation comment-container"></div>
+<script data-swup-reload-script>
+    function loadGiscus() {
+        let nowTheme = document.documentElement.classList.contains('dark') ? '' : ''
+        const config = {
+            src: 'https://giscus.app/client.js',
+            "data-repo": 'xiaomengxmeng/ZeroDream',
+            "data-repo-id": 'R_kgDOQHFw4Q',
+            "data-category": 'Announcements',
+            "data-category-id": 'DIC_kwDOQHFw4c4CxyP3',
+            "data-mapping": 'pathname',
+            "data-reactions-enabled": '1',
+            "data-emit-metadata": '0',
+            "data-theme": nowTheme,
+            "data-lang": 'zh-CN',
+            crossorigin: "anonymous",
+            async: true
+        }
+        let ele = document.createElement('script')
+        for (let key in config) {
+            ele.setAttribute(key, config[key])
+        }
+        document.getElementById('giscus-wrap').insertAdjacentElement('afterbegin', ele)
+    }
+
+    function changeGiscusTheme() {
+        let theme = document.documentElement.classList.contains('dark') ? '' : ''
+
+        function sendMessage(message) {
+            const iframe = document.querySelector('iframe.giscus-frame');
+            if (!iframe) return;
+            iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+
+        sendMessage({
+            setConfig: {
+                theme: theme
+            }
+        });
+    }
+
+    loadGiscus();
+</script>
+
+
+
+                    <div class="trm-divider footer-divider"></div>
+
+                    <!-- footer -->
+                    <footer class="trm-footer-card trm-scroll-animation">
+
+    
+
+    
+
+    
+        <div class="trm-footer-item">
+            <span>
+                由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v7.3.0
+            </span>
+            <span class="footer-separator" data-separator=" | "></span>
+            <span> 
+                主题 - 
+                <a rel="noopener" href='https://github.com/MaLuns/hexo-theme-async' target='_blank'>Async</a>
+                v2.2.6
+            </span>
+        </div>
+      
+
+     
+
+     
+</footer>
+                    <!-- footer end -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+            <!-- body end -->
+
+            
+
+            
+<div class="trm-fixed-container">
+    
+    
+        <div class="trm-fixed-btn" data-title="阅读模式" onclick="asyncFun.switchReadMode()">
+            <i class="iconfont fas fa-book-reader"></i>
+        </div>
+    
+    
+    <div id="trm-back-top" class="trm-fixed-btn" data-title="回到顶部">
+        <i class="iconfont fas fa-arrow-up"></i>
+    </div>
+</div>
+        </div>
+      </div>
+      <!-- scroll container end -->
+  </div>
+  <!-- app wrapper end -->
+
+  
+    <div class="trm-search-popup">
+        <div class="trm-search-wrapper">
+            <div class="form trm-search-form">
+                <div class="trm-search-input-icon">
+                    <i class="iconfont fas fa-search"></i>
+                </div>
+                <input class="trm-search-input" type="text" placeholder="搜索文章...">
+                <div class="trm-search-btn-close">
+                    <i class="iconfont fas fa-times"></i>
+                </div>
+            </div>
+            <div class="trm-search-result-container">
+                <div class="trm-search-empty">
+                    请输入关键词进行搜索
+                </div>
+            </div>
+            <div class="trm-search-footer">
+                <div class="trm-search-stats"></div>
+                <ul class="trm-search-commands">
+                    <li>
+                        <kbd class="command-palette-commands-key">
+                            <svg width="15" height="15" aria-label="Escape key" role="img">
+                                <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="1.2">
+                                    <path
+                                        d="M13.6167 8.936c-.1065.3583-.6883.962-1.4875.962-.7993 0-1.653-.9165-1.653-2.1258v-.5678c0-1.2548.7896-2.1016 1.653-2.1016.8634 0 1.3601.4778 1.4875 1.0724M9 6c-.1352-.4735-.7506-.9219-1.46-.8972-.7092.0246-1.344.57-1.344 1.2166s.4198.8812 1.3445.9805C8.465 7.3992 8.968 7.9337 9 8.5c.032.5663-.454 1.398-1.4595 1.398C6.6593 9.898 6 9 5.963 8.4851m-1.4748.5368c-.2635.5941-.8099.876-1.5443.876s-1.7073-.6248-1.7073-2.204v-.4603c0-1.0416.721-2.131 1.7073-2.131.9864 0 1.6425 1.031 1.5443 2.2492h-2.956">
+                                    </path>
+                                </g>
+                            </svg>
+                        </kbd>
+                        <span class="command-palette-Label">to close</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+  <!-- Plugin -->
+
+
+
+
+    
+    
+<script src="https://unpkg.com/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+
+    
+
+    
+
+    
+
+    <!-- 数学公式 -->
+    
+
+    <!-- 评论插件 -->
+    
+        
+
+        
+    
+
+		
+
+
+
+
+    <!-- Service Worker -->
+    
+    <!-- baidu push -->
+    
+
+
+<script id="async-script" src="/ZeroDream/js/main.js?v=2.2.6"></script>
+
+<!-- CDN -->
+
+
+    
+
+    
+
+    
+
+
+
+</body>
+
+</html>

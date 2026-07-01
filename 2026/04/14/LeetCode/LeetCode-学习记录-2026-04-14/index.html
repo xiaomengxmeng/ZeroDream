@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="x5-fullscreen" content="true">
+<meta name="full-screen" content="yes">
+<meta name="theme-color" content="#317EFB" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=0" name="viewport">
+<meta name="description" content="思考过程[Easy] Valid Parentheses （20）🤔 我的原始思路 经典的括号匹配题目 使用栈结构 来判断括号是否有效 ( [ { 入栈 遇到 ) ] } 尝试出栈 如果栈顶元素与当前的不匹配 return false 直到遍历完串  🔍 我的思考过程Step 1: 问题分析  核心要求：左括号必须用同类型的右括号闭合，且顺序正确 数据结构选择：栈（LIFO特性完美匹配嵌套结构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode 学习记录 2026-04-14">
+<meta property="og:url" content="https://xiaomengxmeng.github.io/ZeroDream/2026/04/14/LeetCode/LeetCode-%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-2026-04-14/index.html">
+<meta property="og:site_name" content="ZeroDream Blog">
+<meta property="og:description" content="思考过程[Easy] Valid Parentheses （20）🤔 我的原始思路 经典的括号匹配题目 使用栈结构 来判断括号是否有效 ( [ { 入栈 遇到 ) ] } 尝试出栈 如果栈顶元素与当前的不匹配 return false 直到遍历完串  🔍 我的思考过程Step 1: 问题分析  核心要求：左括号必须用同类型的右括号闭合，且顺序正确 数据结构选择：栈（LIFO特性完美匹配嵌套结构">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-04-14T15:00:00.000Z">
+<meta property="article:modified_time" content="2026-07-01T17:19:52.125Z">
+<meta property="article:author" content="ZeroDream">
+<meta property="article:tag" content="LeetCode">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="学习记录">
+<meta name="twitter:card" content="summary">
+
+
+<title >LeetCode 学习记录 2026-04-14</title>
+
+<!-- Favicon -->
+
+    <link href='/ZeroDream/images/favicon.ico?v=2.2.6' rel='icon' type='image/png' sizes='16x16' ></link>
+
+
+    <link href='/ZeroDream/images/favicon.ico?v=2.2.6' rel='icon' type='image/png' sizes='32x32' ></link>
+
+
+
+
+<!-- Plugin -->
+
+
+
+
+    
+<link rel="stylesheet" href="/ZeroDream/css/plugins/bootstrap.row.css">
+
+    
+<link rel="stylesheet" href="https://unpkg.com/@fancyapps/ui@4.0/dist/fancybox.css">
+
+    
+    
+
+
+
+
+<!-- Icon -->
+
+    
+<link rel="stylesheet" href="/ZeroDream/css/plugins/font-awesome.min.css">
+
+
+
+
+<!-- Variable -->
+<script>window.ASYNC_CONFIG = {"hostname":"xiaomengxmeng.github.io","author":"ZeroDream","root":"/ZeroDream/","typed_text":null,"theme_version":"2.2.6","theme":{"switch":true,"default":"style-light"},"favicon":{"logo":"/images/favicon.ico","icon16":"/images/favicon.ico","icon32":"/images/favicon.ico","apple_touch_icon":null,"webmanifest":null,"visibilitychange":true,"hidden":"/failure.ico","show_text":"(/≧▽≦/)咦！又好了！","hide_text":"(●—●)喔哟，崩溃啦！"},"i18n":{"placeholder":"搜索文章...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）","author":"本文作者：","copyright_link":"本文链接：","copyright_license_title":"版权声明：","copyright_license_content":"本博客所有文章除特别声明外，均默认采用 undefined 许可协议。","copy_success":"复制成功","copy_failure":"复制失败","open_read_mode":"进入阅读模式","exit_read_mode":"退出阅读模式","notice_outdate_message":"距离上次更新已经 undefined 天了, 文章内容可能已经过时。","sticky":"置顶","just":"刚刚","min":"分钟前","hour":"小时前","day":"天前","month":"个月前"},"swup":false,"plugin":{"flickr_justified_gallery":"https://unpkg.com/flickr-justified-gallery@latest/dist/fjGallery.min.js"},"icons":{"sun":"far fa-sun","moon":"far fa-moon","play":"fas fa-play","email":"far fa-envelope","next":"fas fa-arrow-right","calendar":"far fa-calendar-alt","clock":"far fa-clock","user":"far fa-user","back_top":"fas fa-arrow-up","close":"fas fa-times","search":"fas fa-search","reward":"fas fa-hand-holding-usd","toc_tag":"fas fa-th-list","read":"fas fa-book-reader","arrows":"fas fa-arrows-alt-h","double_arrows":"fas fa-angle-double-down","copy":"fas fa-copy"},"icontype":"font","highlight":{"plugin":"highlighjs","theme":true,"copy":true,"lang":true,"title":"default","height_limit":false},"toc":{"post_title":true},"live_time":{"start_time":"","prefix":"博客已萌萌哒运行 undefined 天"},"danmu":{"enable":false,"el":".trm-banner"}};</script>
+<script id="async-page-config">window.PAGE_CONFIG = {"isPost":true,"isHome":false,"postUpdate":"2026-07-02 01:19:52"};</script>
+
+<!-- Theme mode css -->
+<link data-swup-theme rel="stylesheet" href="/ZeroDream/css/index.css?v=2.2.6" id="trm-switch-style">
+<script>
+    let defaultMode = ASYNC_CONFIG.theme.default !=='auto' ?  ASYNC_CONFIG.theme.default : (window.matchMedia("(prefers-color-scheme: light)").matches ? 'style-light' : 'style-dark')
+    let catchMode = localStorage.getItem('theme-mode') || defaultMode;
+    let type = catchMode === 'style-dark' ? 'add' : 'remove';
+    document.documentElement.classList[type]('dark')
+</script>
+
+<!-- CDN -->
+
+
+    
+    
+
+
+
+<!-- Site Analytics -->
+
+ 
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+
+  <!-- app wrapper -->
+  <div class="trm-app-frame">
+
+    <!-- page preloader -->
+    <div class="trm-preloader">
+    <div class="trm-holder">
+        <div class="preloader">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+</div>
+    <!-- page preloader end -->
+
+    <!-- change mode preloader -->
+    <div class="trm-mode-swich-animation-frame">
+    <div class="trm-mode-swich-animation">
+        <i class="i-sun"><i class="iconfont far fa-sun"></i></i>
+        <div class="trm-horizon"></div>
+        <i class="i-moon"><i class="iconfont far fa-moon"></i></i>
+    </div>
+</div>
+    <!-- change mode preloader end -->
+
+      <!-- scroll container -->
+      <div id="trm-dynamic-content" class="trm-swup-animation">
+        <div id="trm-scroll-container" class="trm-scroll-container" style="opacity: 0">
+            <!-- top bar -->
+            <header class="trm-top-bar">
+	<div class="container">
+		<div class="trm-left-side">
+			<!-- logo -->
+<a href="/ZeroDream/" class="trm-logo-frame trm-anima-link">
+    
+        <img alt="logo" src="/ZeroDream/images/favicon.ico">
+    
+    
+        <div class="trm-logo-text">
+            小梦<span>随笔</span>
+        </div>
+    
+</a>
+<!-- logo end -->
+		</div>
+		<div class="trm-right-side">
+			<!-- menu -->
+<div class="trm-menu">
+    <nav>
+        <ul>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/ZeroDream/" target="">
+                    首页
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/ZeroDream/archives/" target="">
+                    归档
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/ZeroDream/tags/" target="">
+                    menu.tags
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/ZeroDream/categories/" target="">
+                    menu.categories
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/ZeroDream/about/" target="">
+                    关于
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/ZeroDream/links/" target="">
+                    友链
+                </a>
+                
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+<!-- menu end -->
+			
+    <!-- mode switcher place -->
+    <div class="trm-mode-switcher-place">
+        <div class="trm-mode-switcher">
+            <i class="iconfont far fa-sun"></i>
+            <input class="tgl tgl-light" id="trm-swich" type="checkbox">
+            <label class="trm-swich" for="trm-swich"></label>
+            <i class="iconfont far fa-moon"></i>
+        </div>
+    </div>
+    <!-- mode switcher place end -->
+
+			
+     
+
+		</div>
+		<div class="trm-menu-btn">
+			<span></span>
+		</div>
+	</div>
+</header>
+            <!-- top bar end -->
+
+            <!-- body -->
+            
+<div class="trm-content-start">
+    <!-- banner -->
+    <div class="trm-banner">
+    
+    <!-- banner cover -->
+    <img style="object-position:top;object-fit:cover;" alt="banner" class="trm-banner-cover" src="/ZeroDream/images/background/%E5%A5%B3%E9%AB%98%E4%B8%89%E4%BA%BA.png">
+    <!-- banner cover end -->
+    
+
+    <!-- banner content -->
+    <div class="trm-banner-content trm-overlay">
+        <div class="container">
+            <div class="row">
+                
+                <div class="col-lg-4"></div>
+                
+                <div class="col-lg-8">
+
+                    <!-- banner title -->
+                    <div class="trm-banner-text ">
+                        <div class="trm-label trm-mb-20">
+                            NEWS LETTER
+                        </div>
+                        <h1 class="trm-mb-30 trm-hsmb-font">
+                            LeetCode 学习记录 2026-04-14
+                        </h1>
+
+                        
+                            <ul class="trm-breadcrumbs trm-label">
+                                <li>
+                                    <a href="/ZeroDream/" class="trm-anima-link">Home</a>
+                                </li>
+                                <li>
+                                    <span>
+                                        2026
+                                    </span>
+                                </li>
+                            </ul>
+                        
+                    </div>
+                    <!-- banner title end -->
+
+                    <!-- scroll hint -->
+                    <span id="scroll-triger" class="trm-scroll-hint-frame">
+                        <div class="trm-scroll-hint"></div>
+                        <span class="trm-label">Scroll down</span>
+                    </span>
+                    <!-- scroll hint end -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- banner content end -->
+</div>
+    <!-- banner end -->
+    <div class="container">
+        <div class="row">
+            
+                <div class="trm-page-sidebar col-lg-4 hidden-sm">
+                    <!-- main card -->
+                    <div class="trm-main-card-frame trm-sidebar">
+    <div class="trm-main-card"> 
+        <!-- card header -->
+<div class="trm-mc-header">
+    <div class="trm-avatar-frame trm-mb-20">
+        <img alt="Avatar" class="trm-avatar trm-light-icon" src="/ZeroDream/images/head/head.jpg"> <img alt="Avatar" class="trm-avatar trm-dark-icon" src="/ZeroDream/images/head/darkhead.jpg">
+    </div>
+    <h5 class="trm-name trm-mb-15">
+        ZeroDream
+    </h5>
+    
+</div>
+<!-- card header end -->
+        <!-- sidebar social -->
+
+<div class="trm-divider trm-mb-40 trm-mt-40"></div>
+<div class="trm-social">
+    
+        <a href="https://github.com" title="Github" rel="nofollow" target="_blank">
+            <i class="iconfont fab fa-github"></i>
+        </a>
+    
+</div>
+
+<!-- sidebar social end -->
+        <!-- info -->
+<div class="trm-divider trm-mb-40 trm-mt-40"></div>
+<ul class="trm-table trm-mb-20">
+    
+        <li>
+            <div class="trm-label">
+                地址:
+            </div>
+            <div class="trm-label trm-label-light">
+                中国 江西
+            </div>
+        </li>
+    
+        <li>
+            <div class="trm-label">
+                职业:
+            </div>
+            <div class="trm-label trm-label-light">
+                开发者
+            </div>
+        </li>
+    
+</ul>
+<!-- info end -->
+
+        
+    <div class="trm-divider trm-mb-40 trm-mt-40"></div>
+    <!-- action button -->
+    <div class="text-center">
+        <a href="mailto:xuanmeng404@163.com" class="trm-btn">
+            联系我
+            <i class="iconfont far fa-envelope"></i>
+        </a>
+    </div>
+    <!-- action button end -->
+
+    </div>
+</div>
+                    <!-- main card end -->
+                </div>
+            
+            <div class="trm-page-content col-lg-8">
+                <div id="trm-content" class="trm-content">
+                    <div class="trm-post-info row hidden-sm">
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-calendar-alt trm-icon"></i><br>
+            04/14
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-clock trm-icon"></i><br>
+            23:00
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div id="post-author" class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-user trm-icon"></i><br>
+            ZeroDream
+        </div>
+    </div>
+</div>
+<div class="trm-card ">
+    <article id="article-container" class="trm-publication">
+    <h2 id="思考过程"><a href="#思考过程" class="headerlink" title="思考过程"></a>思考过程</h2><h3 id="Easy-Valid-Parentheses-（20）"><a href="#Easy-Valid-Parentheses-（20）" class="headerlink" title="[Easy] Valid Parentheses （20）"></a>[Easy] Valid Parentheses （20）</h3><h4 id="🤔-我的原始思路"><a href="#🤔-我的原始思路" class="headerlink" title="🤔 我的原始思路"></a>🤔 我的原始思路</h4><ul>
+<li>经典的括号匹配题目</li>
+<li>使用栈结构 来判断括号是否有效</li>
+<li>( [ { 入栈 遇到 ) ] } 尝试出栈 如果栈顶元素与当前的不匹配 return false</li>
+<li>直到遍历完串</li>
+</ul>
+<h4 id="🔍-我的思考过程"><a href="#🔍-我的思考过程" class="headerlink" title="🔍 我的思考过程"></a>🔍 我的思考过程</h4><p><strong>Step 1: 问题分析</strong></p>
+<ol>
+<li>核心要求：左括号必须用同类型的右括号闭合，且顺序正确</li>
+<li>数据结构选择：栈（LIFO特性完美匹配嵌套结构）</li>
+<li>基本思路：左括号入栈，右括号出栈匹配</li>
+</ol>
+<p><strong>Step 2: 初版代码实现</strong></p>
+<ul>
+<li>左括号：直接入栈</li>
+<li>右括号：检查栈顶是否匹配，匹配则出栈</li>
+<li>最后检查栈是否为空</li>
+</ul>
+<p><strong>Step 3: 发现Bug</strong></p>
+<ul>
+<li>❌ 原始代码：<code>if (stack.top() == &#39;&#123;&#39; || stack.empty())</code></li>
+<li>问题：当栈为空时调用 <code>stack.top()</code> 会导致未定义行为</li>
+<li>💡 修复：必须先检查 <code>stack.empty()</code>，再访问 <code>stack.top()</code></li>
+</ul>
+<p><strong>Step 4: 进一步优化</strong></p>
+<ul>
+<li>发现逻辑问题：<code>stack.empty()</code> 检查位置不对</li>
+<li>原问题：每次循环都检查（包括左括号刚入栈后）</li>
+<li>正确做法：只在处理右括号时检查栈是否为空</li>
+<li>理由：只有右括号需要找到对应的左括号，此时才可能遇到栈为空的情况</li>
+</ul>
+<p><strong>Step 5: 最终理解</strong></p>
+<ul>
+<li>栈的本质：保存”期待被匹配的左括号”</li>
+<li>栈顶永远是最近一个未匹配的左括号</li>
+<li>边界情况：<ul>
+<li>输入只有右括号 → 立即返回false</li>
+<li>遍历结束栈不为空 → 有未匹配的左括号</li>
+<li>栈空时访问top → 必须先检查</li>
+</ul>
+</li>
+</ul>
+<h4 id="💡-对比收获"><a href="#💡-对比收获" class="headerlink" title="💡 对比收获"></a>💡 对比收获</h4><p><strong>原始想法 vs 最终理解</strong>：</p>
+<ul>
+<li>✅ 思路正确：使用栈进行括号匹配</li>
+<li>✅ 发现并修复了关键bug：空栈访问问题</li>
+<li>✅ 优化了逻辑流程：空检查位置调整</li>
+<li>✅ 理解了栈的本质：LIFO特性与嵌套结构的完美匹配</li>
+</ul>
+<p><strong>新学到的知识点</strong>：</p>
+<ol>
+<li>栈的基本操作原则：访问前必须确保不为空</li>
+<li>括号匹配的本质：配对&#x2F;匹配模式</li>
+<li>边界情况的系统化处理方法</li>
+<li>代码优化的思路：从能运行到优雅高效</li>
+</ol>
+<h3 id="Easy-Min-Stack（155）"><a href="#Easy-Min-Stack（155）" class="headerlink" title="[Easy] Min Stack（155）"></a>[Easy] Min Stack（155）</h3><h4 id="🤔-我的原始思路-1"><a href="#🤔-我的原始思路-1" class="headerlink" title="🤔 我的原始思路"></a>🤔 我的原始思路</h4><ul>
+<li>常数时间内检索到最小元素的栈</li>
+<li>常规栈的 getMin() 操作时间复杂度是多少？O(n)</li>
+<li>维护最小值，每次入栈时判断是否需要更新min</li>
+<li>辅助栈方案</li>
+<li>主栈是正常栈，辅助栈初始为空</li>
+<li>元素入栈时：如果辅助栈为空或者辅助栈顶大于等于元素时，入栈</li>
+<li>主栈出栈时：如果辅助栈顶元素与主栈弹出值相同也出栈</li>
+<li>时间复杂度O(1)空间复杂度O(n)</li>
+</ul>
+<h4 id="🔍-我的思考过程-1"><a href="#🔍-我的思考过程-1" class="headerlink" title="🔍 我的思考过程"></a>🔍 我的思考过程</h4><p><strong>Step 1: 问题分析</strong></p>
+<ol>
+<li>核心要求：设计一个支持 push、pop、top、getMin 操作的栈</li>
+<li>特殊要求：getMin() 必须在 O(1) 时间内完成</li>
+<li>常规栈的问题：getMin() 需要遍历整个栈，时间复杂度 O(n)</li>
+<li>解决方向：使用辅助数据结构来跟踪最小值</li>
+</ol>
+<p><strong>Step 2: 设计方案（辅助栈）</strong></p>
+<ul>
+<li>**主栈 (main_stack)**：存储所有元素，正常进行 push、pop、top 操作</li>
+<li>**辅助栈 (min_stack)**：存储当前的最小值历史</li>
+<li>**push(val)**：<ul>
+<li>主栈正常入栈</li>
+<li>如果辅助栈为空 或 val ≤ 辅助栈顶，则 val 也入辅助栈</li>
+</ul>
+</li>
+<li>**pop()**：<ul>
+<li>先保存主栈的栈顶值</li>
+<li>主栈弹出</li>
+<li>如果保存的值 &#x3D;&#x3D; 辅助栈顶，则辅助栈也弹出</li>
+</ul>
+</li>
+<li>**getMin()**：返回辅助栈顶元素（即当前最小值）</li>
+</ul>
+<p><strong>Step 3: 初版代码实现</strong></p>
+<ul>
+<li>定义了 MinStack 类</li>
+<li>包含 main_stack 和 min_stack 两个成员变量</li>
+<li>实现了所有5个方法</li>
+</ul>
+<p><strong>Step 4: 发现并修复问题</strong></p>
+<ul>
+<li>❌ 成员变量定义位置错误：最初放在构造函数内部（局部变量）</li>
+<li>❌ 方法调用错误：<code>isempty()</code> 应该是 <code>empty()</code></li>
+<li>❌ pop() 参数错误：<code>pop(val)</code> 不接受参数</li>
+<li>❌ pop() 逻辑错误：先弹出再访问 top() 导致错误</li>
+<li>💡 正确做法：<ul>
+<li>成员变量声明在类级别</li>
+<li>pop() 不带参数</li>
+<li>先保存 top 值，再弹出，最后比较</li>
+</ul>
+</li>
+</ul>
+<p><strong>Step 5: 最终理解</strong></p>
+<ul>
+<li><strong>辅助栈的本质</strong>：维护一个”最小值的递减序列”</li>
+<li>**为什么用 &gt;&#x3D; 而不是 &gt;**：处理重复的最小值情况<ul>
+<li>例如：push(0), push(-3), push(-3), pop()</li>
+<li>如果只用 &gt;，第二次 -3 不会入辅助栈，第一次 pop 后 min 就错了</li>
+</ul>
+</li>
+<li><strong>时间&#x2F;空间权衡</strong>：用 O(n) 的额外空间换取 O(1) 的查询时间</li>
+</ul>
+<h4 id="💡-对比收获-1"><a href="#💡-对比收获-1" class="headerlink" title="💡 对比收获"></a>💡 对比收获</h4><p><strong>原始想法 vs 最终理解</strong>：</p>
+<ul>
+<li>✅ 思路完全正确：辅助栈是标准解法</li>
+<li>✅ 掌握了辅助数据结构的设计思想</li>
+<li>✅ 学会了 C++ 类的正确编写方式</li>
+<li>✅ 理解了”空间换时间”的具体应用</li>
+</ul>
+<p><strong>新学到的知识点</strong>：</p>
+<ol>
+<li><strong>辅助栈技术</strong>：用于跟踪主栈的某些属性</li>
+<li><strong>C++ 类的设计</strong>：成员变量的作用域和生命周期</li>
+<li><strong>边界情况处理</strong>：重复最小值的处理（&gt;&#x3D; vs &gt;）</li>
+<li><strong>设计模式</strong>：组合多个简单数据结构实现复杂功能</li>
+</ol>
+<h3 id="Easy-Valid-Anagram（242）"><a href="#Easy-Valid-Anagram（242）" class="headerlink" title="[Easy] Valid Anagram（242）"></a>[Easy] Valid Anagram（242）</h3><h4 id="🤔-我的原始思路-2"><a href="#🤔-我的原始思路-2" class="headerlink" title="🤔 我的原始思路"></a>🤔 我的原始思路</h4><ul>
+<li>直接统计字符然后判断是否相等就行</li>
+<li>是昨天 Group Anagrams 题目的简单版</li>
+<li>只有两个字符串，不需要分组</li>
+</ul>
+<h4 id="🔍-我的思考过程-2"><a href="#🔍-我的思考过程-2" class="headerlink" title="🔍 我的思考过程"></a>🔍 我的思考过程</h4><p><strong>Step 1: 问题回顾</strong></p>
+<ul>
+<li>这是复习题，基于昨天的 Group Anagrams (49)</li>
+<li>昨天用的是排序法，今天尝试用更优的方法</li>
+</ul>
+<p><strong>Step 2: 方法选择</strong></p>
+<ul>
+<li><strong>排序法</strong>：O(n log n) 时间，简单直观</li>
+<li><strong>频率统计法</strong>：O(n) 时间，更高效 ⭐ 选择这个！</li>
+<li>为什么选频率统计法？因为题目只涉及小写字母（26个），可以用固定大小的数组</li>
+</ul>
+<p><strong>Step 3: 设计方案</strong></p>
+<ul>
+<li>创建大小为26的整型数组（初始化为0）</li>
+<li>遍历第一个字符串 s：对应位置计数器 ++（统计出现次数）</li>
+<li>遍历第二个字符串 t：对应位置计数器 –（抵消出现次数）</li>
+<li>最后检查：如果所有计数器都归零 → 是异位词；否则不是</li>
+</ul>
+<p><strong>Step 4: 代码实现</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">temp</span><span class="params">(<span class="number">26</span>)</span></span>;           <span class="comment">// 字符计数数组</span></span><br><span class="line"><span class="keyword">for</span>(<span class="type">char</span> c : s)</span><br><span class="line">    temp[c - <span class="string">&#x27;a&#x27;</span>]++;            <span class="comment">// s 中字符出现 +1</span></span><br><span class="line"><span class="keyword">for</span>(<span class="type">char</span> c : t)</span><br><span class="line">    temp[c - <span class="string">&#x27;a&#x27;</span>]--;            <span class="comment">// t 中字符出现 -1</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">auto</span> i : temp)</span><br><span class="line">    <span class="keyword">if</span>(i != <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">false</span>;    <span class="comment">// 不全为0则不匹配</span></span><br><span class="line"><span class="keyword">return</span> <span class="literal">true</span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Step 5: 对比反思</strong></p>
+<p><strong>与昨天的对比</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>昨天 (Group Anagrams)</th>
+<th>今天 (Valid Anagram)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>方法</td>
+<td>排序法</td>
+<td><strong>频率统计法</strong> ⭐</td>
+</tr>
+<tr>
+<td>复杂度</td>
+<td>O(n * k log k)</td>
+<td><strong>O(n)</strong> ⭐</td>
+</tr>
+<tr>
+<td>空间</td>
+<td>O(n * k)</td>
+<td><strong>O(1)</strong> ⭐</td>
+</tr>
+</tbody></table>
+<p><strong>进步点</strong>：</p>
+<ul>
+<li>✅ 能识别出这是 Group Anagrams 的简化版</li>
+<li>✅ 直接选择了更优的频率统计法</li>
+<li>✅ 代码简洁高效，逻辑清晰</li>
+<li>✅ 复习效果很好，知识已经内化</li>
+</ul>
+<h4 id="💡-复习收获"><a href="#💡-复习收获" class="headerlink" title="💡 复习收获"></a>💡 复习收获</h4><p><strong>巩固的知识点</strong>：</p>
+<ol>
+<li><strong>字符频率统计模式</strong>：用固定大小数组统计字符出现次数</li>
+<li><strong>“抵消”思想</strong>：一个字符串加，另一个字符串减，最后检查是否平衡</li>
+<li><strong>空间优化</strong>：利用题目约束（小写字母）使用固定大小数组</li>
+<li><strong>方法选择能力</strong>：能根据具体场景选择最优解法</li>
+</ol>
+<p><strong>新学到的细节</strong>：</p>
+<ul>
+<li>C++ vector 初始化的正确写法：<code>vector&lt;int&gt; temp(26)</code> 或 <code>vector&lt;int&gt; temp(26, 0)</code></li>
+<li>注意：<code>vector&lt;int&gt;(26)(0)</code> 这种写法是错误的</li>
+</ul>
+<h3 id="Easy-Plus-One-66"><a href="#Easy-Plus-One-66" class="headerlink" title="[Easy] Plus One (66)"></a>[Easy] Plus One (66)</h3><h4 id="🤔-我的原始思路-3"><a href="#🤔-我的原始思路-3" class="headerlink" title="🤔 我的原始思路"></a>🤔 我的原始思路</h4><ol>
+<li>表示的数字+1，最后一位数加1</li>
+<li>数字大于等于10要进位，数字&#x2F;10，上一位数+1</li>
+<li>数字为 0 或 999 等特殊情况</li>
+</ol>
+<h4 id="🔍-我的思考过程-3"><a href="#🔍-我的思考过程-3" class="headerlink" title="🔍 我的思考过程"></a>🔍 我的思考过程</h4><p><strong>Step 1: 问题分析</strong></p>
+<ol>
+<li>核心要求：数组表示的数字加1，处理进位</li>
+<li>基本操作：最后一位加1，处理可能的进位</li>
+<li>特殊情况：[9,9,9] → [1,0,0,0]，数组长度增加</li>
+</ol>
+<p><strong>Step 2: 设计方案</strong></p>
+<ul>
+<li><strong>方法选择</strong>：模拟加法（从后往前处理）</li>
+<li><strong>基本流程</strong>：<ol>
+<li>从最后一位开始，加1</li>
+<li>如果该位变成10，则置0，前一位加1</li>
+<li>继续向前处理，直到没有进位</li>
+<li>如果第一位也进位，在数组前面插入1</li>
+</ol>
+</li>
+<li><strong>特殊情况处理</strong>：<ul>
+<li>[0] → [1]：正常处理</li>
+<li>[9,9,9] → [1,0,0,0]：所有位都进位，需要插入新位</li>
+</ul>
+</li>
+</ul>
+<p><strong>Step 3: 代码实现</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">plusOne</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; digits)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> n = digits.<span class="built_in">size</span>();</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = n - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">        digits[i]++;              <span class="comment">// 当前位加1</span></span><br><span class="line">        <span class="keyword">if</span> (digits[i] &lt; <span class="number">10</span>) &#123;     <span class="comment">// 无进位，直接返回</span></span><br><span class="line">            <span class="keyword">return</span> digits;</span><br><span class="line">        &#125;</span><br><span class="line">        digits[i] = <span class="number">0</span>;            <span class="comment">// 有进位，置0继续处理前一位</span></span><br><span class="line">    &#125;</span><br><span class="line">    digits.<span class="built_in">insert</span>(digits.<span class="built_in">begin</span>(), <span class="number">1</span>);  <span class="comment">// 所有位都进位，插入1</span></span><br><span class="line">    <span class="keyword">return</span> digits;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Step 4: 代码分析</strong></p>
+<ul>
+<li>✅ <strong>从后往前遍历</strong>：正确处理进位的方向</li>
+<li>✅ <strong>提前返回</strong>：遇到无进位立即返回，提高效率</li>
+<li>✅ <strong>原地修改</strong>：不需要额外空间（除了特殊情况）</li>
+<li>✅ <strong>正确处理边界</strong>：[9,9,9] 这种情况处理完美</li>
+</ul>
+<p><strong>测试用例验证</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[1,2,3] → [1,2,4] ✅  (无进位)</span><br><span class="line">[1,2,9] → [1,3,0] ✅  (一位进位)</span><br><span class="line">[9,9,9] → [1,0,0,0] ✅  (所有位进位)</span><br><span class="line">[0] → [1] ✅  (特殊情况)</span><br></pre></td></tr></table></figure>
+
+<p><strong>Step 5: 最终理解</strong></p>
+<ul>
+<li><strong>进位机制</strong>：从低位到高位传播，可能传播多位</li>
+<li><strong>提前返回优化</strong>：一旦无进位就返回，避免不必要的遍历</li>
+<li><strong>数组操作技巧</strong>：<code>insert()</code> 可以在任意位置插入元素</li>
+<li><strong>大数运算基础</strong>：这是大数加法的简化版本（只加1）</li>
+</ul>
+<h4 id="💡-对比收获-2"><a href="#💡-对比收获-2" class="headerlink" title="💡 对比收获"></a>💡 对比收获</h4><p><strong>原始想法 vs 最终实现</strong>：</p>
+<ul>
+<li>✅ 思路正确：从后往前处理进位</li>
+<li>✅ 代码简洁：逻辑清晰，没有冗余</li>
+<li>✅ 优化到位：提前返回，原地修改</li>
+<li>✅ 边界完善：正确处理所有特殊情况</li>
+</ul>
+<p><strong>新学到的知识点</strong>：</p>
+<ol>
+<li><strong>进位处理模式</strong>：从低位到高位，遇到10就进位</li>
+<li><strong>数组操作技巧</strong>：<code>insert()</code> 在开头插入元素</li>
+<li><strong>提前返回优化</strong>：减少不必要的遍历</li>
+<li><strong>大数运算思想</strong>：数组表示大数，逐位处理</li>
+</ol>
+<h2 id="学习记录"><a href="#学习记录" class="headerlink" title="学习记录"></a>学习记录</h2><h3 id="Easy-Valid-Parentheses-20"><a href="#Easy-Valid-Parentheses-20" class="headerlink" title="[Easy] Valid Parentheses (20)"></a>[Easy] Valid Parentheses (20)</h3><h4 id="🎯-核心思路"><a href="#🎯-核心思路" class="headerlink" title="🎯 核心思路"></a>🎯 核心思路</h4><p>使用栈数据结构进行括号匹配。左括号入栈保存，遇到右括号时检查栈顶是否匹配，匹配则出栈。最后判断栈是否为空来确定所有括号是否正确配对。时间复杂度 O(n)，空间复杂度 O(n)。</p>
+<h4 id="🔑-关键代码片段"><a href="#🔑-关键代码片段" class="headerlink" title="🔑 关键代码片段"></a>🔑 关键代码片段</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">bool</span> <span class="title">isValid</span><span class="params">(string s)</span> </span>&#123;</span><br><span class="line">    stack&lt;<span class="type">char</span>&gt; st;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">char</span> c : s) &#123;</span><br><span class="line">        <span class="keyword">if</span> (c == <span class="string">&#x27;(&#x27;</span> || c == <span class="string">&#x27;[&#x27;</span> || c == <span class="string">&#x27;&#123;&#x27;</span>) &#123;</span><br><span class="line">            st.<span class="built_in">push</span>(c);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (st.<span class="built_in">empty</span>()) <span class="keyword">return</span> <span class="literal">false</span>;      <span class="comment">// 栈空说明没有匹配的左括号</span></span><br><span class="line">            <span class="keyword">if</span> ((c == <span class="string">&#x27;)&#x27;</span> &amp;&amp; st.<span class="built_in">top</span>() != <span class="string">&#x27;(&#x27;</span>) ||</span><br><span class="line">                (c == <span class="string">&#x27;]&#x27;</span> &amp;&amp; st.<span class="built_in">top</span>() != <span class="string">&#x27;[&#x27;</span>) ||</span><br><span class="line">                (c == <span class="string">&#x27;&#125;&#x27;</span> &amp;&amp; st.<span class="built_in">top</span>() != <span class="string">&#x27;&#123;&#x27;</span>))</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;                  <span class="comment">// 不匹配</span></span><br><span class="line">            st.<span class="built_in">pop</span>();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> st.<span class="built_in">empty</span>();                         <span class="comment">// 最后栈必须为空</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="📚-学到的知识点"><a href="#📚-学到的知识点" class="headerlink" title="📚 学到的知识点"></a>📚 学到的知识点</h4><ul>
+<li><strong>栈的特性</strong>：LIFO（后进先出），完美匹配嵌套结构</li>
+<li><strong>括号匹配本质</strong>：左括号期待被匹配（入栈），右括号寻找对应左括号（出栈）</li>
+<li><strong>栈操作原则</strong>：访问 <code>top()</code> 前必须确保栈不为空</li>
+<li><strong>边界情况处理</strong>：只有右括号、不匹配、未完全匹配等场景</li>
+</ul>
+<h4 id="⚠️-易错点-反思"><a href="#⚠️-易错点-反思" class="headerlink" title="⚠️ 易错点 &amp; 反思"></a>⚠️ 易错点 &amp; 反思</h4><ul>
+<li>❌ 栈为空时调用 <code>stack.top()</code> 会导致未定义行为</li>
+<li>❌ 空检查位置错误：应该在处理右括号时检查，而非每次循环都检查</li>
+<li>❌ 忽略了输入只有右括号的特殊情况</li>
+<li>💡 <strong>关键教训</strong>：必须先检查容器状态，再执行操作</li>
+<li>💡 <strong>优化思路</strong>：从能运行 → 逻辑正确 → 结构清晰 → 代码优雅</li>
+</ul>
+<h4 id="🔗-关联题目"><a href="#🔗-关联题目" class="headerlink" title="🔗 关联题目"></a>🔗 关联题目</h4><ul>
+<li>[32] Longest Valid Parentheses - 最长有效括号（Hard，进阶挑战）</li>
+<li>[22] Generate Parentheses - 生成括号组合（回溯法）</li>
+<li>[739] Daily Temperatures - 单调栈应用</li>
+<li>[84] Largest Rectangle in Histogram - 栈的经典应用</li>
+</ul>
+<h3 id="Easy-Min-Stack-155"><a href="#Easy-Min-Stack-155" class="headerlink" title="[Easy] Min Stack (155)"></a>[Easy] Min Stack (155)</h3><h4 id="🎯-核心思路-1"><a href="#🎯-核心思路-1" class="headerlink" title="🎯 核心思路"></a>🎯 核心思路</h4><p>使用辅助栈来跟踪最小值。主栈存储所有元素正常操作，辅助栈存储当前的最小值历史。当新元素小于等于辅助栈顶时同时入辅助栈，弹出时如果主栈弹出的值等于辅助栈顶则也弹出。所有操作的时间复杂度都是 O(1)，空间复杂度 O(n)。</p>
+<h4 id="🔑-关键代码片段-1"><a href="#🔑-关键代码片段-1" class="headerlink" title="🔑 关键代码片段"></a>🔑 关键代码片段</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MinStack</span> &#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    stack&lt;<span class="type">int</span>&gt; main_stack;</span><br><span class="line">    stack&lt;<span class="type">int</span>&gt; min_stack;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">push</span><span class="params">(<span class="type">int</span> val)</span> </span>&#123;</span><br><span class="line">        main_stack.<span class="built_in">push</span>(val);</span><br><span class="line">        <span class="keyword">if</span> (min_stack.<span class="built_in">empty</span>() || min_stack.<span class="built_in">top</span>() &gt;= val) &#123;</span><br><span class="line">            min_stack.<span class="built_in">push</span>(val);      <span class="comment">// 新的最小值或相等值入辅助栈</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">pop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> top_val = main_stack.<span class="built_in">top</span>();</span><br><span class="line">        main_stack.<span class="built_in">pop</span>();</span><br><span class="line">        <span class="keyword">if</span> (top_val == min_stack.<span class="built_in">top</span>()) &#123;</span><br><span class="line">            min_stack.<span class="built_in">pop</span>();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">top</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> main_stack.<span class="built_in">top</span>(); &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">getMin</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> min_stack.<span class="built_in">top</span>(); &#125;  <span class="comment">// O(1) 获取最小值</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="📚-学到的知识点-1"><a href="#📚-学到的知识点-1" class="headerlink" title="📚 学到的知识点"></a>📚 学到的知识点</h4><ul>
+<li><strong>辅助数据结构技术</strong>：用额外空间换取查询效率的提升</li>
+<li><strong>C++ 类的设计</strong>：成员变量的作用域和生命周期管理</li>
+<li><strong>边界情况处理</strong>：重复最小值的处理（使用 &gt;&#x3D; 而不是 &gt;）</li>
+<li><strong>“空间换时间”思想</strong>：O(n) 空间换取 O(1) 的 getMin() 操作</li>
+</ul>
+<h4 id="⚠️-易错点-反思-1"><a href="#⚠️-易错点-反思-1" class="headerlink" title="⚠️ 易错点 &amp; 反思"></a>⚠️ 易错点 &amp; 反思</h4><ul>
+<li>❌ 成员变量定义在构造函数内部会导致作用域错误（应该是局部变量）</li>
+<li>❌ <code>stack.pop()</code> 不接受参数，且无返回值</li>
+<li>❌ pop() 时必须先保存 top 值再弹出，否则无法正确比较</li>
+<li>💡 <strong>关键教训</strong>：理解 C++ 类的成员变量与局部变量的区别</li>
+<li>💡 **为什么用 &gt;&#x3D;**：处理重复最小值的情况，确保每次 pop 后辅助栈顶仍是当前最小值</li>
+</ul>
+<h4 id="🔗-关联题目-1"><a href="#🔗-关联题目-1" class="headerlink" title="🔗 关联题目"></a>🔗 关联题目</h4><ul>
+<li>[232] Implement Queue using Stacks - 用栈实现队列</li>
+<li>[225] Implement Stack using Queues - 用队列实现栈</li>
+<li>[716] Max Stack - 类似设计但获取最大值（进阶）</li>
+<li>[155] Min Stack 变体 - 使用单栈+差值法优化空间</li>
+</ul>
+<h3 id="Easy-Valid-Anagram-242-【复习题】"><a href="#Easy-Valid-Anagram-242-【复习题】" class="headerlink" title="[Easy] Valid Anagram (242) 【复习题】"></a>[Easy] Valid Anagram (242) 【复习题】</h3><h4 id="🎯-核心思路-2"><a href="#🎯-核心思路-2" class="headerlink" title="🎯 核心思路"></a>🎯 核心思路</h4><p>使用字符频率统计法判断两个字符串是否为字母异位词。创建大小为26的计数数组（对应26个小写字母），遍历第一个字符串增加计数，遍历第二个字符串减少计数，最后检查所有计数器是否归零。时间复杂度 O(n)，空间复杂度 O(1)。</p>
+<h4 id="🔑-关键代码片段-2"><a href="#🔑-关键代码片段-2" class="headerlink" title="🔑 关键代码片段"></a>🔑 关键代码片段</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">bool</span> <span class="title">isAnagram</span><span class="params">(string s, string t)</span> </span>&#123;</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">count</span><span class="params">(<span class="number">26</span>)</span></span>;              <span class="comment">// 字符计数数组（自动初始化为0）</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">char</span> c : s)</span><br><span class="line">        count[c - <span class="string">&#x27;a&#x27;</span>]++;             <span class="comment">// s 中字符出现次数 +1</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">char</span> c : t)</span><br><span class="line">        count[c - <span class="string">&#x27;a&#x27;</span>]--;             <span class="comment">// t 中字符出现次数 -1（抵消）</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> cnt : count)</span><br><span class="line">        <span class="keyword">if</span> (cnt != <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">false</span>;   <span class="comment">// 不全为0则不匹配</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="📚-学到的知识点-2"><a href="#📚-学到的知识点-2" class="headerlink" title="📚 学到的知识点"></a>📚 学到的知识点</h4><ul>
+<li><strong>字符频率统计模式</strong>：利用固定大小数组统计字符出现次数</li>
+<li><strong>“抵消”思想</strong>：一个字符串加，另一个字符串减，最后检查平衡状态</li>
+<li><strong>空间优化技巧</strong>：利用题目约束（小写字母）使用固定大小的数组实现 O(1) 空间</li>
+<li><strong>方法选择能力</strong>：能根据具体场景选择最优解法（排序 vs 频率统计）</li>
+</ul>
+<h4 id="⚠️-易错点-反思-2"><a href="#⚠️-易错点-反思-2" class="headerlink" title="⚠️ 易错点 &amp; 反思"></a>⚠️ 易错点 &amp; 反思</h4><ul>
+<li>❌ vector 初始化语法错误：<code>vector&lt;int&gt;(26)(0)</code> 是错误的</li>
+<li>✅ 正确写法：<code>vector&lt;int&gt; temp(26)</code> 或 <code>vector&lt;int&gt; temp(26, 0)</code></li>
+<li>💡 <strong>复习效果评估</strong>：<ul>
+<li>✅ 能识别出这是 Group Anagrams 的简化版</li>
+<li>✅ 直接选择了更优的频率统计法（昨天用的是排序法）</li>
+<li>✅ 代码简洁高效，说明知识已经内化</li>
+<li>✅ 复习效果很好！</li>
+</ul>
+</li>
+</ul>
+<h4 id="🔗-复习关联"><a href="#🔗-复习关联" class="headerlink" title="🔗 复习关联"></a>🔗 复习关联</h4><ul>
+<li><strong>基础题</strong>：Valid Anagram (242) ← 当前题目</li>
+<li><strong>进阶题</strong>：Group Anagrams (49) ← 昨天已完成（排序法）</li>
+<li><strong>高级题</strong>：Find All Anagrams (438) - 滑动窗口 + 频率统计（待学习）</li>
+</ul>
+<h3 id="Easy-Plus-One-66-1"><a href="#Easy-Plus-One-66-1" class="headerlink" title="[Easy] Plus One (66)"></a>[Easy] Plus One (66)</h3><h4 id="🎯-核心思路-3"><a href="#🎯-核心思路-3" class="headerlink" title="🎯 核心思路"></a>🎯 核心思路</h4><p>模拟加法操作，从数组的最后一位开始加1，处理进位。如果某位加1后变成10，则置0并向前进位；如果所有位都进位，则在数组开头插入1。时间复杂度 O(n)，空间复杂度 O(1)（原地修改，特殊情况除外）。</p>
+<h4 id="🔑-关键代码片段-3"><a href="#🔑-关键代码片段-3" class="headerlink" title="🔑 关键代码片段"></a>🔑 关键代码片段</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">plusOne</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; digits)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> n = digits.<span class="built_in">size</span>();</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = n - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">        digits[i]++;              <span class="comment">// 当前位加1</span></span><br><span class="line">        <span class="keyword">if</span> (digits[i] &lt; <span class="number">10</span>) &#123;     <span class="comment">// 无进位，直接返回</span></span><br><span class="line">            <span class="keyword">return</span> digits;</span><br><span class="line">        &#125;</span><br><span class="line">        digits[i] = <span class="number">0</span>;            <span class="comment">// 有进位，置0继续处理前一位</span></span><br><span class="line">    &#125;</span><br><span class="line">    digits.<span class="built_in">insert</span>(digits.<span class="built_in">begin</span>(), <span class="number">1</span>);  <span class="comment">// 所有位都进位，插入1</span></span><br><span class="line">    <span class="keyword">return</span> digits;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="📚-学到的知识点-3"><a href="#📚-学到的知识点-3" class="headerlink" title="📚 学到的知识点"></a>📚 学到的知识点</h4><ul>
+<li><strong>进位处理模式</strong>：从低位到高位，遇到10就进位</li>
+<li><strong>从后往前遍历技巧</strong>：处理进位问题的经典方法</li>
+<li><strong>提前返回优化</strong>：一旦无进位就返回，减少不必要的遍历</li>
+<li><strong>数组操作技巧</strong>：<code>insert()</code> 在开头插入元素</li>
+<li><strong>大数运算基础</strong>：数组表示大数，逐位处理（这是大数加法的简化版）</li>
+</ul>
+<h4 id="⚠️-易错点-反思-3"><a href="#⚠️-易错点-反思-3" class="headerlink" title="⚠️ 易错点 &amp; 反思"></a>⚠️ 易错点 &amp; 反思</h4><ul>
+<li>❌ 进位方向错误：应该从后往前（从低位到高位）处理</li>
+<li>❌ 忘记处理 [9,9,9] 这种特殊情况：所有位都进位时需要插入新位</li>
+<li>❌ 没有提前返回优化：导致不必要的遍历</li>
+<li>💡 <strong>关键技巧</strong>：原地修改 + 提前返回，既节省空间又提高效率</li>
+<li>💡 <strong>测试用例验证</strong>：<ul>
+<li>[1,2,3] → [1,2,4] ✅ (无进位)</li>
+<li>[1,2,9] → [1,3,0] ✅ (一位进位)</li>
+<li>[9,9,9] → [1,0,0,0] ✅ (所有位进位)</li>
+<li>[0] → [1] ✅ (特殊情况)</li>
+</ul>
+</li>
+</ul>
+<h4 id="🔗-关联题目-2"><a href="#🔗-关联题目-2" class="headerlink" title="🔗 关联题目"></a>🔗 关联题目</h4><ul>
+<li>[67] Add Binary - 二进制加法，类似的进位处理</li>
+<li>[43] Multiply Strings - 大数乘法，进位处理的进阶</li>
+<li>[415] Add Strings - 大数加法，进位处理的扩展</li>
+<li>[989] Add to Array-Form of Integer - 类似的数组加法问题</li>
+</ul>
+
+</article>
+    
+    
+
+</div>
+<div class="trm-post-next-prev row">
+    <div class="col-lg-12">
+        <!-- title -->
+        <h5 class="trm-title-with-divider">
+            其他文章
+            <span data-number="02"></span>
+        </h5>
+    </div>
+    
+        <div class="col-lg-6">
+    <div class="trm-blog-card trm-scroll-animation">
+        <a href="/ZeroDream/2026/04/15/LeetCode/LeetCode-%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-2026-04-15/" class="trm-cover-frame trm-anima-link">
+            
+            
+                <img alt="cover" class="no-fancybox" src="/ZeroDream/images/post/leetcode/cover-19.png">
+            
+        </a>
+        
+        <div class="trm-card-descr">
+            <div class="trm-label trm-category trm-mb-20">
+                <a href=" /ZeroDream/categories/LeetCode/">
+                    LeetCode
+                </a>
+            </div>
+            <h5>
+                <a href="/ZeroDream/2026/04/15/LeetCode/LeetCode-%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-2026-04-15/" class="trm-anima-link">
+                    LeetCode 学习记录 2026-04-15
+                </a>
+            </h5>
+            <div class="trm-divider trm-mb-20 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>26/04/15</li>
+                <li>23:00</li>
+                
+                
+            </ul>
+        </div>
+    </div>
+</div>
+    
+    
+        <div class="col-lg-6">
+    <div class="trm-blog-card trm-scroll-animation">
+        <a href="/ZeroDream/2026/04/13/LeetCode/LeetCode-%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-2026-04-13/" class="trm-cover-frame trm-anima-link">
+            
+            
+                <img alt="cover" class="no-fancybox" src="/ZeroDream/images/post/leetcode/cover-17.png">
+            
+        </a>
+        
+        <div class="trm-card-descr">
+            <div class="trm-label trm-category trm-mb-20">
+                <a href=" /ZeroDream/categories/LeetCode/">
+                    LeetCode
+                </a>
+            </div>
+            <h5>
+                <a href="/ZeroDream/2026/04/13/LeetCode/LeetCode-%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-2026-04-13/" class="trm-anima-link">
+                    LeetCode 学习记录 2026-04-13
+                </a>
+            </h5>
+            <div class="trm-divider trm-mb-20 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>26/04/13</li>
+                <li>23:00</li>
+                
+                
+            </ul>
+        </div>
+    </div>
+</div>
+    
+</div>
+
+    
+
+    <div id="giscus-wrap" class="trm-card trm-scroll-animation comment-container"></div>
+<script data-swup-reload-script>
+    function loadGiscus() {
+        let nowTheme = document.documentElement.classList.contains('dark') ? '' : ''
+        const config = {
+            src: 'https://giscus.app/client.js',
+            "data-repo": 'xiaomengxmeng/ZeroDream',
+            "data-repo-id": 'R_kgDOQHFw4Q',
+            "data-category": 'Announcements',
+            "data-category-id": 'DIC_kwDOQHFw4c4CxyP3',
+            "data-mapping": 'pathname',
+            "data-reactions-enabled": '1',
+            "data-emit-metadata": '0',
+            "data-theme": nowTheme,
+            "data-lang": 'zh-CN',
+            crossorigin: "anonymous",
+            async: true
+        }
+        let ele = document.createElement('script')
+        for (let key in config) {
+            ele.setAttribute(key, config[key])
+        }
+        document.getElementById('giscus-wrap').insertAdjacentElement('afterbegin', ele)
+    }
+
+    function changeGiscusTheme() {
+        let theme = document.documentElement.classList.contains('dark') ? '' : ''
+
+        function sendMessage(message) {
+            const iframe = document.querySelector('iframe.giscus-frame');
+            if (!iframe) return;
+            iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+
+        sendMessage({
+            setConfig: {
+                theme: theme
+            }
+        });
+    }
+
+    loadGiscus();
+</script>
+
+
+
+                    <div class="trm-divider footer-divider"></div>
+
+                    <!-- footer -->
+                    <footer class="trm-footer-card trm-scroll-animation">
+
+    
+
+    
+
+    
+        <div class="trm-footer-item">
+            <span>
+                由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v7.3.0
+            </span>
+            <span class="footer-separator" data-separator=" | "></span>
+            <span> 
+                主题 - 
+                <a rel="noopener" href='https://github.com/MaLuns/hexo-theme-async' target='_blank'>Async</a>
+                v2.2.6
+            </span>
+        </div>
+      
+
+     
+
+     
+</footer>
+                    <!-- footer end -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+            <!-- body end -->
+
+            
+
+            
+<div class="trm-fixed-container">
+    
+    
+        <div class="trm-fixed-btn" data-title="阅读模式" onclick="asyncFun.switchReadMode()">
+            <i class="iconfont fas fa-book-reader"></i>
+        </div>
+    
+    
+    <div id="trm-back-top" class="trm-fixed-btn" data-title="回到顶部">
+        <i class="iconfont fas fa-arrow-up"></i>
+    </div>
+</div>
+        </div>
+      </div>
+      <!-- scroll container end -->
+  </div>
+  <!-- app wrapper end -->
+
+  
+    <div class="trm-search-popup">
+        <div class="trm-search-wrapper">
+            <div class="form trm-search-form">
+                <div class="trm-search-input-icon">
+                    <i class="iconfont fas fa-search"></i>
+                </div>
+                <input class="trm-search-input" type="text" placeholder="搜索文章...">
+                <div class="trm-search-btn-close">
+                    <i class="iconfont fas fa-times"></i>
+                </div>
+            </div>
+            <div class="trm-search-result-container">
+                <div class="trm-search-empty">
+                    请输入关键词进行搜索
+                </div>
+            </div>
+            <div class="trm-search-footer">
+                <div class="trm-search-stats"></div>
+                <ul class="trm-search-commands">
+                    <li>
+                        <kbd class="command-palette-commands-key">
+                            <svg width="15" height="15" aria-label="Escape key" role="img">
+                                <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="1.2">
+                                    <path
+                                        d="M13.6167 8.936c-.1065.3583-.6883.962-1.4875.962-.7993 0-1.653-.9165-1.653-2.1258v-.5678c0-1.2548.7896-2.1016 1.653-2.1016.8634 0 1.3601.4778 1.4875 1.0724M9 6c-.1352-.4735-.7506-.9219-1.46-.8972-.7092.0246-1.344.57-1.344 1.2166s.4198.8812 1.3445.9805C8.465 7.3992 8.968 7.9337 9 8.5c.032.5663-.454 1.398-1.4595 1.398C6.6593 9.898 6 9 5.963 8.4851m-1.4748.5368c-.2635.5941-.8099.876-1.5443.876s-1.7073-.6248-1.7073-2.204v-.4603c0-1.0416.721-2.131 1.7073-2.131.9864 0 1.6425 1.031 1.5443 2.2492h-2.956">
+                                    </path>
+                                </g>
+                            </svg>
+                        </kbd>
+                        <span class="command-palette-Label">to close</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+  <!-- Plugin -->
+
+
+
+
+    
+    
+<script src="https://unpkg.com/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+
+    
+
+    
+
+    
+
+    <!-- 数学公式 -->
+    
+
+    <!-- 评论插件 -->
+    
+        
+
+        
+    
+
+		
+
+
+
+
+    <!-- Service Worker -->
+    
+    <!-- baidu push -->
+    
+
+
+<script id="async-script" src="/ZeroDream/js/main.js?v=2.2.6"></script>
+
+<!-- CDN -->
+
+
+    
+
+    
+
+    
+
+
+
+</body>
+
+</html>
