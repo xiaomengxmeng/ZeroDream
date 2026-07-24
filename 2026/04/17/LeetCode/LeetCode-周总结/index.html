@@ -1,0 +1,3456 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="x5-fullscreen" content="true">
+<meta name="full-screen" content="yes">
+<meta name="theme-color" content="#317EFB" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=0" name="viewport">
+<meta name="description" content="📈 学习统计   指标 数值    总题目数 16 道   Easy 10 道   Medium 6 道   学习天数 5 天    📅 每日完成情况   日期 完成题目 核心技巧    04-13 Two Sum, Check Strings, Group Anagrams 哈希表、字符串处理   04-14 Valid Parentheses, Min Stack, Valid Anag">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode 周总结">
+<meta property="og:url" content="https://xiaomengxmeng.github.io/ZeroDream/2026/04/17/LeetCode/LeetCode-%E5%91%A8%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="ZeroDream Blog">
+<meta property="og:description" content="📈 学习统计   指标 数值    总题目数 16 道   Easy 10 道   Medium 6 道   学习天数 5 天    📅 每日完成情况   日期 完成题目 核心技巧    04-13 Two Sum, Check Strings, Group Anagrams 哈希表、字符串处理   04-14 Valid Parentheses, Min Stack, Valid Anag">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-04-17T15:00:00.000Z">
+<meta property="article:modified_time" content="2026-07-24T16:44:44.778Z">
+<meta property="article:author" content="ZeroDream">
+<meta property="article:tag" content="LeetCode">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="周总结">
+<meta name="twitter:card" content="summary">
+
+
+<title >LeetCode 周总结</title>
+
+<!-- Favicon -->
+
+    <link href='/ZeroDream/images/favicon.ico?v=2.2.6' rel='icon' type='image/png' sizes='16x16' ></link>
+
+
+    <link href='/ZeroDream/images/favicon.ico?v=2.2.6' rel='icon' type='image/png' sizes='32x32' ></link>
+
+
+
+
+<!-- Plugin -->
+
+
+
+
+    
+<link rel="stylesheet" href="/ZeroDream/css/plugins/bootstrap.row.css">
+
+    
+<link rel="stylesheet" href="https://unpkg.com/@fancyapps/ui@4.0/dist/fancybox.css">
+
+    
+    
+
+
+
+
+<!-- Icon -->
+
+    
+<link rel="stylesheet" href="/ZeroDream/css/plugins/font-awesome.min.css">
+
+
+
+
+<!-- Variable -->
+<script>window.ASYNC_CONFIG = {"hostname":"xiaomengxmeng.github.io","author":"ZeroDream","root":"/ZeroDream/","typed_text":null,"theme_version":"2.2.6","theme":{"switch":true,"default":"style-light"},"favicon":{"logo":"/images/favicon.ico","icon16":"/images/favicon.ico","icon32":"/images/favicon.ico","apple_touch_icon":null,"webmanifest":null,"visibilitychange":true,"hidden":"/failure.ico","show_text":"(/≧▽≦/)咦！又好了！","hide_text":"(●—●)喔哟，崩溃啦！"},"i18n":{"placeholder":"搜索文章...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）","author":"本文作者：","copyright_link":"本文链接：","copyright_license_title":"版权声明：","copyright_license_content":"本博客所有文章除特别声明外，均默认采用 undefined 许可协议。","copy_success":"复制成功","copy_failure":"复制失败","open_read_mode":"进入阅读模式","exit_read_mode":"退出阅读模式","notice_outdate_message":"距离上次更新已经 undefined 天了, 文章内容可能已经过时。","sticky":"置顶","just":"刚刚","min":"分钟前","hour":"小时前","day":"天前","month":"个月前"},"swup":false,"plugin":{"flickr_justified_gallery":"https://unpkg.com/flickr-justified-gallery@latest/dist/fjGallery.min.js"},"icons":{"sun":"far fa-sun","moon":"far fa-moon","play":"fas fa-play","email":"far fa-envelope","next":"fas fa-arrow-right","calendar":"far fa-calendar-alt","clock":"far fa-clock","user":"far fa-user","back_top":"fas fa-arrow-up","close":"fas fa-times","search":"fas fa-search","reward":"fas fa-hand-holding-usd","toc_tag":"fas fa-th-list","read":"fas fa-book-reader","arrows":"fas fa-arrows-alt-h","double_arrows":"fas fa-angle-double-down","copy":"fas fa-copy"},"icontype":"font","highlight":{"plugin":"highlighjs","theme":true,"copy":true,"lang":true,"title":"default","height_limit":false},"toc":{"post_title":true},"live_time":{"start_time":"","prefix":"博客已萌萌哒运行 undefined 天"},"danmu":{"enable":false,"el":".trm-banner"}};</script>
+<script id="async-page-config">window.PAGE_CONFIG = {"isPost":true,"isHome":false,"postUpdate":"2026-07-25 00:44:44"};</script>
+
+<!-- Theme mode css -->
+<link data-swup-theme rel="stylesheet" href="/ZeroDream/css/index.css?v=2.2.6" id="trm-switch-style">
+<script>
+    let defaultMode = ASYNC_CONFIG.theme.default !=='auto' ?  ASYNC_CONFIG.theme.default : (window.matchMedia("(prefers-color-scheme: light)").matches ? 'style-light' : 'style-dark')
+    let catchMode = localStorage.getItem('theme-mode') || defaultMode;
+    let type = catchMode === 'style-dark' ? 'add' : 'remove';
+    document.documentElement.classList[type]('dark')
+</script>
+
+<!-- CDN -->
+
+
+    
+    
+
+
+
+<!-- Site Analytics -->
+
+ 
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+
+  <!-- app wrapper -->
+  <div class="trm-app-frame">
+
+    <!-- page preloader -->
+    <div class="trm-preloader">
+    <div class="trm-holder">
+        <div class="preloader">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+</div>
+    <!-- page preloader end -->
+
+    <!-- change mode preloader -->
+    <div class="trm-mode-swich-animation-frame">
+    <div class="trm-mode-swich-animation">
+        <i class="i-sun"><i class="iconfont far fa-sun"></i></i>
+        <div class="trm-horizon"></div>
+        <i class="i-moon"><i class="iconfont far fa-moon"></i></i>
+    </div>
+</div>
+    <!-- change mode preloader end -->
+
+      <!-- scroll container -->
+      <div id="trm-dynamic-content" class="trm-swup-animation">
+        <div id="trm-scroll-container" class="trm-scroll-container" style="opacity: 0">
+            <!-- top bar -->
+            <header class="trm-top-bar">
+	<div class="container">
+		<div class="trm-left-side">
+			<!-- logo -->
+<a href="/ZeroDream/" class="trm-logo-frame trm-anima-link">
+    
+        <img alt="logo" src="/ZeroDream/images/favicon.ico">
+    
+    
+        <div class="trm-logo-text">
+            小梦<span>随笔</span>
+        </div>
+    
+</a>
+<!-- logo end -->
+		</div>
+		<div class="trm-right-side">
+			<!-- menu -->
+<div class="trm-menu">
+    <nav>
+        <ul>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/ZeroDream/" target="">
+                    首页
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/ZeroDream/archives/" target="">
+                    归档
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/ZeroDream/tags/" target="">
+                    menu.tags
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/ZeroDream/categories/" target="">
+                    menu.categories
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/ZeroDream/about/" target="">
+                    关于
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/ZeroDream/links/" target="">
+                    友链
+                </a>
+                
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+<!-- menu end -->
+			
+    <!-- mode switcher place -->
+    <div class="trm-mode-switcher-place">
+        <div class="trm-mode-switcher">
+            <i class="iconfont far fa-sun"></i>
+            <input class="tgl tgl-light" id="trm-swich" type="checkbox">
+            <label class="trm-swich" for="trm-swich"></label>
+            <i class="iconfont far fa-moon"></i>
+        </div>
+    </div>
+    <!-- mode switcher place end -->
+
+			
+     
+
+		</div>
+		<div class="trm-menu-btn">
+			<span></span>
+		</div>
+	</div>
+</header>
+            <!-- top bar end -->
+
+            <!-- body -->
+            
+<div class="trm-content-start">
+    <!-- banner -->
+    <div class="trm-banner">
+    
+    <!-- banner cover -->
+    <img style="object-position:top;object-fit:cover;" alt="banner" class="trm-banner-cover" src="/ZeroDream/images/background/%E5%A5%B3%E9%AB%98%E4%B8%89%E4%BA%BA.png">
+    <!-- banner cover end -->
+    
+
+    <!-- banner content -->
+    <div class="trm-banner-content trm-overlay">
+        <div class="container">
+            <div class="row">
+                
+                <div class="col-lg-4"></div>
+                
+                <div class="col-lg-8">
+
+                    <!-- banner title -->
+                    <div class="trm-banner-text ">
+                        <div class="trm-label trm-mb-20">
+                            NEWS LETTER
+                        </div>
+                        <h1 class="trm-mb-30 trm-hsmb-font">
+                            LeetCode 周总结
+                        </h1>
+
+                        
+                            <ul class="trm-breadcrumbs trm-label">
+                                <li>
+                                    <a href="/ZeroDream/" class="trm-anima-link">Home</a>
+                                </li>
+                                <li>
+                                    <span>
+                                        2026
+                                    </span>
+                                </li>
+                            </ul>
+                        
+                    </div>
+                    <!-- banner title end -->
+
+                    <!-- scroll hint -->
+                    <span id="scroll-triger" class="trm-scroll-hint-frame">
+                        <div class="trm-scroll-hint"></div>
+                        <span class="trm-label">Scroll down</span>
+                    </span>
+                    <!-- scroll hint end -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- banner content end -->
+</div>
+    <!-- banner end -->
+    <div class="container">
+        <div class="row">
+            
+                <div class="trm-page-sidebar col-lg-4 hidden-sm">
+                    <!-- main card -->
+                    <div class="trm-main-card-frame trm-sidebar">
+    <div class="trm-main-card"> 
+        <!-- card header -->
+<div class="trm-mc-header">
+    <div class="trm-avatar-frame trm-mb-20">
+        <img alt="Avatar" class="trm-avatar trm-light-icon" src="/ZeroDream/images/head/head.jpg"> <img alt="Avatar" class="trm-avatar trm-dark-icon" src="/ZeroDream/images/head/darkhead.jpg">
+    </div>
+    <h5 class="trm-name trm-mb-15">
+        ZeroDream
+    </h5>
+    
+</div>
+<!-- card header end -->
+        <!-- sidebar social -->
+
+<div class="trm-divider trm-mb-40 trm-mt-40"></div>
+<div class="trm-social">
+    
+        <a href="https://github.com" title="Github" rel="nofollow" target="_blank">
+            <i class="iconfont fab fa-github"></i>
+        </a>
+    
+</div>
+
+<!-- sidebar social end -->
+        <!-- info -->
+<div class="trm-divider trm-mb-40 trm-mt-40"></div>
+<ul class="trm-table trm-mb-20">
+    
+        <li>
+            <div class="trm-label">
+                地址:
+            </div>
+            <div class="trm-label trm-label-light">
+                中国 江西
+            </div>
+        </li>
+    
+        <li>
+            <div class="trm-label">
+                职业:
+            </div>
+            <div class="trm-label trm-label-light">
+                开发者
+            </div>
+        </li>
+    
+</ul>
+<!-- info end -->
+
+        
+    <div class="trm-divider trm-mb-40 trm-mt-40"></div>
+    <!-- action button -->
+    <div class="text-center">
+        <a href="mailto:xuanmeng404@163.com" class="trm-btn">
+            联系我
+            <i class="iconfont far fa-envelope"></i>
+        </a>
+    </div>
+    <!-- action button end -->
+
+    </div>
+</div>
+                    <!-- main card end -->
+                </div>
+            
+            <div class="trm-page-content col-lg-8">
+                <div id="trm-content" class="trm-content">
+                    <div class="trm-post-info row hidden-sm">
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-calendar-alt trm-icon"></i><br>
+            04/17
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-clock trm-icon"></i><br>
+            23:00
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div id="post-author" class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-user trm-icon"></i><br>
+            ZeroDream
+        </div>
+    </div>
+</div>
+<div class="trm-card ">
+    <article id="article-container" class="trm-publication">
+    <hr>
+<h3 id="📈-学习统计"><a href="#📈-学习统计" class="headerlink" title="📈 学习统计"></a>📈 学习统计</h3><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>总题目数</td>
+<td>16 道</td>
+</tr>
+<tr>
+<td>Easy</td>
+<td>10 道</td>
+</tr>
+<tr>
+<td>Medium</td>
+<td>6 道</td>
+</tr>
+<tr>
+<td>学习天数</td>
+<td>5 天</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="📅-每日完成情况"><a href="#📅-每日完成情况" class="headerlink" title="📅 每日完成情况"></a>📅 每日完成情况</h3><table>
+<thead>
+<tr>
+<th>日期</th>
+<th>完成题目</th>
+<th>核心技巧</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>04-13</td>
+<td>Two Sum, Check Strings, Group Anagrams</td>
+<td>哈希表、字符串处理</td>
+</tr>
+<tr>
+<td>04-14</td>
+<td>Valid Parentheses, Min Stack, Valid Anagram, Plus One</td>
+<td>栈、频率统计、进位处理</td>
+</tr>
+<tr>
+<td>04-15</td>
+<td>Merge Intervals, Add Binary, Add Strings, Find Anagrams</td>
+<td>区间合并、进位处理、滑动窗口</td>
+</tr>
+<tr>
+<td>04-16</td>
+<td>Longest Substring, Permutation in String</td>
+<td>滑动窗口（固定&#x2F;变长）</td>
+</tr>
+<tr>
+<td>04-17</td>
+<td>Move Zeroes, Remove Element, Reverse Linked List</td>
+<td>快慢指针、链表操作</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="🎯-核心技巧体系"><a href="#🎯-核心技巧体系" class="headerlink" title="🎯 核心技巧体系"></a>🎯 核心技巧体系</h3><h4 id="1️⃣-哈希表-Hash-Table"><a href="#1️⃣-哈希表-Hash-Table" class="headerlink" title="1️⃣ 哈希表 (Hash Table)"></a>1️⃣ 哈希表 (Hash Table)</h4><p><strong>核心思想</strong>：O(1) 查找，空间换时间</p>
+<table>
+<thead>
+<tr>
+<th>题目</th>
+<th>应用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Two Sum (1)</td>
+<td>查找配对元素</td>
+</tr>
+<tr>
+<td>Group Anagrams (49)</td>
+<td>分组归类</td>
+</tr>
+</tbody></table>
+<p><strong>模板代码</strong>：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">unordered_map&lt;<span class="type">int</span>, <span class="type">int</span>&gt; map;</span><br><span class="line">map[key] = value;      <span class="comment">// 插入</span></span><br><span class="line">map.<span class="built_in">count</span>(key)         <span class="comment">// 查找</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="2️⃣-栈-Stack"><a href="#2️⃣-栈-Stack" class="headerlink" title="2️⃣ 栈 (Stack)"></a>2️⃣ 栈 (Stack)</h4><p><strong>核心思想</strong>：LIFO，处理嵌套结构</p>
+<table>
+<thead>
+<tr>
+<th>题目</th>
+<th>应用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Valid Parentheses (20)</td>
+<td>括号匹配</td>
+</tr>
+<tr>
+<td>Min Stack (155)</td>
+<td>辅助栈跟踪最小值</td>
+</tr>
+</tbody></table>
+<p><strong>模板代码</strong>：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">stack&lt;<span class="type">int</span>&gt; st;</span><br><span class="line">st.<span class="built_in">push</span>(x);    <span class="comment">// 入栈</span></span><br><span class="line">st.<span class="built_in">pop</span>();      <span class="comment">// 出栈</span></span><br><span class="line">st.<span class="built_in">top</span>();      <span class="comment">// 访问栈顶（先检查 empty()）</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="3️⃣-频率统计-Frequency-Count"><a href="#3️⃣-频率统计-Frequency-Count" class="headerlink" title="3️⃣ 频率统计 (Frequency Count)"></a>3️⃣ 频率统计 (Frequency Count)</h4><p><strong>核心思想</strong>：固定大小数组统计字符出现次数</p>
+<table>
+<thead>
+<tr>
+<th>题目</th>
+<th>应用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Valid Anagram (242)</td>
+<td>判断异位词</td>
+</tr>
+<tr>
+<td>Find Anagrams (438)</td>
+<td>滑动窗口 + 频率统计</td>
+</tr>
+</tbody></table>
+<p><strong>模板代码</strong>：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">count</span><span class="params">(<span class="number">26</span>, <span class="number">0</span>)</span></span>;</span><br><span class="line">count[c - <span class="string">&#x27;a&#x27;</span>]++;   <span class="comment">// 统计</span></span><br><span class="line">count[c - <span class="string">&#x27;a&#x27;</span>]--;   <span class="comment">// 抵消</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="4️⃣-进位处理-Carry-Processing"><a href="#4️⃣-进位处理-Carry-Processing" class="headerlink" title="4️⃣ 进位处理 (Carry Processing)"></a>4️⃣ 进位处理 (Carry Processing)</h4><p><strong>核心思想</strong>：从低位到高位，<code>carry = sum / base</code></p>
+<table>
+<thead>
+<tr>
+<th>题目</th>
+<th>进制</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Plus One (66)</td>
+<td>十进制（只加1）</td>
+</tr>
+<tr>
+<td>Add Binary (67)</td>
+<td>二进制</td>
+</tr>
+<tr>
+<td>Add Strings (415)</td>
+<td>十进制</td>
+</tr>
+</tbody></table>
+<p><strong>模板代码</strong>：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (i &gt;= <span class="number">0</span> || j &gt;= <span class="number">0</span> || carry) &#123;</span><br><span class="line">    <span class="type">int</span> sum = carry;</span><br><span class="line">    <span class="keyword">if</span> (i &gt;= <span class="number">0</span>) sum += a[i--] - <span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">    <span class="keyword">if</span> (j &gt;= <span class="number">0</span>) sum += b[j--] - <span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">    carry = sum / base;        <span class="comment">// 进位</span></span><br><span class="line">    res += <span class="built_in">to_string</span>(sum % base);  <span class="comment">// 当前位</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">reverse</span>(res.<span class="built_in">begin</span>(), res.<span class="built_in">end</span>());</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="5️⃣-区间问题-Interval"><a href="#5️⃣-区间问题-Interval" class="headerlink" title="5️⃣ 区间问题 (Interval)"></a>5️⃣ 区间问题 (Interval)</h4><p><strong>核心思想</strong>：排序 → 遍历 → 合并</p>
+<table>
+<thead>
+<tr>
+<th>题目</th>
+<th>应用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Merge Intervals (56)</td>
+<td>合并重叠区间</td>
+</tr>
+</tbody></table>
+<p><strong>模板代码</strong>：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sort</span>(intervals.<span class="built_in">begin</span>(), intervals.<span class="built_in">end</span>());</span><br><span class="line">res.<span class="built_in">push_back</span>(intervals[<span class="number">0</span>]);</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; intervals.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (res.<span class="built_in">back</span>()[<span class="number">1</span>] &gt;= intervals[i][<span class="number">0</span>]) &#123;</span><br><span class="line">        res.<span class="built_in">back</span>()[<span class="number">1</span>] = <span class="built_in">max</span>(res.<span class="built_in">back</span>()[<span class="number">1</span>], intervals[i][<span class="number">1</span>]);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        res.<span class="built_in">push_back</span>(intervals[i]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="6️⃣-滑动窗口-Sliding-Window"><a href="#6️⃣-滑动窗口-Sliding-Window" class="headerlink" title="6️⃣ 滑动窗口 (Sliding Window)"></a>6️⃣ 滑动窗口 (Sliding Window)</h4><p><strong>核心思想</strong>：窗口滑动 + 增量更新</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>题目</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>固定窗口</td>
+<td>Find Anagrams (438), Permutation (567)</td>
+<td>窗口大小固定</td>
+</tr>
+<tr>
+<td>变长窗口</td>
+<td>Longest Substring (3)</td>
+<td>左边界可跳跃</td>
+</tr>
+</tbody></table>
+<p><strong>固定窗口模板</strong>：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = window_size; i &lt; n; i++) &#123;</span><br><span class="line">    <span class="comment">// 进入字符</span></span><br><span class="line">    count[s[i]]--;</span><br><span class="line">    <span class="keyword">if</span> (count[s[i]] == <span class="number">0</span>) matched++;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 离开字符</span></span><br><span class="line">    count[s[i - window_size]]++;</span><br><span class="line">    <span class="keyword">if</span> (count[s[i - window_size]] == <span class="number">0</span>) matched++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>变长窗口模板</strong>：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> left = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (满足收缩条件) &#123;</span><br><span class="line">        left = 更新位置;  <span class="comment">// 跳跃更新</span></span><br><span class="line">    &#125;</span><br><span class="line">    maxLen = <span class="built_in">max</span>(maxLen, i - left + <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="7️⃣-快慢指针-Fast-Slow-Pointers"><a href="#7️⃣-快慢指针-Fast-Slow-Pointers" class="headerlink" title="7️⃣ 快慢指针 (Fast-Slow Pointers)"></a>7️⃣ 快慢指针 (Fast-Slow Pointers)</h4><p><strong>核心思想</strong>：一个遍历，一个记录位置</p>
+<table>
+<thead>
+<tr>
+<th>题目</th>
+<th>应用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Move Zeroes (283)</td>
+<td>原地移动元素</td>
+</tr>
+<tr>
+<td>Remove Element (27)</td>
+<td>原地删除元素</td>
+</tr>
+</tbody></table>
+<p><strong>模板代码</strong>：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> slow = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> fast = <span class="number">0</span>; fast &lt; n; fast++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (满足条件) &#123;</span><br><span class="line">        nums[slow++] = nums[fast];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 如果需要，填充剩余位置</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="8️⃣-链表操作-Linked-List"><a href="#8️⃣-链表操作-Linked-List" class="headerlink" title="8️⃣ 链表操作 (Linked List)"></a>8️⃣ 链表操作 (Linked List)</h4><p><strong>核心思想</strong>：改变指针方向，注意保存 next</p>
+<table>
+<thead>
+<tr>
+<th>题目</th>
+<th>应用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Reverse Linked List (206)</td>
+<td>反转链表</td>
+</tr>
+</tbody></table>
+<p><strong>模板代码</strong>：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">ListNode* prev = <span class="literal">nullptr</span>;</span><br><span class="line">ListNode* cur = head;</span><br><span class="line"><span class="keyword">while</span> (cur != <span class="literal">nullptr</span>) &#123;</span><br><span class="line">    ListNode* next = cur-&gt;next;  <span class="comment">// 先保存</span></span><br><span class="line">    cur-&gt;next = prev;            <span class="comment">// 反转</span></span><br><span class="line">    prev = cur;</span><br><span class="line">    cur = next;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> prev;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="⚠️-易错点总结"><a href="#⚠️-易错点总结" class="headerlink" title="⚠️ 易错点总结"></a>⚠️ 易错点总结</h3><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>常见错误</th>
+<th>正确做法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>栈操作</td>
+<td><code>top()</code> 前未检查 <code>empty()</code></td>
+<td>先检查再访问</td>
+</tr>
+<tr>
+<td>数组索引</td>
+<td><code>size()</code> 当作最后索引</td>
+<td>最后索引是 <code>size() - 1</code></td>
+</tr>
+<tr>
+<td>滑动窗口</td>
+<td>每次遍历计算 matched</td>
+<td>增量更新</td>
+</tr>
+<tr>
+<td>链表操作</td>
+<td>改变指针后丢失 next</td>
+<td>先保存 next</td>
+</tr>
+<tr>
+<td>循环条件</td>
+<td>忘记包含 carry</td>
+<td><code>i&gt;=0 || j&gt;=0 || carry</code></td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="💡-学习心得"><a href="#💡-学习心得" class="headerlink" title="💡 学习心得"></a>💡 学习心得</h3><ol>
+<li><strong>模式识别很重要</strong>：看到”两数之和”→ 哈希表，看到”括号匹配”→ 栈</li>
+<li><strong>增量更新是关键</strong>：滑动窗口、频率统计都要避免重复计算</li>
+<li><strong>边界条件要仔细</strong>：空数组、空栈、空链表都要处理</li>
+<li><strong>代码复用</strong>：很多题目核心逻辑相同，只是细节不同</li>
+</ol>
+<hr>
+<p><strong>第一周圆满完成！继续加油！</strong> 🎉</p>
+<hr>
+<h3 id="📈-学习统计-1"><a href="#📈-学习统计-1" class="headerlink" title="📈 学习统计"></a>📈 学习统计</h3><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>总题目数</td>
+<td>11 道</td>
+</tr>
+<tr>
+<td>Easy</td>
+<td>7 道</td>
+</tr>
+<tr>
+<td>Medium</td>
+<td>4 道</td>
+</tr>
+<tr>
+<td>学习天数</td>
+<td>3 天</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="📅-每日完成情况-1"><a href="#📅-每日完成情况-1" class="headerlink" title="📅 每日完成情况"></a>📅 每日完成情况</h3><table>
+<thead>
+<tr>
+<th>日期</th>
+<th>完成题目</th>
+<th>核心技巧</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>04-21</td>
+<td>Swap Nodes in Pairs, Linked List Cycle, Cycle II, Middle Node</td>
+<td>虚拟头节点、快慢指针</td>
+</tr>
+<tr>
+<td>04-22</td>
+<td>Merge Two Lists, Remove Duplicates, Remove Elements, Palindrome</td>
+<td>虚拟头节点、找中点+反转</td>
+</tr>
+<tr>
+<td>04-23</td>
+<td>Intersection, Remove Nth Node, Add Two Numbers</td>
+<td>双指针走两遍、快慢指针间隔</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="🎯-核心技巧体系-1"><a href="#🎯-核心技巧体系-1" class="headerlink" title="🎯 核心技巧体系"></a>🎯 核心技巧体系</h3><h4 id="1️⃣-快慢指针-Fast-Slow-Pointers-⭐-核心技巧"><a href="#1️⃣-快慢指针-Fast-Slow-Pointers-⭐-核心技巧" class="headerlink" title="1️⃣ 快慢指针 (Fast-Slow Pointers) ⭐ 核心技巧"></a>1️⃣ 快慢指针 (Fast-Slow Pointers) ⭐ 核心技巧</h4><p><strong>核心思想</strong>：快指针走2步，慢指针走1步</p>
+<table>
+<thead>
+<tr>
+<th>应用场景</th>
+<th>题目</th>
+<th>循环条件</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>检测环</td>
+<td>[141] Linked List Cycle</td>
+<td><code>fast &amp;&amp; fast-&gt;next</code></td>
+</tr>
+<tr>
+<td>找环入口</td>
+<td>[142] Linked List Cycle II</td>
+<td>两阶段法</td>
+</tr>
+<tr>
+<td>找中点</td>
+<td>[876] Middle of the Linked List</td>
+<td><code>fast &amp;&amp; fast-&gt;next</code></td>
+</tr>
+<tr>
+<td>找倒数第N个</td>
+<td>[19] Remove Nth Node</td>
+<td>快指针先走n步</td>
+</tr>
+</tbody></table>
+<p><strong>模板代码</strong>：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ListNode *slow = head, *fast = head;</span><br><span class="line"><span class="keyword">while</span> (fast &amp;&amp; fast-&gt;next) &#123;</span><br><span class="line">    slow = slow-&gt;next;</span><br><span class="line">    fast = fast-&gt;next-&gt;next;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// slow 即为中点</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>两阶段法找环入口</strong>：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 阶段1：找相遇点</span></span><br><span class="line"><span class="keyword">while</span> (fast &amp;&amp; fast-&gt;next) &#123;</span><br><span class="line">    slow = slow-&gt;next;</span><br><span class="line">    fast = fast-&gt;next-&gt;next;</span><br><span class="line">    <span class="keyword">if</span> (slow == fast) <span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (!fast || !fast-&gt;next) <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 阶段2：找入口</span></span><br><span class="line">ListNode *p1 = head, *p2 = slow;</span><br><span class="line"><span class="keyword">while</span> (p1 != p2) &#123;</span><br><span class="line">    p1 = p1-&gt;next;</span><br><span class="line">    p2 = p2-&gt;next;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> p1;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="2️⃣-虚拟头节点-Dummy-Head"><a href="#2️⃣-虚拟头节点-Dummy-Head" class="headerlink" title="2️⃣ 虚拟头节点 (Dummy Head)"></a>2️⃣ 虚拟头节点 (Dummy Head)</h4><p><strong>核心思想</strong>：统一处理头节点边界情况</p>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>题目</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>头节点可能被删除</td>
+<td>[203] Remove Elements</td>
+<td>需要保护头节点</td>
+</tr>
+<tr>
+<td>头节点需要交换</td>
+<td>[24] Swap Nodes in Pairs</td>
+<td>第一个节点需要前驱</td>
+</tr>
+<tr>
+<td>构建新链表</td>
+<td>[21] Merge Two Lists, [2] Add Two Numbers</td>
+<td>统一连接逻辑</td>
+</tr>
+</tbody></table>
+<p><strong>判断是否需要虚拟头节点</strong>：</p>
+<ul>
+<li>头节点会被删除&#x2F;修改？ → <strong>需要</strong></li>
+<li>头节点不会被删除？ → <strong>不需要</strong></li>
+</ul>
+<p><strong>模板代码</strong>：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ListNode *dummy = <span class="keyword">new</span> <span class="built_in">ListNode</span>(<span class="number">0</span>, head);</span><br><span class="line">ListNode *cur = dummy;</span><br><span class="line"><span class="comment">// ... 操作</span></span><br><span class="line"><span class="keyword">return</span> dummy-&gt;next;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="3️⃣-链表反转-Reverse-Linked-List"><a href="#3️⃣-链表反转-Reverse-Linked-List" class="headerlink" title="3️⃣ 链表反转 (Reverse Linked List)"></a>3️⃣ 链表反转 (Reverse Linked List)</h4><p><strong>核心思想</strong>：三指针反转，先保存 next</p>
+<table>
+<thead>
+<tr>
+<th>题目</th>
+<th>应用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>[206] Reverse Linked List</td>
+<td>完整反转</td>
+</tr>
+<tr>
+<td>[234] Palindrome</td>
+<td>反转后半部分</td>
+</tr>
+</tbody></table>
+<p><strong>模板代码</strong>：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ListNode *prev = <span class="literal">nullptr</span>, *cur = head;</span><br><span class="line"><span class="keyword">while</span> (cur) &#123;</span><br><span class="line">    ListNode *next = cur-&gt;next;</span><br><span class="line">    cur-&gt;next = prev;</span><br><span class="line">    prev = cur;</span><br><span class="line">    cur = next;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> prev;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="4️⃣-双指针走两遍-Two-Pointers-Walk-Twice"><a href="#4️⃣-双指针走两遍-Two-Pointers-Walk-Twice" class="headerlink" title="4️⃣ 双指针走两遍 (Two Pointers Walk Twice)"></a>4️⃣ 双指针走两遍 (Two Pointers Walk Twice)</h4><p><strong>核心思想</strong>：消除长度差异</p>
+<table>
+<thead>
+<tr>
+<th>题目</th>
+<th>应用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>[160] Intersection</td>
+<td>找相交点</td>
+</tr>
+</tbody></table>
+<p><strong>原理</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pA: 链表A → 链表B，走 a + b + c 步</span><br><span class="line">pB: 链表B → 链表A，走 a + c + b 步</span><br><span class="line">步数相等，必在相交点相遇！</span><br></pre></td></tr></table></figure>
+
+<p><strong>模板代码</strong>：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ListNode *pa = headA, *pb = headB;</span><br><span class="line"><span class="keyword">while</span> (pa != pb) &#123;</span><br><span class="line">    pa = pa ? pa-&gt;next : headB;</span><br><span class="line">    pb = pb ? pb-&gt;next : headA;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> pa;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="5️⃣-逐位相加-进位-Add-with-Carry"><a href="#5️⃣-逐位相加-进位-Add-with-Carry" class="headerlink" title="5️⃣ 逐位相加 + 进位 (Add with Carry)"></a>5️⃣ 逐位相加 + 进位 (Add with Carry)</h4><p><strong>核心思想</strong>：模拟手动加法</p>
+<table>
+<thead>
+<tr>
+<th>题目</th>
+<th>应用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>[2] Add Two Numbers</td>
+<td>链表相加</td>
+</tr>
+</tbody></table>
+<p><strong>模板代码</strong>：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> carry = <span class="number">0</span>;</span><br><span class="line">ListNode *dummy = <span class="keyword">new</span> <span class="built_in">ListNode</span>(<span class="number">0</span>), *tail = dummy;</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> (l1 || l2 || carry) &#123;</span><br><span class="line">    <span class="type">int</span> val1 = l1 ? l1-&gt;val : <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> val2 = l2 ? l2-&gt;val : <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> sum = val1 + val2 + carry;</span><br><span class="line">    </span><br><span class="line">    carry = sum / <span class="number">10</span>;</span><br><span class="line">    tail-&gt;next = <span class="keyword">new</span> <span class="built_in">ListNode</span>(sum % <span class="number">10</span>);</span><br><span class="line">    tail = tail-&gt;next;</span><br><span class="line">    </span><br><span class="line">    l1 = l1 ? l1-&gt;next : <span class="literal">nullptr</span>;</span><br><span class="line">    l2 = l2 ? l2-&gt;next : <span class="literal">nullptr</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> dummy-&gt;next;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="⚠️-易错点总结-1"><a href="#⚠️-易错点总结-1" class="headerlink" title="⚠️ 易错点总结"></a>⚠️ 易错点总结</h3><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>常见错误</th>
+<th>正确做法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>快慢指针</td>
+<td>循环条件用 <code>||</code></td>
+<td>用 <code>&amp;&amp;</code></td>
+</tr>
+<tr>
+<td>虚拟头节点</td>
+<td>忘记使用</td>
+<td>头节点可能被删除时必须用</td>
+</tr>
+<tr>
+<td>删除节点</td>
+<td>cur 指向 head</td>
+<td>cur 应指向 dummy 或前驱</td>
+</tr>
+<tr>
+<td>链表连接</td>
+<td><code>dummy-&gt;next = node</code> 覆盖</td>
+<td>用 tail 指针跟踪</td>
+</tr>
+<tr>
+<td>空指针</td>
+<td>直接访问 <code>l1-&gt;val</code></td>
+<td><code>l1 ? l1-&gt;val : 0</code></td>
+</tr>
+<tr>
+<td>指针移动</td>
+<td>相等时移动 cur</td>
+<td>删除时 cur 不移动</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="📊-两周对比"><a href="#📊-两周对比" class="headerlink" title="📊 两周对比"></a>📊 两周对比</h3><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>Week 1</th>
+<th>Week 2</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>题目数</td>
+<td>16 道</td>
+<td>11 道</td>
+</tr>
+<tr>
+<td>Easy</td>
+<td>10 道</td>
+<td>7 道</td>
+</tr>
+<tr>
+<td>Medium</td>
+<td>6 道</td>
+<td>4 道</td>
+</tr>
+<tr>
+<td>核心技巧</td>
+<td>8 种</td>
+<td>5 种（链表专题）</td>
+</tr>
+<tr>
+<td>重点</td>
+<td>数组、字符串、滑动窗口</td>
+<td>链表、快慢指针</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="📚-下周计划"><a href="#📚-下周计划" class="headerlink" title="📚 下周计划"></a>📚 下周计划</h3><p>根据学习路径，第3周应该学习：</p>
+<table>
+<thead>
+<tr>
+<th>主题</th>
+<th>重点题目</th>
+<th>核心技能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>栈进阶</td>
+<td>Valid Parentheses, Next Greater Element</td>
+<td>单调栈</td>
+</tr>
+<tr>
+<td>队列应用</td>
+<td>Implement Queue using Stacks</td>
+<td>队列实现</td>
+</tr>
+<tr>
+<td>复习巩固</td>
+<td>重做链表错题</td>
+<td>检验知识内化</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="💡-学习心得-1"><a href="#💡-学习心得-1" class="headerlink" title="💡 学习心得"></a>💡 学习心得</h3><ol>
+<li><strong>快慢指针是链表神器</strong>：检测环、找中点、找倒数第N个，一套模板搞定</li>
+<li><strong>虚拟头节点判断</strong>：头节点可能被删除 → 需要</li>
+<li><strong>先保存再修改</strong>：链表操作的核心原则</li>
+<li><strong>综合题检验掌握程度</strong>：[234] 回文链表 &#x3D; 找中点 + 反转 + 比较</li>
+</ol>
+<hr>
+<p><strong>第二周圆满完成！链表技巧已掌握！</strong> 🎉</p>
+<hr>
+<h3 id="📈-学习统计-2"><a href="#📈-学习统计-2" class="headerlink" title="📈 学习统计"></a>📈 学习统计</h3><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>总题目数</td>
+<td>6 道</td>
+</tr>
+<tr>
+<td>Easy</td>
+<td>2 道</td>
+</tr>
+<tr>
+<td>Medium</td>
+<td>3 道</td>
+</tr>
+<tr>
+<td><strong>Hard</strong></td>
+<td><strong>1 道</strong> 🎉</td>
+</tr>
+<tr>
+<td>学习天数</td>
+<td>4 天</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="📅-每日完成情况-2"><a href="#📅-每日完成情况-2" class="headerlink" title="📅 每日完成情况"></a>📅 每日完成情况</h3><table>
+<thead>
+<tr>
+<th>日期</th>
+<th>完成题目</th>
+<th>核心技巧</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>04-27</td>
+<td>Implement Queue using Stacks, Implement Stack using Queues</td>
+<td>栈队列互转</td>
+</tr>
+<tr>
+<td>04-28</td>
+<td>Next Greater Element I, Daily Temperatures</td>
+<td>单调栈入门</td>
+</tr>
+<tr>
+<td>04-29</td>
+<td>Next Greater Element II</td>
+<td>循环数组单调栈</td>
+</tr>
+<tr>
+<td>04-30</td>
+<td><strong>Trapping Rain Water</strong></td>
+<td>单调栈按行计算</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="🎯-核心技巧体系-2"><a href="#🎯-核心技巧体系-2" class="headerlink" title="🎯 核心技巧体系"></a>🎯 核心技巧体系</h3><h4 id="1️⃣-单调栈-Monotonic-Stack-⭐-本周核心"><a href="#1️⃣-单调栈-Monotonic-Stack-⭐-本周核心" class="headerlink" title="1️⃣ 单调栈 (Monotonic Stack) ⭐ 本周核心"></a>1️⃣ 单调栈 (Monotonic Stack) ⭐ 本周核心</h4><p><strong>核心思想</strong>：栈内元素保持单调性，用于找”下一个更大&#x2F;更小元素”</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>栈内顺序</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>单调递减栈</td>
+<td>栈底→栈顶：大→小</td>
+<td>找下一个更大元素</td>
+</tr>
+<tr>
+<td>单调递增栈</td>
+<td>栈底→栈顶：小→大</td>
+<td>找下一个更小元素</td>
+</tr>
+</tbody></table>
+<p><strong>单调栈系列题目</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>题号</th>
+<th>题目</th>
+<th>难度</th>
+<th>栈存什么</th>
+<th>关键点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>496</td>
+<td>Next Greater Element I</td>
+<td>Easy</td>
+<td>元素值</td>
+<td>预处理 + map 查表</td>
+</tr>
+<tr>
+<td>739</td>
+<td>Daily Temperatures</td>
+<td>Medium</td>
+<td>下标</td>
+<td>计算天数差</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Next Greater Element II</td>
+<td>Medium</td>
+<td>下标</td>
+<td>循环数组，只入栈一次</td>
+</tr>
+<tr>
+<td>42</td>
+<td>Trapping Rain Water</td>
+<td><strong>Hard</strong></td>
+<td>下标</td>
+<td>按行计算，min(左,右)</td>
+</tr>
+</tbody></table>
+<p><strong>通用模板</strong>：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">stack&lt;<span class="type">int</span>&gt; st;</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">    <span class="keyword">while</span> (!st.<span class="built_in">empty</span>() &amp;&amp; 满足条件) &#123;</span><br><span class="line">        <span class="type">int</span> top = st.<span class="built_in">top</span>();</span><br><span class="line">        st.<span class="built_in">pop</span>();</span><br><span class="line">        <span class="comment">// 处理答案</span></span><br><span class="line">    &#125;</span><br><span class="line">    st.<span class="built_in">push</span>(i);  <span class="comment">// 或 push(元素值)</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="2️⃣-栈队列互转"><a href="#2️⃣-栈队列互转" class="headerlink" title="2️⃣ 栈队列互转"></a>2️⃣ 栈队列互转</h4><p><strong>核心思想</strong>：利用数据结构的特性差异</p>
+<table>
+<thead>
+<tr>
+<th>题目</th>
+<th>方法</th>
+<th>复杂度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>[232] 栈实现队列</td>
+<td>双栈：入队栈 + 出队栈</td>
+<td>均摊 O(1)</td>
+</tr>
+<tr>
+<td>[225] 队列实现栈</td>
+<td>单队列：push 时重排</td>
+<td>push O(n), pop O(1)</td>
+</tr>
+</tbody></table>
+<p><strong>关键对比</strong>：</p>
+<ul>
+<li>栈倒栈 → 顺序反转</li>
+<li>队列倒队列 → 顺序不变</li>
+</ul>
+<hr>
+<h4 id="3️⃣-循环数组处理"><a href="#3️⃣-循环数组处理" class="headerlink" title="3️⃣ 循环数组处理"></a>3️⃣ 循环数组处理</h4><p><strong>核心思想</strong>：用 <code>i % n</code> 取模模拟循环</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n * <span class="number">2</span>; i++) &#123;</span><br><span class="line">    <span class="type">int</span> idx = i % n;  <span class="comment">// 真实下标</span></span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    <span class="keyword">if</span> (i &lt; n) st.<span class="built_in">push</span>(i);  <span class="comment">// 只在第一圈入栈</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="4️⃣-接雨水（按行计算）"><a href="#4️⃣-接雨水（按行计算）" class="headerlink" title="4️⃣ 接雨水（按行计算）"></a>4️⃣ 接雨水（按行计算）</h4><p><strong>核心思想</strong>：单调递增栈，栈顶是凹槽底部</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">水量 = 宽度 × 高度</span><br><span class="line">宽度 = 右边界 - 左边界 - 1</span><br><span class="line">高度 = min(左边界高度, 右边界高度) - 底部高度</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="⚠️-易错点总结-2"><a href="#⚠️-易错点总结-2" class="headerlink" title="⚠️ 易错点总结"></a>⚠️ 易错点总结</h3><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>常见错误</th>
+<th>正确做法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>单调栈</td>
+<td>存元素值但需要位置信息</td>
+<td>存下标</td>
+</tr>
+<tr>
+<td>循环数组</td>
+<td>第二圈也入栈</td>
+<td><code>if (i &lt; n)</code> 只入栈一次</td>
+</tr>
+<tr>
+<td>接雨水</td>
+<td>水高度只用右边界</td>
+<td><code>min(左, 右) - 底部</code></td>
+</tr>
+<tr>
+<td>map 访问</td>
+<td><code>map(key)</code> 语法错误</td>
+<td><code>map[key]</code> 或 <code>map.count(key)</code></td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="🏆-里程碑达成"><a href="#🏆-里程碑达成" class="headerlink" title="🏆 里程碑达成"></a>🏆 里程碑达成</h3><ul>
+<li><input checked disabled type="checkbox"> <strong>Hard 题突破</strong>：从 0 到 1！完成 42. Trapping Rain Water</li>
+<li><input checked disabled type="checkbox"> <strong>单调栈掌握</strong>：从入门到精通，4 道题循序渐进</li>
+</ul>
+<hr>
+<h3 id="📊-三周对比"><a href="#📊-三周对比" class="headerlink" title="📊 三周对比"></a>📊 三周对比</h3><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>Week 1</th>
+<th>Week 2</th>
+<th>Week 3</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>题目数</td>
+<td>16 道</td>
+<td>11 道</td>
+<td>6 道</td>
+</tr>
+<tr>
+<td>Easy</td>
+<td>10 道</td>
+<td>7 道</td>
+<td>2 道</td>
+</tr>
+<tr>
+<td>Medium</td>
+<td>6 道</td>
+<td>4 道</td>
+<td>3 道</td>
+</tr>
+<tr>
+<td>Hard</td>
+<td>0 道</td>
+<td>0 道</td>
+<td><strong>1 道</strong></td>
+</tr>
+<tr>
+<td>核心技巧</td>
+<td>8 种</td>
+<td>5 种</td>
+<td>4 种（单调栈专题）</td>
+</tr>
+<tr>
+<td>重点</td>
+<td>数组、字符串、滑动窗口</td>
+<td>链表、快慢指针</td>
+<td>单调栈</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="📚-下周计划-1"><a href="#📚-下周计划-1" class="headerlink" title="📚 下周计划"></a>📚 下周计划</h3><p>根据学习路径，第4周应该学习：</p>
+<table>
+<thead>
+<tr>
+<th>主题</th>
+<th>重点题目</th>
+<th>核心技能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>二叉树基础</td>
+<td>Max Depth, Same Tree</td>
+<td>DFS&#x2F;BFS、递归</td>
+</tr>
+<tr>
+<td>二叉树遍历</td>
+<td>Inorder, Preorder, Postorder</td>
+<td>递归转迭代</td>
+</tr>
+<tr>
+<td>层序遍历</td>
+<td>Level Order</td>
+<td>BFS</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="💡-学习心得-2"><a href="#💡-学习心得-2" class="headerlink" title="💡 学习心得"></a>💡 学习心得</h3><ol>
+<li><strong>单调栈是找”下一个更大元素”的神器</strong>：一个模板解决多道题</li>
+<li><strong>存下标还是存值</strong>：需要位置信息 → 存下标；只需要元素值 → 存值</li>
+<li><strong>Hard 题也是基础技巧的组合</strong>：接雨水 &#x3D; 单调栈 + min(左,右)</li>
+<li><strong>循序渐进很重要</strong>：从 Easy 到 Medium 到 Hard，每一步都算数</li>
+</ol>
+<hr>
+<p><strong>第三周圆满完成！Hard 题突破！单调栈掌握！</strong> 🎉</p>
+<hr>
+<h3 id="📈-学习统计-3"><a href="#📈-学习统计-3" class="headerlink" title="📈 学习统计"></a>📈 学习统计</h3><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>总题目数</td>
+<td>8 道</td>
+</tr>
+<tr>
+<td>Easy</td>
+<td>7 道</td>
+</tr>
+<tr>
+<td>Medium</td>
+<td>1 道</td>
+</tr>
+<tr>
+<td>学习天数</td>
+<td>4 天</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="📅-每日完成情况-3"><a href="#📅-每日完成情况-3" class="headerlink" title="📅 每日完成情况"></a>📅 每日完成情况</h3><table>
+<thead>
+<tr>
+<th>日期</th>
+<th>完成题目</th>
+<th>核心技巧</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>05-06</td>
+<td>Maximum Depth, Same Tree</td>
+<td>DFS递归、同时遍历</td>
+</tr>
+<tr>
+<td>05-07</td>
+<td>Symmetric Tree, Invert Tree, Level Order</td>
+<td>镜像比较、BFS层序</td>
+</tr>
+<tr>
+<td>05-08</td>
+<td>Minimum Depth</td>
+<td>BFS找最短路径</td>
+</tr>
+<tr>
+<td>05-09</td>
+<td>Balanced Tree, Path Sum</td>
+<td>自底向上递归、递归减值</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="🎯-核心技巧体系-3"><a href="#🎯-核心技巧体系-3" class="headerlink" title="🎯 核心技巧体系"></a>🎯 核心技巧体系</h3><h4 id="1️⃣-二叉树递归-Binary-Tree-Recursion-⭐-本周核心"><a href="#1️⃣-二叉树递归-Binary-Tree-Recursion-⭐-本周核心" class="headerlink" title="1️⃣ 二叉树递归 (Binary Tree Recursion) ⭐ 本周核心"></a>1️⃣ 二叉树递归 (Binary Tree Recursion) ⭐ 本周核心</h4><p><strong>核心思想</strong>：递归 &#x3D; 终止条件 + 递归逻辑 + 返回值</p>
+<table>
+<thead>
+<tr>
+<th>题目</th>
+<th>递归逻辑</th>
+<th>终止条件</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>[104] Max Depth</td>
+<td><code>max(left, right) + 1</code></td>
+<td><code>root == nullptr</code></td>
+</tr>
+<tr>
+<td>[100] Same Tree</td>
+<td><code>left &amp;&amp; right</code></td>
+<td>结构或值不同</td>
+</tr>
+<tr>
+<td>[101] Symmetric</td>
+<td><code>mirror(left, right)</code></td>
+<td>不对称</td>
+</tr>
+<tr>
+<td>[226] Invert</td>
+<td><code>swap(left, right)</code></td>
+<td><code>root == nullptr</code></td>
+</tr>
+<tr>
+<td>[112] Path Sum</td>
+<td><code>targetSum -= val</code></td>
+<td>叶子节点且和为0</td>
+</tr>
+</tbody></table>
+<p><strong>通用模板</strong>：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">TreeNode* <span class="title">dfs</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!root) <span class="keyword">return</span> <span class="literal">nullptr</span>;  <span class="comment">// 终止条件</span></span><br><span class="line">    <span class="comment">// 递归逻辑</span></span><br><span class="line">    TreeNode* left = <span class="built_in">dfs</span>(root-&gt;left);</span><br><span class="line">    TreeNode* right = <span class="built_in">dfs</span>(root-&gt;right);</span><br><span class="line">    <span class="comment">// 返回值处理</span></span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="2️⃣-自底向上递归-Bottom-Up-Recursion"><a href="#2️⃣-自底向上递归-Bottom-Up-Recursion" class="headerlink" title="2️⃣ 自底向上递归 (Bottom-Up Recursion)"></a>2️⃣ 自底向上递归 (Bottom-Up Recursion)</h4><p><strong>核心思想</strong>：先递归到底，再向上返回结果</p>
+<table>
+<thead>
+<tr>
+<th>题目</th>
+<th>应用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>[110] Balanced Tree</td>
+<td>用 -1 标记不平衡</td>
+</tr>
+</tbody></table>
+<p><strong>关键代码</strong>：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">getHeight</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!root) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> left = <span class="built_in">getHeight</span>(root-&gt;left);</span><br><span class="line">    <span class="keyword">if</span> (left == <span class="number">-1</span>) <span class="keyword">return</span> <span class="number">-1</span>;  <span class="comment">// 提前返回</span></span><br><span class="line">    <span class="type">int</span> right = <span class="built_in">getHeight</span>(root-&gt;right);</span><br><span class="line">    <span class="keyword">if</span> (right == <span class="number">-1</span> || <span class="built_in">abs</span>(left - right) &gt; <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">max</span>(left, right) + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="3️⃣-BFS-层序遍历-Level-Order-Traversal"><a href="#3️⃣-BFS-层序遍历-Level-Order-Traversal" class="headerlink" title="3️⃣ BFS 层序遍历 (Level Order Traversal)"></a>3️⃣ BFS 层序遍历 (Level Order Traversal)</h4><p><strong>核心思想</strong>：队列 + 按层处理</p>
+<table>
+<thead>
+<tr>
+<th>题目</th>
+<th>应用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>[102] Level Order</td>
+<td>收集每层节点</td>
+</tr>
+<tr>
+<td>[111] Min Depth</td>
+<td>找第一个叶子节点</td>
+</tr>
+</tbody></table>
+<p><strong>模板代码</strong>：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">queue&lt;TreeNode*&gt; q;</span><br><span class="line">q.<span class="built_in">push</span>(root);</span><br><span class="line"><span class="keyword">while</span> (!q.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">    <span class="type">int</span> size = q.<span class="built_in">size</span>();  <span class="comment">// 当前层节点数</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; size; i++) &#123;</span><br><span class="line">        TreeNode* node = q.<span class="built_in">front</span>(); q.<span class="built_in">pop</span>();</span><br><span class="line">        <span class="keyword">if</span> (node-&gt;left) q.<span class="built_in">push</span>(node-&gt;left);</span><br><span class="line">        <span class="keyword">if</span> (node-&gt;right) q.<span class="built_in">push</span>(node-&gt;right);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="4️⃣-镜像比较-Mirror-Comparison"><a href="#4️⃣-镜像比较-Mirror-Comparison" class="headerlink" title="4️⃣ 镜像比较 (Mirror Comparison)"></a>4️⃣ 镜像比较 (Mirror Comparison)</h4><p><strong>核心思想</strong>：左子树的左 vs 右子树的右</p>
+<table>
+<thead>
+<tr>
+<th>题目</th>
+<th>应用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>[101] Symmetric Tree</td>
+<td>判断对称</td>
+</tr>
+</tbody></table>
+<p><strong>关键代码</strong>：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">bool</span> <span class="title">mirror</span><span class="params">(TreeNode* left, TreeNode* right)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!left &amp;&amp; !right) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">if</span> (!left || !right) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">return</span> left-&gt;val == right-&gt;val</span><br><span class="line">        &amp;&amp; <span class="built_in">mirror</span>(left-&gt;left, right-&gt;right)</span><br><span class="line">        &amp;&amp; <span class="built_in">mirror</span>(left-&gt;right, right-&gt;left);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="⚠️-易错点总结-3"><a href="#⚠️-易错点总结-3" class="headerlink" title="⚠️ 易错点总结"></a>⚠️ 易错点总结</h3><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>常见错误</th>
+<th>正确做法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>路径和</td>
+<td>只检查 <code>targetSum == 0</code></td>
+<td>必须同时检查是叶子节点</td>
+</tr>
+<tr>
+<td>最小深度</td>
+<td>只检查 <code>!root-&gt;left</code></td>
+<td>必须同时检查 <code>!root-&gt;right</code></td>
+</tr>
+<tr>
+<td>平衡树</td>
+<td>直接用 <code>abs(left, right)</code></td>
+<td>用 <code>abs(left - right)</code></td>
+</tr>
+<tr>
+<td>BFS</td>
+<td>每次处理一个节点</td>
+<td>按层处理，先记录 <code>size</code></td>
+</tr>
+<tr>
+<td>递归返回值</td>
+<td>忘记返回</td>
+<td>每条路径都要 return</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="📊-四周对比"><a href="#📊-四周对比" class="headerlink" title="📊 四周对比"></a>📊 四周对比</h3><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>Week 1</th>
+<th>Week 2</th>
+<th>Week 3</th>
+<th>Week 4</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>题目数</td>
+<td>16 道</td>
+<td>11 道</td>
+<td>6 道</td>
+<td>8 道</td>
+</tr>
+<tr>
+<td>Easy</td>
+<td>10 道</td>
+<td>7 道</td>
+<td>2 道</td>
+<td>7 道</td>
+</tr>
+<tr>
+<td>Medium</td>
+<td>6 道</td>
+<td>4 道</td>
+<td>3 道</td>
+<td>1 道</td>
+</tr>
+<tr>
+<td>Hard</td>
+<td>0 道</td>
+<td>0 道</td>
+<td>1 道</td>
+<td>0 道</td>
+</tr>
+<tr>
+<td>核心技巧</td>
+<td>8 种</td>
+<td>5 种</td>
+<td>4 种</td>
+<td>4 种（二叉树专题）</td>
+</tr>
+<tr>
+<td>重点</td>
+<td>数组、字符串</td>
+<td>链表</td>
+<td>单调栈</td>
+<td>二叉树递归</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="📚-下周计划（见下方第四周进阶）"><a href="#📚-下周计划（见下方第四周进阶）" class="headerlink" title="📚 下周计划（见下方第四周进阶）"></a>📚 下周计划（见下方第四周进阶）</h3><p>第四周进入二叉树进阶，学习遍历、构造、BST、路径等专题 → 见下方”第四周进阶”</p>
+<hr>
+<h3 id="💡-学习心得-3"><a href="#💡-学习心得-3" class="headerlink" title="💡 学习心得"></a>💡 学习心得</h3><ol>
+<li><strong>递归三要素</strong>：终止条件 + 递归逻辑 + 返回值</li>
+<li><strong>自底向上更高效</strong>：平衡树用 -1 标记，避免重复计算</li>
+<li><strong>BFS 找最短路径</strong>：最小深度 &#x3D; BFS 遇到第一个叶子节点</li>
+<li><strong>镜像比较技巧</strong>：对称问题 &#x3D; 左子树的左 vs 右子树的右</li>
+</ol>
+<hr>
+<p><strong>第四周圆满完成！二叉树基础掌握！</strong> 🎉</p>
+<hr>
+<h2 id="📊-第四周进阶-2026-05-10-2026-05-15"><a href="#📊-第四周进阶-2026-05-10-2026-05-15" class="headerlink" title="📊 第四周进阶 (2026-05-10 ~ 2026-05-15)"></a>📊 第四周进阶 (2026-05-10 ~ 2026-05-15)</h2><h3 id="📈-学习统计-4"><a href="#📈-学习统计-4" class="headerlink" title="📈 学习统计"></a>📈 学习统计</h3><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>总题目数</td>
+<td>12 道（+ 复习2道）</td>
+</tr>
+<tr>
+<td>Easy</td>
+<td>3 道</td>
+</tr>
+<tr>
+<td>Medium</td>
+<td>9 道</td>
+</tr>
+<tr>
+<td>复习巩固</td>
+<td>234 回文链表、20 有效括号</td>
+</tr>
+<tr>
+<td>学习天数</td>
+<td>5 天</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="📅-每日完成情况-4"><a href="#📅-每日完成情况-4" class="headerlink" title="📅 每日完成情况"></a>📅 每日完成情况</h3><table>
+<thead>
+<tr>
+<th>日期</th>
+<th>完成题目</th>
+<th>核心技巧</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>05-10</td>
+<td>Preorder&#x2F;Inorder&#x2F;Postorder 遍历, Validate BST</td>
+<td>递归转迭代、中序递增</td>
+</tr>
+<tr>
+<td>05-12</td>
+<td>Array to BST, Kth Smallest, LCA of BST</td>
+<td>二分构建、中序查第k、BST三向比较</td>
+</tr>
+<tr>
+<td>05-13</td>
+<td>Construct Tree (Pre+In), Path Sum II</td>
+<td>前序定根+中序分左右、DFS回溯</td>
+</tr>
+<tr>
+<td>05-14</td>
+<td>Path Sum III</td>
+<td>前缀和+哈希表+回溯</td>
+</tr>
+<tr>
+<td>05-15</td>
+<td>Right Side View, LCA of BT</td>
+<td>BFS&#x2F;DFS双解、后序查找</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="🎯-核心技巧体系-4"><a href="#🎯-核心技巧体系-4" class="headerlink" title="🎯 核心技巧体系"></a>🎯 核心技巧体系</h3><h4 id="1️⃣-二叉树遍历三兄弟-144-94-145"><a href="#1️⃣-二叉树遍历三兄弟-144-94-145" class="headerlink" title="1️⃣ 二叉树遍历三兄弟 (144&#x2F;94&#x2F;145)"></a>1️⃣ 二叉树遍历三兄弟 (144&#x2F;94&#x2F;145)</h4><table>
+<thead>
+<tr>
+<th align="center">遍历</th>
+<th align="left">递归</th>
+<th align="left">迭代思路</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">前序</td>
+<td align="left">根→左→右</td>
+<td align="left">根先入，右再左入栈</td>
+</tr>
+<tr>
+<td align="center">中序</td>
+<td align="left">左→根→右</td>
+<td align="left">一路向左，出栈后走右</td>
+</tr>
+<tr>
+<td align="center">后序</td>
+<td align="left">左→右→根</td>
+<td align="left">前序变体：根→右→左，再 reverse</td>
+</tr>
+</tbody></table>
+<p><strong>后序迭代口诀</strong>：前序改右左右，最后 reverse 就是后序</p>
+<hr>
+<h4 id="2️⃣-前序定根-中序分左右-105"><a href="#2️⃣-前序定根-中序分左右-105" class="headerlink" title="2️⃣ 前序定根 + 中序分左右 (105)"></a>2️⃣ 前序定根 + 中序分左右 (105)</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">preorder = [根, 左子树..., 右子树...]</span><br><span class="line">inorder  = [左子树..., 根, 右子树...]</span><br><span class="line">                  ↑ mid = in_map[根]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong><code>pre_idx</code> 必须传引用</strong>：全局递增，不能回溯</li>
+<li><strong>必须先构建左子树</strong>：前序中左子树节点在右子树之前</li>
+</ul>
+<hr>
+<h4 id="3️⃣-路径总和三部曲-112-113-437"><a href="#3️⃣-路径总和三部曲-112-113-437" class="headerlink" title="3️⃣ 路径总和三部曲 (112&#x2F;113&#x2F;437)"></a>3️⃣ 路径总和三部曲 (112&#x2F;113&#x2F;437)</h4><table>
+<thead>
+<tr>
+<th align="center">题号</th>
+<th align="center">起点</th>
+<th align="center">终点</th>
+<th align="left">问法</th>
+<th align="left">方法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">112</td>
+<td align="center">根</td>
+<td align="center">叶子</td>
+<td align="left">是否存在？</td>
+<td align="left">递归减值</td>
+</tr>
+<tr>
+<td align="center">113</td>
+<td align="center">根</td>
+<td align="center">叶子</td>
+<td align="left">列出所有路径</td>
+<td align="left">DFS + 回溯</td>
+</tr>
+<tr>
+<td align="center">437</td>
+<td align="center"><strong>任意</strong></td>
+<td align="center"><strong>任意后代</strong></td>
+<td align="left">计数</td>
+<td align="left"><strong>前缀和 + 哈希表 + 回溯</strong></td>
+</tr>
+</tbody></table>
+<p><strong>437 核心口诀</strong>：”当前前缀和 - targetSum &#x3D; 之前出现过的前缀和 → 中间这段就是一条路径”</p>
+<ul>
+<li><code>map[0] = 1</code> 处理根到当前节点整条路径</li>
+<li>回溯 <code>map[curr_sum]--</code> 保证不同分支互不影响</li>
+<li><code>long long</code> 防溢出</li>
+</ul>
+<hr>
+<h4 id="4️⃣-二叉搜索树-BST-专题-98-108-230-235"><a href="#4️⃣-二叉搜索树-BST-专题-98-108-230-235" class="headerlink" title="4️⃣ 二叉搜索树 (BST) 专题 (98&#x2F;108&#x2F;230&#x2F;235)"></a>4️⃣ 二叉搜索树 (BST) 专题 (98&#x2F;108&#x2F;230&#x2F;235)</h4><table>
+<thead>
+<tr>
+<th align="center">题号</th>
+<th align="left">技巧</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">98</td>
+<td align="left">中序递增</td>
+<td align="left">中序遍历结果必递增</td>
+</tr>
+<tr>
+<td align="center">108</td>
+<td align="left">二分递归构建</td>
+<td align="left">中点做根，左半左子树，右半右子树</td>
+</tr>
+<tr>
+<td align="center">230</td>
+<td align="left">中序第k个</td>
+<td align="left">中序遍历到第k个</td>
+</tr>
+<tr>
+<td align="center">235</td>
+<td align="left">三向比较</td>
+<td align="left">p,q都小→左，都大→右，分两侧→返回root</td>
+</tr>
+</tbody></table>
+<hr>
+<h4 id="5️⃣-最近公共祖先-LCA-235-236"><a href="#5️⃣-最近公共祖先-LCA-235-236" class="headerlink" title="5️⃣ 最近公共祖先 (LCA) (235&#x2F;236)"></a>5️⃣ 最近公共祖先 (LCA) (235&#x2F;236)</h4><table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="left">235 BST 版</th>
+<th align="left">236 普通树版</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">思路</td>
+<td align="left">值大小三向比较</td>
+<td align="left">后序遍历查找</td>
+</tr>
+<tr>
+<td align="center">剪枝</td>
+<td align="left">✅ 单路递归</td>
+<td align="left">❌ 全量搜索</td>
+</tr>
+<tr>
+<td align="center">代码</td>
+<td align="left">5行</td>
+<td align="left">5行</td>
+</tr>
+</tbody></table>
+<p><strong>236 后序 LCA 口诀</strong>：”if (!left) return right; if (!right) return left; return root;”</p>
+<hr>
+<h4 id="6️⃣-BFS-DFS-双视角-199"><a href="#6️⃣-BFS-DFS-双视角-199" class="headerlink" title="6️⃣ BFS&#x2F;DFS 双视角 (199)"></a>6️⃣ BFS&#x2F;DFS 双视角 (199)</h4><ul>
+<li><strong>BFS</strong>：层序遍历，取每层最后一个 <code>i == size-1</code></li>
+<li><strong>DFS</strong>：先右后左，<code>depth == ans.size()</code> 取每层第一个</li>
+</ul>
+<hr>
+<h3 id="⚠️-易错点总结-4"><a href="#⚠️-易错点总结-4" class="headerlink" title="⚠️ 易错点总结"></a>⚠️ 易错点总结</h3><table>
+<thead>
+<tr>
+<th align="left">类型</th>
+<th align="left">常见错误</th>
+<th align="left">正确做法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">105 构造</td>
+<td align="left"><code>pre_idx</code> 传值</td>
+<td align="left">必须传引用！</td>
+</tr>
+<tr>
+<td align="left">105 构造</td>
+<td align="left">先建右子树</td>
+<td align="left">必须先左后右（前序顺序决定）</td>
+</tr>
+<tr>
+<td align="left">437 前缀和</td>
+<td align="left"><code>curr_sum</code> 用 int</td>
+<td align="left">用 <code>long long</code> 防溢出</td>
+</tr>
+<tr>
+<td align="left">437 前缀和</td>
+<td align="left">map key 类型 int</td>
+<td align="left">map key 也要 <code>long long</code>，否则截断误触 map[0]</td>
+</tr>
+<tr>
+<td align="left">437 前缀和</td>
+<td align="left">忘记 <code>map[0] = 1</code></td>
+<td align="left">根到当前节点路径为 targetSum 时漏统计</td>
+</tr>
+<tr>
+<td align="left">437 前缀和</td>
+<td align="left">忘记回溯</td>
+<td align="left"><code>map[curr_sum]--</code> 恢复状态</td>
+</tr>
+<tr>
+<td align="left">迭代遍历</td>
+<td align="left">while 条件用 <code>||</code></td>
+<td align="left"><code>while (!st.empty() || cur)</code> 两个条件</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="📊-四周完整对比"><a href="#📊-四周完整对比" class="headerlink" title="📊 四周完整对比"></a>📊 四周完整对比</h3><table>
+<thead>
+<tr>
+<th align="center">维度</th>
+<th align="center">W1 数组</th>
+<th align="center">W2 链表</th>
+<th align="center">W3 栈</th>
+<th align="center">W4 二叉树</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">题目数</td>
+<td align="center">16</td>
+<td align="center">11</td>
+<td align="center">6</td>
+<td align="center"><strong>20</strong> 🏆</td>
+</tr>
+<tr>
+<td align="center">Easy</td>
+<td align="center">10</td>
+<td align="center">7</td>
+<td align="center">2</td>
+<td align="center">10</td>
+</tr>
+<tr>
+<td align="center">Medium</td>
+<td align="center">6</td>
+<td align="center">4</td>
+<td align="center">3</td>
+<td align="center"><strong>10</strong> 🏆</td>
+</tr>
+<tr>
+<td align="center">Hard</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center">核心技巧</td>
+<td align="center">8种</td>
+<td align="center">5种</td>
+<td align="center">4种</td>
+<td align="center">10种</td>
+</tr>
+<tr>
+<td align="center">重点</td>
+<td align="center">哈希&#x2F;窗口</td>
+<td align="center">快慢&#x2F;虚拟头</td>
+<td align="center">单调栈</td>
+<td align="center">二叉树全覆盖</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="💡-学习心得-4"><a href="#💡-学习心得-4" class="headerlink" title="💡 学习心得"></a>💡 学习心得</h3><ol>
+<li><strong>二叉树是递归的最佳练习场</strong>：从简单递归（104）到回溯（113）到前缀和（437），递归深度层层递进</li>
+<li><strong>前序定根、中序分左右</strong>：105 的核心思想可以迁移到 106（中序+后序）</li>
+<li><strong>前缀和上树</strong>：数组前缀和（560）移植到树（437）多了回溯，本质还是查表</li>
+<li><strong>LCA 后序查找</strong>：一个问题出左右子树的结果，是”分治”思想在树上的体现</li>
+<li><strong>复习有价值</strong>：一个月前做的 234 和 20 还能独立写出，说明已经内化</li>
+<li><strong>53 道题达成</strong> 🎉：从 0 到 53，覆盖了数组、链表、栈、二叉树四大数据结构</li>
+</ol>
+<hr>
+<hr>
+<h3 id="📈-学习统计-5"><a href="#📈-学习统计-5" class="headerlink" title="📈 学习统计"></a>📈 学习统计</h3><table>
+<thead>
+<tr>
+<th align="center">指标</th>
+<th align="center">数值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">总题目数</td>
+<td align="center"><strong>12 道</strong> 🏆</td>
+</tr>
+<tr>
+<td align="center">Easy</td>
+<td align="center">1 道</td>
+</tr>
+<tr>
+<td align="center">Medium</td>
+<td align="center"><strong>11 道</strong></td>
+</tr>
+<tr>
+<td align="center">学习天数</td>
+<td align="center">5 天 ✅ 全勤</td>
+</tr>
+<tr>
+<td align="center">复习巩固</td>
+<td align="center">206, 234, 19（链表三连复习）</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="📅-每日完成情况-5"><a href="#📅-每日完成情况-5" class="headerlink" title="📅 每日完成情况"></a>📅 每日完成情况</h3><table>
+<thead>
+<tr>
+<th align="center">日期</th>
+<th align="left">完成题目</th>
+<th align="left">核心技巧</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">05-18</td>
+<td align="left">Number of Islands, Clone Graph, Course Schedule</td>
+<td align="left">网格DFS、哈希表深拷贝、三色DFS</td>
+</tr>
+<tr>
+<td align="center">05-19</td>
+<td align="left">Course Schedule II, Max Area of Island</td>
+<td align="left">DFS后序输出顺序、网格DFS面积累加</td>
+</tr>
+<tr>
+<td align="center">05-20</td>
+<td align="left">Surrounded Regions, Pacific Atlantic, Rotting Oranges</td>
+<td align="left">边界DFS逆向填充、双反向DFS、多源BFS</td>
+</tr>
+<tr>
+<td align="center">05-21</td>
+<td align="left">01 Matrix, As Far from Land as Possible</td>
+<td align="left">多源BFS最短距离、多源BFS分层计时</td>
+</tr>
+<tr>
+<td align="center">05-22</td>
+<td align="left">Diameter of BT, Longest Univalue Path</td>
+<td align="left">后序求高度+全局直径、值判断清零</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="🎯-核心技巧体系-5"><a href="#🎯-核心技巧体系-5" class="headerlink" title="🎯 核心技巧体系"></a>🎯 核心技巧体系</h3><h4 id="1️⃣-网格-DFS（水淹法）"><a href="#1️⃣-网格-DFS（水淹法）" class="headerlink" title="1️⃣ 网格 DFS（水淹法）"></a>1️⃣ 网格 DFS（水淹法）</h4><p><strong>核心思想</strong>：遇到陆地就 DFS 淹没，同时计数&#x2F;标记</p>
+<table>
+<thead>
+<tr>
+<th align="center">题号</th>
+<th align="left">题目</th>
+<th align="left">变体</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">200</td>
+<td align="left">Number of Islands</td>
+<td align="left">单纯计数，淹完即走</td>
+</tr>
+<tr>
+<td align="center">695</td>
+<td align="left">Max Area of Island</td>
+<td align="left">DFS 返回面积累加</td>
+</tr>
+<tr>
+<td align="center">130</td>
+<td align="left">Surrounded Regions</td>
+<td align="left">边界 DFS 标记 → 逆向填充</td>
+</tr>
+<tr>
+<td align="center">417</td>
+<td align="left">Pacific Atlantic Water Flow</td>
+<td align="left">双边界 DFS → 取交集</td>
+</tr>
+</tbody></table>
+<p><strong>模板</strong>：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs</span><span class="params">(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; grid, <span class="type">int</span> i, <span class="type">int</span> j)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (出界 || 已访问/不是目标) <span class="keyword">return</span>;</span><br><span class="line">    标记已访问;</span><br><span class="line">    <span class="built_in">dfs</span>(grid, i<span class="number">+1</span>, j);</span><br><span class="line">    <span class="built_in">dfs</span>(grid, i<span class="number">-1</span>, j);</span><br><span class="line">    <span class="built_in">dfs</span>(grid, i, j<span class="number">+1</span>);</span><br><span class="line">    <span class="built_in">dfs</span>(grid, i, j<span class="number">-1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="2️⃣-图-DFS（三色法-拓扑排序）"><a href="#2️⃣-图-DFS（三色法-拓扑排序）" class="headerlink" title="2️⃣ 图 DFS（三色法 + 拓扑排序）"></a>2️⃣ 图 DFS（三色法 + 拓扑排序）</h4><p><strong>核心思想</strong>：0&#x3D;未访问, 1&#x3D;正在访问, 2&#x3D;已访问 — 检测环后序输出</p>
+<table>
+<thead>
+<tr>
+<th align="center">题号</th>
+<th align="left">题目</th>
+<th align="left">关键</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">207</td>
+<td align="left">Course Schedule</td>
+<td align="left">三色 DFS 检测有向环</td>
+</tr>
+<tr>
+<td align="center">210</td>
+<td align="left">Course Schedule II</td>
+<td align="left">DFS 后序输出 &#x3D; 拓扑顺序</td>
+</tr>
+<tr>
+<td align="center">133</td>
+<td align="left">Clone Graph</td>
+<td align="left">DFS + 哈希表映射新旧节点</td>
+</tr>
+</tbody></table>
+<hr>
+<h4 id="3️⃣-多源-BFS（全网扩散）"><a href="#3️⃣-多源-BFS（全网扩散）" class="headerlink" title="3️⃣ 多源 BFS（全网扩散）"></a>3️⃣ 多源 BFS（全网扩散）</h4><p><strong>核心思想</strong>：所有源同时入队，逐层扩散，一次遍历解决最短距离</p>
+<table>
+<thead>
+<tr>
+<th align="center">题号</th>
+<th align="left">题目</th>
+<th align="center">源</th>
+<th align="left">求什么</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">994</td>
+<td align="left">Rotting Oranges</td>
+<td align="center">烂橘子</td>
+<td align="left">全部腐烂需要几分钟</td>
+</tr>
+<tr>
+<td align="center">542</td>
+<td align="left">01 Matrix</td>
+<td align="center">0</td>
+<td align="left">每个格子到最近0的距离</td>
+</tr>
+<tr>
+<td align="center">1162</td>
+<td align="left">As Far from Land</td>
+<td align="center">1（陆地）</td>
+<td align="left">所有海洋中最远距离</td>
+</tr>
+</tbody></table>
+<p><strong>多源 BFS 用 <code>step</code> 分层模板</strong>：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">queue&lt;<span class="type">int</span>&gt; q;</span><br><span class="line"><span class="comment">// 所有源入队</span></span><br><span class="line"><span class="keyword">while</span> (!q.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">    <span class="type">int</span> size = q.<span class="built_in">size</span>();</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; size; i++) &#123;</span><br><span class="line">        <span class="comment">// 处理当前层</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (!q.<span class="built_in">empty</span>()) step++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="4️⃣-后序遍历-全局变量"><a href="#4️⃣-后序遍历-全局变量" class="headerlink" title="4️⃣ 后序遍历 + 全局变量"></a>4️⃣ 后序遍历 + 全局变量</h4><p><strong>核心思想</strong>：递归返回子树信息，用全局变量收集”额外”答案</p>
+<table>
+<thead>
+<tr>
+<th align="center">题号</th>
+<th align="left">题目</th>
+<th align="left">返回值</th>
+<th align="left">全局变量</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">543</td>
+<td align="left">Diameter of BT</td>
+<td align="left">子树高度</td>
+<td align="left"><code>ans = max(L+R)</code></td>
+</tr>
+<tr>
+<td align="center">687</td>
+<td align="left">Longest Univalue Path</td>
+<td align="left">同值路径长度</td>
+<td align="left"><code>ans = max(L+R)</code> + 值判断</td>
+</tr>
+</tbody></table>
+<hr>
+<h4 id="5️⃣-链表复习收获"><a href="#5️⃣-链表复习收获" class="headerlink" title="5️⃣ 链表复习收获"></a>5️⃣ 链表复习收获</h4><p>复习三连：206 反转链表 → 234 回文链表 → 19 删除倒数第 N 个</p>
+<table>
+<thead>
+<tr>
+<th align="center">题号</th>
+<th align="left">核心技巧</th>
+<th align="center">一次过？</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">206</td>
+<td align="left">三指针反转</td>
+<td align="center">❌ 第一次写成对交换，第二次改对</td>
+</tr>
+<tr>
+<td align="center">234</td>
+<td align="left">找中点 + 反转后半</td>
+<td align="center">✅ 一次过</td>
+</tr>
+<tr>
+<td align="center">19</td>
+<td align="left">快慢指针间隔 + dummy</td>
+<td align="center">✅ 一次过</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="⚠️-易错点总结-5"><a href="#⚠️-易错点总结-5" class="headerlink" title="⚠️ 易错点总结"></a>⚠️ 易错点总结</h3><table>
+<thead>
+<tr>
+<th align="left">类型</th>
+<th align="left">常见错误</th>
+<th align="left">正确做法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">二维数组 res 初始化</td>
+<td align="left"><code>res = (m, vector&lt;int&gt;(n, INF))</code> 变逗号表达式</td>
+<td align="left"><code>res(m, vector&lt;int&gt;(n, INF))</code> 构造函数</td>
+</tr>
+<tr>
+<td align="left">BFS step++</td>
+<td align="left">放 while 外或最后层多计</td>
+<td align="left"><code>if (!q.empty()) step++</code></td>
+</tr>
+<tr>
+<td align="left">多源 BFS 源选择</td>
+<td align="left">每个 1 独立 BFS</td>
+<td align="left">所有 0 同时入队，一次 BFS</td>
+</tr>
+<tr>
+<td align="left">687 值判断</td>
+<td align="left">忘记检查孩子是否存在</td>
+<td align="left"><code>root-&gt;left &amp;&amp; root-&gt;left-&gt;val != root-&gt;val</code> 短路求值</td>
+</tr>
+<tr>
+<td align="left">图三色 DFS</td>
+<td align="left">用 bool visited 无法检测环</td>
+<td align="left">用 0&#x2F;1&#x2F;2 三色</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="🏆-里程碑"><a href="#🏆-里程碑" class="headerlink" title="🏆 里程碑"></a>🏆 里程碑</h3><ul>
+<li><input checked disabled type="checkbox"> <strong>全勤 5 天</strong>：连续学习，无断档 ✅</li>
+<li><input checked disabled type="checkbox"> <strong>图专题全覆盖</strong>：网格 DFS、图 DFS 拓扑排序、多源 BFS</li>
+<li><input checked disabled type="checkbox"> <strong>Medium 11 道</strong>：单周 Medium 题量新高 🏆</li>
+<li><input checked disabled type="checkbox"> <strong>多源 BFS 一条龙</strong>：994 → 542 → 1162 一脉相承</li>
+<li><input checked disabled type="checkbox"> <strong>后序遍历模式定型</strong>：110 → 236 → 543 → 687 同一套路</li>
+<li><input checked disabled type="checkbox"> <strong>链表复习验证</strong>：206 需要再练，234 和 19 已掌握</li>
+</ul>
+<hr>
+<h3 id="📊-五周对比"><a href="#📊-五周对比" class="headerlink" title="📊 五周对比"></a>📊 五周对比</h3><table>
+<thead>
+<tr>
+<th align="center">维度</th>
+<th align="center">W1 数组</th>
+<th align="center">W2 链表</th>
+<th align="center">W3 栈</th>
+<th align="center">W4 二叉树</th>
+<th align="center"><strong>W5 图</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">题目数</td>
+<td align="center">16</td>
+<td align="center">11</td>
+<td align="center">6</td>
+<td align="center">20</td>
+<td align="center"><strong>12</strong></td>
+</tr>
+<tr>
+<td align="center">Easy</td>
+<td align="center">10</td>
+<td align="center">7</td>
+<td align="center">2</td>
+<td align="center">10</td>
+<td align="center"><strong>1</strong></td>
+</tr>
+<tr>
+<td align="center">Medium</td>
+<td align="center">6</td>
+<td align="center">4</td>
+<td align="center">3</td>
+<td align="center">10</td>
+<td align="center"><strong>11</strong> 🏆</td>
+</tr>
+<tr>
+<td align="center">Hard</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center"><strong>0</strong></td>
+</tr>
+<tr>
+<td align="center">核心技巧</td>
+<td align="center">8种</td>
+<td align="center">5种</td>
+<td align="center">4种</td>
+<td align="center">10种</td>
+<td align="center"><strong>5种</strong>（图专题）</td>
+</tr>
+<tr>
+<td align="center">重点</td>
+<td align="center">哈希&#x2F;窗口</td>
+<td align="center">快慢&#x2F;虚拟头</td>
+<td align="center">单调栈</td>
+<td align="center">二叉树</td>
+<td align="center"><strong>图 + 后序</strong></td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="💡-学习心得-5"><a href="#💡-学习心得-5" class="headerlink" title="💡 学习心得"></a>💡 学习心得</h3><ol>
+<li><strong>图题三板斧</strong>：网格 DFS（水淹法）、图 DFS（三色法）、多源 BFS——覆盖了本周 80% 的题目</li>
+<li><strong>多源 BFS 模板化</strong>：所有源入队 + 分层处理，994&#x2F;542&#x2F;1162 一题比一题顺手</li>
+<li><strong>后序遍历是万能框架</strong>：求高度、求直径、求同值路径，都是在后序位置”顺便”做点事</li>
+<li><strong>复习验证很有价值</strong>：206 第一次还是写错了，说明确实不够熟，需要再练</li>
+</ol>
+<hr>
+<h3 id="📚-下周计划-2"><a href="#📚-下周计划-2" class="headerlink" title="📚 下周计划"></a>📚 下周计划</h3><table>
+<thead>
+<tr>
+<th align="left">主题</th>
+<th align="left">重点题目</th>
+<th align="left">核心技能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">核心算法</td>
+<td align="left">二分查找专题</td>
+<td align="left">标准二分、边界二分、答案二分</td>
+</tr>
+<tr>
+<td align="left">复习巩固</td>
+<td align="left">链表三连（206&#x2F;234&#x2F;19）再练</td>
+<td align="left">吃透反转链表</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="📈-学习统计-6"><a href="#📈-学习统计-6" class="headerlink" title="📈 学习统计"></a>📈 学习统计</h3><table>
+<thead>
+<tr>
+<th align="center">指标</th>
+<th align="center">数值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">总题目数</td>
+<td align="center"><strong>13 道</strong> 🏆</td>
+</tr>
+<tr>
+<td align="center">Easy</td>
+<td align="center">0 道</td>
+</tr>
+<tr>
+<td align="center">Medium</td>
+<td align="center"><strong>13 道</strong></td>
+</tr>
+<tr>
+<td align="center">学习天数</td>
+<td align="center">5 天 ✅ 全勤</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="📅-每日完成情况-6"><a href="#📅-每日完成情况-6" class="headerlink" title="📅 每日完成情况"></a>📅 每日完成情况</h3><table>
+<thead>
+<tr>
+<th align="center">日期</th>
+<th align="left">完成题目</th>
+<th align="left">核心技巧</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">05-25</td>
+<td align="left">Binary Search, Search Insert Position, Find First and Last Position</td>
+<td align="left">标准二分、lower_bound 两次</td>
+</tr>
+<tr>
+<td align="center">05-26</td>
+<td align="left">Search in Rotated Sorted Array</td>
+<td align="left">旋转数组分段二分</td>
+</tr>
+<tr>
+<td align="center">05-27</td>
+<td align="left">Find Minimum in Rotated Array, Search 2D Matrix, Koko Eating Bananas</td>
+<td align="left">旋转找极值、二维拉平、二分答案</td>
+</tr>
+<tr>
+<td align="center">05-28</td>
+<td align="left">Permutations, Subsets, Combination Sum</td>
+<td align="left">回溯三模板：used &#x2F; start &#x2F; 可重复</td>
+</tr>
+<tr>
+<td align="center">05-29</td>
+<td align="left">Word Search, Generate Parentheses, Letter Combinations</td>
+<td align="left">网格回溯、约束回溯、映射回溯</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="🎯-核心技巧体系-6"><a href="#🎯-核心技巧体系-6" class="headerlink" title="🎯 核心技巧体系"></a>🎯 核心技巧体系</h3><h4 id="1️⃣-二分查找五连-704-35-34-33-153"><a href="#1️⃣-二分查找五连-704-35-34-33-153" class="headerlink" title="1️⃣ 二分查找五连 (704 &#x2F; 35 &#x2F; 34 &#x2F; 33 &#x2F; 153)"></a>1️⃣ 二分查找五连 (704 &#x2F; 35 &#x2F; 34 &#x2F; 33 &#x2F; 153)</h4><p><strong>核心思想</strong>：每次缩小一半搜索范围，O(log n)</p>
+<table>
+<thead>
+<tr>
+<th align="center">题号</th>
+<th align="left">题目</th>
+<th align="left">模板类型</th>
+<th align="left">返回值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">704</td>
+<td align="left">Binary Search</td>
+<td align="left">标准二分</td>
+<td align="left"><code>return mid</code> &#x2F; <code>return -1</code></td>
+</tr>
+<tr>
+<td align="center">35</td>
+<td align="left">Search Insert Position</td>
+<td align="left">插入位置</td>
+<td align="left"><code>return left</code></td>
+</tr>
+<tr>
+<td align="center">34</td>
+<td align="left">Find First and Last Position</td>
+<td align="left">lower_bound 两次</td>
+<td align="left"><code>&#123;L, R-1&#125;</code></td>
+</tr>
+<tr>
+<td align="center">33</td>
+<td align="left">Search in Rotated Array</td>
+<td align="left">先分段再判断</td>
+<td align="left"><code>return mid</code> &#x2F; <code>return -1</code></td>
+</tr>
+<tr>
+<td align="center">153</td>
+<td align="left">Find Minimum in Rotated Array</td>
+<td align="left">while(left&lt;right)</td>
+<td align="left"><code>return nums[left]</code></td>
+</tr>
+</tbody></table>
+<p><strong>四种二分模板一句话记</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">704 找到就返回，35 找不到返回 left</span><br><span class="line">34 两次 lower_bound，33 分段判断方向</span><br><span class="line">153 while(left&lt;right)，一个条件找极值</span><br></pre></td></tr></table></figure>
+
+<h4 id="2️⃣-二分答案模式-875"><a href="#2️⃣-二分答案模式-875" class="headerlink" title="2️⃣ 二分答案模式 (875)"></a>2️⃣ 二分答案模式 (875)</h4><p><strong>核心思想</strong>：二分猜答案 + 验证函数判断可行性</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> left = <span class="number">1</span>, right = <span class="built_in">max</span>(piles);</span><br><span class="line"><span class="keyword">while</span> (left &lt; right) &#123;</span><br><span class="line">    <span class="type">int</span> mid = left + (right - left) / <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">canEat</span>(mid)) right = mid;</span><br><span class="line">    <span class="keyword">else</span>             left = mid + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> left;</span><br></pre></td></tr></table></figure>
+
+<h4 id="3️⃣-二维矩阵二分-74"><a href="#3️⃣-二维矩阵二分-74" class="headerlink" title="3️⃣ 二维矩阵二分 (74)"></a>3️⃣ 二维矩阵二分 (74)</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 拉平成一维，mid/n 做行，mid%n 做列</span></span><br><span class="line"><span class="type">int</span> m = matrix.<span class="built_in">size</span>(), n = matrix[<span class="number">0</span>].<span class="built_in">size</span>();</span><br><span class="line"><span class="type">int</span> left = <span class="number">0</span>, right = m * n - <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+
+<h4 id="4️⃣-回溯三模板-⭐-本周核心"><a href="#4️⃣-回溯三模板-⭐-本周核心" class="headerlink" title="4️⃣ 回溯三模板 ⭐ 本周核心"></a>4️⃣ 回溯三模板 ⭐ 本周核心</h4><p><strong>统一框架</strong>：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">backtrack</span><span class="params">(状态参数)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (满足条件) &#123; 记录结果; <span class="keyword">return</span>; &#125;</span><br><span class="line">    <span class="keyword">for</span> (选择 in 所有可能的下一步) &#123;</span><br><span class="line">        <span class="keyword">if</span> (选择无效) <span class="keyword">continue</span>;</span><br><span class="line">        做选择;</span><br><span class="line">        <span class="built_in">backtrack</span>(更新后的状态);</span><br><span class="line">        撤销选择;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="center">题号</th>
+<th align="left">题目</th>
+<th align="left">防重复方式</th>
+<th align="left">记录时机</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">46</td>
+<td align="left">Permutations</td>
+<td align="left">used 数组</td>
+<td align="left">path 满时</td>
+</tr>
+<tr>
+<td align="center">78</td>
+<td align="left">Subsets</td>
+<td align="left">start + i+1</td>
+<td align="left">每层都记录</td>
+</tr>
+<tr>
+<td align="center">39</td>
+<td align="left">Combination Sum</td>
+<td align="left">start + i（可重复）</td>
+<td align="left">sum&#x3D;&#x3D;target</td>
+</tr>
+<tr>
+<td align="center">79</td>
+<td align="left">Word Search</td>
+<td align="left">原数组标记</td>
+<td align="left">k&#x3D;&#x3D;len-1</td>
+</tr>
+<tr>
+<td align="center">22</td>
+<td align="left">Generate Parentheses</td>
+<td align="left">left&#x2F;right 计数</td>
+<td align="left">left&#x3D;&#x3D;right&#x3D;&#x3D;0</td>
+</tr>
+<tr>
+<td align="center">17</td>
+<td align="left">Letter Combinations</td>
+<td align="left">映射 + 递进</td>
+<td align="left">k&#x3D;&#x3D;len</td>
+</tr>
+</tbody></table>
+<p><strong>回溯题核心分类</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">是否需要回头？          排列(used) vs 子集(start)</span><br><span class="line">元素能否重复使用？       组合(start+i) vs 组合总和(start+i)</span><br><span class="line">是否有网格约束？         标准回溯 vs 网格回溯(方向数组)</span><br><span class="line">是否有计数约束？         无约束 vs 括号计数(left/right)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="⚠️-易错点总结-6"><a href="#⚠️-易错点总结-6" class="headerlink" title="⚠️ 易错点总结"></a>⚠️ 易错点总结</h3><h4 id="二分篇"><a href="#二分篇" class="headerlink" title="二分篇"></a>二分篇</h4><table>
+<thead>
+<tr>
+<th align="left">类型</th>
+<th align="left">常见错误</th>
+<th align="left">正确做法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">right 初始值</td>
+<td align="left"><code>right = nums.size()</code></td>
+<td align="left"><code>right = nums.size() - 1</code></td>
+</tr>
+<tr>
+<td align="left">lower_bound</td>
+<td align="left"><code>if &gt;</code> 没加 <code>=</code></td>
+<td align="left"><code>if (nums[mid] &gt;= target)</code></td>
+</tr>
+<tr>
+<td align="left">旋转数组</td>
+<td align="left"><code>nums[0] &lt; nums[mid]</code> 漏等号</td>
+<td align="left"><code>nums[0] &lt;= nums[mid]</code></td>
+</tr>
+<tr>
+<td align="left">875 答案二分</td>
+<td align="left">left 从 0 开始</td>
+<td align="left">left 从 1 开始</td>
+</tr>
+<tr>
+<td align="left">153 找最小值</td>
+<td align="left"><code>right = mid - 1</code></td>
+<td align="left"><code>right = mid</code>（mid 本身可能是答案）</td>
+</tr>
+</tbody></table>
+<h4 id="回溯篇"><a href="#回溯篇" class="headerlink" title="回溯篇"></a>回溯篇</h4><table>
+<thead>
+<tr>
+<th align="left">类型</th>
+<th align="left">常见错误</th>
+<th align="left">正确做法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">78 子集</td>
+<td align="left"><code>res.push(path)</code> 放在 for 里</td>
+<td align="left">放在 backtrack 开头</td>
+</tr>
+<tr>
+<td align="left">78 子集</td>
+<td align="left"><code>backtrack(start+1)</code></td>
+<td align="left"><code>backtrack(i+1)</code></td>
+</tr>
+<tr>
+<td align="left">39 组合</td>
+<td align="left"><code>backtrack(start, ...)</code> 传 start</td>
+<td align="left">传 i（可重复选）</td>
+</tr>
+<tr>
+<td align="left">39 组合</td>
+<td align="left">sum 累加不恢复</td>
+<td align="left">传值 <code>sum + candidates[i]</code></td>
+</tr>
+<tr>
+<td align="left">79 单词搜索</td>
+<td align="left"><code>for (int i...)</code> 覆盖参数</td>
+<td align="left">用不同变量名</td>
+</tr>
+<tr>
+<td align="left">79 单词搜索</td>
+<td align="left">缺少边界检查</td>
+<td align="left">先检查 i,j 是否越界</td>
+</tr>
+<tr>
+<td align="left">17 电话号码</td>
+<td align="left"><code>digits=&quot;&quot;</code> 返回 <code>[&quot;&quot;]</code></td>
+<td align="left">提前 <code>if (empty) return &#123;&#125;</code></td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="🏆-里程碑-1"><a href="#🏆-里程碑-1" class="headerlink" title="🏆 里程碑"></a>🏆 里程碑</h3><ul>
+<li><input checked disabled type="checkbox"> <strong>全勤 5 天</strong>：连续学习，无断档 ✅</li>
+<li><input checked disabled type="checkbox"> <strong>二分查找体系完整</strong>：从标准二分到二分答案，7 道题全覆盖</li>
+<li><input checked disabled type="checkbox"> <strong>回溯模板打通</strong>：从排列到组合到搜索，6 道题掌握四种变体</li>
+<li><input checked disabled type="checkbox"> <strong>周 Medium 题量新高</strong>：13 道题全部 Medium 🏆</li>
+<li><input checked disabled type="checkbox"> <strong>总题数突破 78</strong>：从 51 → 78 道，两周增长 27 道</li>
+</ul>
+<hr>
+<h3 id="📊-六周对比"><a href="#📊-六周对比" class="headerlink" title="📊 六周对比"></a>📊 六周对比</h3><table>
+<thead>
+<tr>
+<th align="center">维度</th>
+<th align="center">W1 数组</th>
+<th align="center">W2 链表</th>
+<th align="center">W3 栈</th>
+<th align="center">W4 二叉树</th>
+<th align="center">W5 图</th>
+<th align="center"><strong>W6 二分+回溯</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">题目数</td>
+<td align="center">16</td>
+<td align="center">11</td>
+<td align="center">6</td>
+<td align="center">20</td>
+<td align="center">12</td>
+<td align="center"><strong>13</strong></td>
+</tr>
+<tr>
+<td align="center">Easy</td>
+<td align="center">10</td>
+<td align="center">7</td>
+<td align="center">2</td>
+<td align="center">10</td>
+<td align="center">1</td>
+<td align="center"><strong>0</strong></td>
+</tr>
+<tr>
+<td align="center">Medium</td>
+<td align="center">6</td>
+<td align="center">4</td>
+<td align="center">3</td>
+<td align="center">10</td>
+<td align="center">11</td>
+<td align="center"><strong>13</strong> 🏆</td>
+</tr>
+<tr>
+<td align="center">Hard</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center"><strong>0</strong></td>
+</tr>
+<tr>
+<td align="center">核心技巧</td>
+<td align="center">8种</td>
+<td align="center">5种</td>
+<td align="center">4种</td>
+<td align="center">10种</td>
+<td align="center">5种</td>
+<td align="center"><strong>二分+回溯</strong></td>
+</tr>
+<tr>
+<td align="center">重点</td>
+<td align="center">哈希&#x2F;窗口</td>
+<td align="center">链表</td>
+<td align="center">单调栈</td>
+<td align="center">二叉树</td>
+<td align="center">图</td>
+<td align="center"><strong>核心算法</strong></td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="💡-学习心得-6"><a href="#💡-学习心得-6" class="headerlink" title="💡 学习心得"></a>💡 学习心得</h3><ol>
+<li>**二分查找是”条件判断式搜索”**：二分不仅能在有序数组里找数，还能猜答案、找极值、旋转数组——核心都是”根据条件缩小范围”</li>
+<li><strong>回溯 &#x3D; DFS + 状态重置</strong>：和图的 DFS 唯一区别就是回退时要撤销选择。46&#x2F;78&#x2F;39&#x2F;79&#x2F;22&#x2F;17 全部共享同一个框架</li>
+<li><strong>回溯三要素</strong>：防重复方式（used&#x2F;start）、终止条件、剪枝条件——每道题就是这三个参数的组合变化</li>
+<li><strong>模板化学习效率高</strong>：704→35→34 是”标准二分→插入点→边界”的递进，46→78→39 是”排列→子集→组合”的递进，每道题只变一个条件</li>
+</ol>
+<hr>
+<h3 id="📚-下周计划-3"><a href="#📚-下周计划-3" class="headerlink" title="📚 下周计划"></a>📚 下周计划</h3><table>
+<thead>
+<tr>
+<th align="left">主题</th>
+<th align="left">重点题目</th>
+<th align="left">核心技能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">动态规划入门</td>
+<td align="left">基础 DP 题</td>
+<td align="left">状态定义、转移方程</td>
+</tr>
+<tr>
+<td align="left">链表复习</td>
+<td align="left">206&#x2F;234&#x2F;19 再练</td>
+<td align="left">巩固基础</td>
+</tr>
+</tbody></table>
+<hr>
+<p><strong>第六周圆满完成！二分查找 + 回溯模板已掌握！</strong> 🎉</p>
+<p><strong>总进度：78 道题，覆盖 6 大专题！</strong></p>
+<hr>
+<h2 id="📊-5天密集周复习总结-2026-06-01-2026-06-05"><a href="#📊-5天密集周复习总结-2026-06-01-2026-06-05" class="headerlink" title="📊 5天密集周复习总结 (2026-06-01 ~ 2026-06-05)"></a>📊 5天密集周复习总结 (2026-06-01 ~ 2026-06-05)</h2><h3 id="📈-复习统计"><a href="#📈-复习统计" class="headerlink" title="📈 复习统计"></a>📈 复习统计</h3><table>
+<thead>
+<tr>
+<th align="center">指标</th>
+<th align="center">数值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">复习天数</td>
+<td align="center">5 天 ✅</td>
+</tr>
+<tr>
+<td align="center">复习题目数</td>
+<td align="center"><strong>28 道</strong></td>
+</tr>
+<tr>
+<td align="center">覆盖专题</td>
+<td align="center">6 个</td>
+</tr>
+<tr>
+<td align="center">全部一次通过</td>
+<td align="center">✅ 28&#x2F;28</td>
+</tr>
+</tbody></table>
+<h3 id="📅-每日完成情况-7"><a href="#📅-每日完成情况-7" class="headerlink" title="📅 每日完成情况"></a>📅 每日完成情况</h3><table>
+<thead>
+<tr>
+<th align="center">日</th>
+<th align="center">日期</th>
+<th align="left">专题</th>
+<th align="center">题目数</th>
+<th align="center">结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1</td>
+<td align="center">06-01</td>
+<td align="left">数组 + 链表</td>
+<td align="center">8</td>
+<td align="center">✅</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">06-02</td>
+<td align="left">栈 + 二分查找</td>
+<td align="center">6</td>
+<td align="center">✅</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">06-03</td>
+<td align="left">二叉树</td>
+<td align="center">6</td>
+<td align="center">✅</td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td align="center">06-04</td>
+<td align="left">图 + 多源 BFS</td>
+<td align="center">5</td>
+<td align="center">✅</td>
+</tr>
+<tr>
+<td align="center">5</td>
+<td align="center">06-05</td>
+<td align="left">回溯</td>
+<td align="center">3</td>
+<td align="center">✅</td>
+</tr>
+</tbody></table>
+<h3 id="🏆-结论"><a href="#🏆-结论" class="headerlink" title="🏆 结论"></a>🏆 结论</h3><ul>
+<li><strong>28 道题全部独立写出，零失误</strong> ✅ — 说明前六周的学习内容已经深度内化</li>
+<li><strong>无需重做任何题目</strong> — 没有薄弱项需要巩固</li>
+<li><strong>复习验证了学习方法有效</strong>：模板化学习 + 及时记录 + 间隔重复，确实能让知识沉淀</li>
+</ul>
+<hr>
+<p><strong>5天密集周复习圆满完成！准备进入动态规划阶段！</strong> 🚀</p>
+<hr>
+<h3 id="📈-学习统计-7"><a href="#📈-学习统计-7" class="headerlink" title="📈 学习统计"></a>📈 学习统计</h3><table>
+<thead>
+<tr>
+<th align="center">指标</th>
+<th align="center">数值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">总题目数</td>
+<td align="center"><strong>14 道</strong> 🏆</td>
+</tr>
+<tr>
+<td align="center">Easy</td>
+<td align="center">4 道</td>
+</tr>
+<tr>
+<td align="center">Medium</td>
+<td align="center"><strong>10 道</strong></td>
+</tr>
+<tr>
+<td align="center">学习天数</td>
+<td align="center">5 天 ✅ 全勤</td>
+</tr>
+<tr>
+<td align="center">核心专题</td>
+<td align="center"><strong>动态规划入门</strong></td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="📅-每日完成情况-8"><a href="#📅-每日完成情况-8" class="headerlink" title="📅 每日完成情况"></a>📅 每日完成情况</h3><table>
+<thead>
+<tr>
+<th align="center">日期</th>
+<th align="left">完成题目</th>
+<th align="left">核心技巧</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">06-08</td>
+<td align="left">Climbing Stairs, Min Cost Climbing Stairs, House Robber</td>
+<td align="left">斐波那契型 DP、最值型 DP、选或不选型 DP</td>
+</tr>
+<tr>
+<td align="center">06-09</td>
+<td align="left">Unique Paths, Unique Paths II, Perfect Squares</td>
+<td align="left">二维路径 DP、障碍物处理、最值型 DP</td>
+</tr>
+<tr>
+<td align="center">06-10</td>
+<td align="left">Coin Change, Longest Increasing Subsequence</td>
+<td align="left">最值型 DP 进阶、子序列 DP</td>
+</tr>
+<tr>
+<td align="center">06-11</td>
+<td align="left">Longest Common Subsequence, LPS, Longest Palindromic Substring</td>
+<td align="left">双序列 DP、LCS 应用、中心扩散</td>
+</tr>
+<tr>
+<td align="center">06-12</td>
+<td align="left">Word Break, Best Time to Buy and Sell Stock I&#x2F;II</td>
+<td align="left">布尔型 DP、状态追踪、贪心&#x2F;状态机</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="🎯-核心技巧体系-7"><a href="#🎯-核心技巧体系-7" class="headerlink" title="🎯 核心技巧体系"></a>🎯 核心技巧体系</h3><h4 id="1️⃣-DP-三要素-⭐-本周核心"><a href="#1️⃣-DP-三要素-⭐-本周核心" class="headerlink" title="1️⃣ DP 三要素 ⭐ 本周核心"></a>1️⃣ DP 三要素 ⭐ 本周核心</h4><p><strong>核心思想</strong>：状态定义 + 转移方程 + 初始条件</p>
+<table>
+<thead>
+<tr>
+<th align="left">类型</th>
+<th align="left">状态定义</th>
+<th align="left">转移方程</th>
+<th align="left">初始条件</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">70 爬楼梯</td>
+<td align="left">dp[i] &#x3D; 爬到第i阶的方法数</td>
+<td align="left">dp[i] &#x3D; dp[i-1] + dp[i-2]</td>
+<td align="left">dp[1]&#x3D;1, dp[2]&#x3D;2</td>
+</tr>
+<tr>
+<td align="left">746 最小花费</td>
+<td align="left">dp[i] &#x3D; 爬到第i阶的最小花费</td>
+<td align="left">dp[i] &#x3D; min(dp[i-1]+cost[i-1], dp[i-2]+cost[i-2])</td>
+<td align="left">dp[0]&#x3D;0, dp[1]&#x3D;0</td>
+</tr>
+<tr>
+<td align="left">198 打家劫舍</td>
+<td align="left">dp[i] &#x3D; 前i+1家的最高金额</td>
+<td align="left">dp[i] &#x3D; max(dp[i-2]+nums[i], dp[i-1])</td>
+<td align="left">dp[0]&#x3D;nums[0], dp[1]&#x3D;max(nums[0],nums[1])</td>
+</tr>
+</tbody></table>
+<p><strong>递推三连演变</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">70（求和 +） → 746（最值 min） → 198（最值 max + 可跳过）</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="2️⃣-二维-DP-模板-62-63"><a href="#2️⃣-二维-DP-模板-62-63" class="headerlink" title="2️⃣ 二维 DP 模板 (62&#x2F;63)"></a>2️⃣ 二维 DP 模板 (62&#x2F;63)</h4><p><strong>核心思想</strong>：dp[i][j] 表示网格位置的状态</p>
+<table>
+<thead>
+<tr>
+<th align="center">题号</th>
+<th align="left">状态定义</th>
+<th align="left">转移方程</th>
+<th align="left">边界处理</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">62</td>
+<td align="left">dp[i][j] &#x3D; 路径数</td>
+<td align="left">dp[i][j] &#x3D; dp[i-1][j] + dp[i][j-1]</td>
+<td align="left">第一行&#x2F;列初始化为 1</td>
+</tr>
+<tr>
+<td align="center">63</td>
+<td align="left">dp[i][j] &#x3D; 路径数</td>
+<td align="left">障碍物位置 &#x3D; 0，否则同62</td>
+<td align="left">break 截断边界</td>
+</tr>
+</tbody></table>
+<p><strong>障碍物处理口诀</strong>：”遇障碍 → dp&#x3D;0，边界遇障碍 → break截断”</p>
+<hr>
+<h4 id="3️⃣-最值型-DP-统一框架-279-322"><a href="#3️⃣-最值型-DP-统一框架-279-322" class="headerlink" title="3️⃣ 最值型 DP 统一框架 (279&#x2F;322)"></a>3️⃣ 最值型 DP 统一框架 (279&#x2F;322)</h4><p><strong>核心思想</strong>：dp[i] &#x3D; min&#x2F;max over 所有选择 (dp[i - 选择] + 代价)</p>
+<table>
+<thead>
+<tr>
+<th align="center">题号</th>
+<th align="left">选择空间</th>
+<th align="left">转移方程</th>
+<th align="left">不可达处理</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">279</td>
+<td align="left">j² ≤ i 的所有平方数</td>
+<td align="left">dp[i] &#x3D; min(dp[i-j²] + 1)</td>
+<td align="left">dp[0]&#x3D;0</td>
+</tr>
+<tr>
+<td align="center">322</td>
+<td align="left">所有硬币面额</td>
+<td align="left">dp[i] &#x3D; min(dp[i-coin] + 1)</td>
+<td align="left">INT_MAX&#x2F;2 占位</td>
+</tr>
+</tbody></table>
+<p><strong>统一框架</strong>：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">dp[i] = 最坏情况;  <span class="comment">// i 或 INT_MAX/2</span></span><br><span class="line"><span class="keyword">for</span> (选择 in 所有可能) &#123;</span><br><span class="line">    <span class="keyword">if</span> (选择有效 &amp;&amp; dp[i-选择] 可达)</span><br><span class="line">        dp[i] = <span class="built_in">min</span>(dp[i], dp[i-选择] + <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="4️⃣-子序列-DP-300"><a href="#4️⃣-子序列-DP-300" class="headerlink" title="4️⃣ 子序列 DP (300)"></a>4️⃣ 子序列 DP (300)</h4><p><strong>核心思想</strong>：”以 nums[i] 结尾”的状态定义</p>
+<table>
+<thead>
+<tr>
+<th align="center">题号</th>
+<th align="left">状态定义</th>
+<th align="left">转移方程</th>
+<th align="left">答案位置</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">300 LIS</td>
+<td align="left">dp[i] &#x3D; 以nums[i]结尾的LIS长度</td>
+<td align="left">dp[i] &#x3D; max(dp[j]+1) for j&lt;i &amp; nums[j]&lt;nums[i]</td>
+<td align="left">max(dp[i])</td>
+</tr>
+</tbody></table>
+<p><strong>关键点</strong>：</p>
+<ul>
+<li>dp 全初始化为 1（每个元素自身至少长度1）</li>
+<li>答案不是 dp[n-1]，而是全局 max</li>
+<li>O(n log n) 优化：贪心 + 二分（tails数组）</li>
+</ul>
+<hr>
+<h4 id="5️⃣-双序列-DP-1143"><a href="#5️⃣-双序列-DP-1143" class="headerlink" title="5️⃣ 双序列 DP (1143)"></a>5️⃣ 双序列 DP (1143)</h4><p><strong>核心思想</strong>：dp[i][j] 表示两个序列前缀的状态</p>
+<table>
+<thead>
+<tr>
+<th align="center">题号</th>
+<th align="left">状态定义</th>
+<th align="left">转移方程</th>
+<th align="left">关键技巧</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1143 LCS</td>
+<td align="left">dp[i][j] &#x3D; LCS长度</td>
+<td align="left">相等: dp[i-1][j-1]+1; 不等: max(dp[i-1][j], dp[i][j-1])</td>
+<td align="left">size+1技巧</td>
+</tr>
+<tr>
+<td align="center">516 LPS</td>
+<td align="left">LCS(s, reverse(s))</td>
+<td align="left">复用1143代码</td>
+<td align="left">问题转化</td>
+</tr>
+</tbody></table>
+<p><strong>size+1技巧</strong>：”dp(m+1)×(n+1) 让边界自动为0，下标1-based，简化代码”</p>
+<hr>
+<h4 id="6️⃣-字符串分割-DP-139"><a href="#6️⃣-字符串分割-DP-139" class="headerlink" title="6️⃣ 字符串分割 DP (139)"></a>6️⃣ 字符串分割 DP (139)</h4><p><strong>核心思想</strong>：布尔型 dp，判断前缀能否被拆分</p>
+<table>
+<thead>
+<tr>
+<th align="center">题号</th>
+<th align="left">状态定义</th>
+<th align="left">转移方程</th>
+<th align="left">剪枝技巧</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">139 Word Break</td>
+<td align="left">dp[i] &#x3D; 前i字符能否拆分</td>
+<td align="left">dp[i] &#x3D; ∃j: dp[j] &amp;&amp; s[j..i)∈字典</td>
+<td align="left">子串长度 &gt; maxSize 跳过</td>
+</tr>
+</tbody></table>
+<p><strong>布尔型 DP 特点</strong>：”找到即 break，无需遍历所有分割点”</p>
+<hr>
+<h4 id="7️⃣-状态追踪-贪心-121-122"><a href="#7️⃣-状态追踪-贪心-121-122" class="headerlink" title="7️⃣ 状态追踪&#x2F;贪心 (121&#x2F;122)"></a>7️⃣ 状态追踪&#x2F;贪心 (121&#x2F;122)</h4><table>
+<thead>
+<tr>
+<th align="center">题号</th>
+<th align="left">方法</th>
+<th align="left">核心思想</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">121</td>
+<td align="left">状态追踪</td>
+<td align="left">minPrice + maxProfit，一次遍历</td>
+</tr>
+<tr>
+<td align="center">122</td>
+<td align="left">贪心</td>
+<td align="left">累计所有正价差 Σmax(0, prices[i]-prices[i-1])</td>
+</tr>
+</tbody></table>
+<p><strong>状态机 DP 预埋</strong>：”hold &#x3D; max(hold, notHold-price) &#x2F; notHold &#x3D; max(notHold, hold+price)”</p>
+<hr>
+<h3 id="⚠️-易错点总结-7"><a href="#⚠️-易错点总结-7" class="headerlink" title="⚠️ 易错点总结"></a>⚠️ 易错点总结</h3><table>
+<thead>
+<tr>
+<th align="left">类型</th>
+<th align="left">常见错误</th>
+<th align="left">正确做法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">dp数组大小</td>
+<td align="left">dp[n]</td>
+<td align="left">dp[n+1]（前i个字符&#x2F;爬到第i阶）</td>
+</tr>
+<tr>
+<td align="left">循环边界</td>
+<td align="left"><code>i &lt; n</code></td>
+<td align="left"><code>i &lt;= n</code>（包含终点）</td>
+</tr>
+<tr>
+<td align="left">最值初始化</td>
+<td align="left">dp[i]&#x3D;0</td>
+<td align="left">dp[i]&#x3D;i 或 INT_MAX&#x2F;2（最坏情况）</td>
+</tr>
+<tr>
+<td align="left">LIS答案</td>
+<td align="left">return dp[n-1]</td>
+<td align="left">return max(dp[i])（全局最大）</td>
+</tr>
+<tr>
+<td align="left">LCS下标</td>
+<td align="left">text1[i]</td>
+<td align="left">text1[i-1]（size+1技巧）</td>
+</tr>
+<tr>
+<td align="left">不可达标记</td>
+<td align="left">INT_MAX</td>
+<td align="left">INT_MAX&#x2F;2（避免+1溢出）</td>
+</tr>
+<tr>
+<td align="left">121初始化</td>
+<td align="left">minPrice&#x3D;0</td>
+<td align="left">minPrice&#x3D;INT_MAX</td>
+</tr>
+<tr>
+<td align="left">122累加</td>
+<td align="left">sum &#x3D; max(…)</td>
+<td align="left">sum +&#x3D; max(…)</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="🏆-里程碑-2"><a href="#🏆-里程碑-2" class="headerlink" title="🏆 里程碑"></a>🏆 里程碑</h3><ul>
+<li><input checked disabled type="checkbox"> <strong>全勤 5 天</strong>：连续学习，无断档 ✅</li>
+<li><input checked disabled type="checkbox"> <strong>DP 入门体系完整</strong>：从斐波那契型到双序列型，7 种 DP 模板全覆盖</li>
+<li><input checked disabled type="checkbox"> <strong>Medium 题量新高</strong>：10 道 Medium，单周最高 🏆</li>
+<li><input checked disabled type="checkbox"> <strong>总题数突破 84</strong>：从 78 → 84 道，一周增长 6 道</li>
+<li><input checked disabled type="checkbox"> <strong>DP 三要素掌握</strong>：状态定义、转移方程、初始条件已成肌肉记忆</li>
+<li><input checked disabled type="checkbox"> <strong>最值型 DP 统一框架</strong>：279&#x2F;322&#x2F;300 共享同一模板</li>
+</ul>
+<hr>
+<h3 id="📊-七周对比"><a href="#📊-七周对比" class="headerlink" title="📊 七周对比"></a>📊 七周对比</h3><table>
+<thead>
+<tr>
+<th align="center">维度</th>
+<th align="center">W1 数组</th>
+<th align="center">W2 链表</th>
+<th align="center">W3 栈</th>
+<th align="center">W4 二叉树</th>
+<th align="center">W5 图</th>
+<th align="center">W6 二分+回溯</th>
+<th align="center"><strong>W7 DP</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">题目数</td>
+<td align="center">16</td>
+<td align="center">11</td>
+<td align="center">6</td>
+<td align="center">20</td>
+<td align="center">12</td>
+<td align="center">13</td>
+<td align="center"><strong>14</strong></td>
+</tr>
+<tr>
+<td align="center">Easy</td>
+<td align="center">10</td>
+<td align="center">7</td>
+<td align="center">2</td>
+<td align="center">10</td>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center"><strong>4</strong></td>
+</tr>
+<tr>
+<td align="center">Medium</td>
+<td align="center">6</td>
+<td align="center">4</td>
+<td align="center">3</td>
+<td align="center">10</td>
+<td align="center">11</td>
+<td align="center">13</td>
+<td align="center"><strong>10</strong></td>
+</tr>
+<tr>
+<td align="center">Hard</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center"><strong>0</strong></td>
+</tr>
+<tr>
+<td align="center">核心技巧</td>
+<td align="center">8种</td>
+<td align="center">5种</td>
+<td align="center">4种</td>
+<td align="center">10种</td>
+<td align="center">5种</td>
+<td align="center">二分+回溯</td>
+<td align="center"><strong>7种DP模板</strong></td>
+</tr>
+<tr>
+<td align="center">重点</td>
+<td align="center">哈希&#x2F;窗口</td>
+<td align="center">链表</td>
+<td align="center">单调栈</td>
+<td align="center">二叉树</td>
+<td align="center">图</td>
+<td align="center">核心算法</td>
+<td align="center"><strong>动态规划</strong></td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="💡-学习心得-7"><a href="#💡-学习心得-7" class="headerlink" title="💡 学习心得"></a>💡 学习心得</h3><ol>
+<li><strong>DP 三要素是核心</strong>：状态定义（dp[i]表示什么）、转移方程（从哪来）、初始条件（base case）——每道题都是这三者的组合变化</li>
+<li><strong>递推三连的演变路径</strong>：70（+）→ 746（min）→ 198（max+跳过）展示了 DP 从求和到求最值的完整进化</li>
+<li><strong>最值型 DP 统一框架</strong>：279&#x2F;322&#x2F;300 共享同一模板——“减一个值看之前的状态，取最值”</li>
+<li><strong>size+1技巧简化边界</strong>：LCS 用 dp(m+1)×(n+1) 让边界自动为0，避免额外 if 判断</li>
+<li>**”以 i 结尾”vs”前 i 个”**：LIS 是前者（答案取全局max），Word Break 是后者（答案在dp[n])</li>
+<li><strong>问题转化思维</strong>：LPS(s) &#x3D; LCS(s, reverse(s))——将新问题映射为已解决问题</li>
+</ol>
+<hr>
+<h3 id="📚-下周计划-4"><a href="#📚-下周计划-4" class="headerlink" title="📚 下周计划"></a>📚 下周计划</h3><table>
+<thead>
+<tr>
+<th align="left">主题</th>
+<th align="left">重点题目</th>
+<th align="left">核心技能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">DP 进阶</td>
+<td align="left">0-1背包、完全背包、区间DP</td>
+<td align="left">背包DP模板、区间DP模板</td>
+</tr>
+<tr>
+<td align="left">复习巩固</td>
+<td align="left">70&#x2F;746&#x2F;198&#x2F;62&#x2F;63 再练</td>
+<td align="left">吃透DP基础</td>
+</tr>
+</tbody></table>
+<hr>
+<p><strong>第七周圆满完成！动态规划入门体系已建立！</strong> 🎉</p>
+<p><strong>总进度：84 道题，覆盖 7 大专题！</strong></p>
+<hr>
+<h3 id="📈-学习统计-8"><a href="#📈-学习统计-8" class="headerlink" title="📈 学习统计"></a>📈 学习统计</h3><table>
+<thead>
+<tr>
+<th align="center">指标</th>
+<th align="center">数值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">总题目数</td>
+<td align="center"><strong>2 道</strong></td>
+</tr>
+<tr>
+<td align="center">Easy</td>
+<td align="center">0 道</td>
+</tr>
+<tr>
+<td align="center">Medium</td>
+<td align="center"><strong>2 道</strong></td>
+</tr>
+<tr>
+<td align="center">学习天数</td>
+<td align="center">2 天（假期周，忙游戏开发 🎮）</td>
+</tr>
+<tr>
+<td align="center">核心专题</td>
+<td align="center"><strong>0-1 背包入门</strong></td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="📅-每日完成情况-9"><a href="#📅-每日完成情况-9" class="headerlink" title="📅 每日完成情况"></a>📅 每日完成情况</h3><table>
+<thead>
+<tr>
+<th align="center">日期</th>
+<th align="left">完成题目</th>
+<th align="left">核心技巧</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">06-15</td>
+<td align="left">Partition Equal Subset Sum (416)</td>
+<td align="left">0-1 背包 bool 版 — 能否凑出 target</td>
+</tr>
+<tr>
+<td align="center">06-16</td>
+<td align="left">Target Sum (494)</td>
+<td align="left">0-1 背包计数版 — 多少种方式凑出 target</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="🎯-本周核心：0-1-背包-DFS-双模板-⭐"><a href="#🎯-本周核心：0-1-背包-DFS-双模板-⭐" class="headerlink" title="🎯 本周核心：0-1 背包 DFS 双模板 ⭐"></a>🎯 本周核心：0-1 背包 DFS 双模板 ⭐</h3><h4 id="1️⃣-布尔型-DP-—-416-Partition-Equal-Subset-Sum"><a href="#1️⃣-布尔型-DP-—-416-Partition-Equal-Subset-Sum" class="headerlink" title="1️⃣ 布尔型 DP — 416. Partition Equal Subset Sum"></a>1️⃣ 布尔型 DP — 416. Partition Equal Subset Sum</h4><p><strong>核心思想</strong>：<code>dp[i][j]</code> &#x3D; 从前 i 个元素中选，能否恰好凑出和 j</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dp[i][j] = dp[i-1][j]       // 不选</span><br><span class="line">        || dp[i-1][j-num]   // 选（j &gt;= num）</span><br></pre></td></tr></table></figure>
+
+<p><strong>要点</strong>：</p>
+<ul>
+<li>先求 sum，奇数直接 false</li>
+<li>target &#x3D; sum &#x2F; 2</li>
+<li>dp 用 n+1 行，遍历到 i &lt;&#x3D; n</li>
+</ul>
+<h4 id="2️⃣-计数型-DP-—-494-Target-Sum"><a href="#2️⃣-计数型-DP-—-494-Target-Sum" class="headerlink" title="2️⃣ 计数型 DP — 494. Target Sum"></a>2️⃣ 计数型 DP — 494. Target Sum</h4><p><strong>核心思想</strong>：数学化简 <code>P = (target + sum) / 2</code> → 找和为 P 的子集个数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dp[j] += dp[j - num]   // 一维倒序</span><br></pre></td></tr></table></figure>
+
+<p><strong>与 416 对比</strong>：</p>
+<table>
+<thead>
+<tr>
+<th align="left">维度</th>
+<th align="left">416</th>
+<th align="left">494</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">问法</td>
+<td align="left">能否凑出？</td>
+<td align="left">有多少种方法？</td>
+</tr>
+<tr>
+<td align="left">dp 类型</td>
+<td align="left"><code>bool</code></td>
+<td align="left"><code>int</code></td>
+</tr>
+<tr>
+<td align="left">转移</td>
+<td align="left"><code>||</code>（或）</td>
+<td align="left"><code>+=</code>（累加）</td>
+</tr>
+<tr>
+<td align="left">空间</td>
+<td align="left">二维可优化一维</td>
+<td align="left">直接一维倒序</td>
+</tr>
+<tr>
+<td align="left">边界</td>
+<td align="left">sum 奇数 → false</td>
+<td align="left">奇偶不匹配 &#x2F; abs(target)&gt;sum → 0</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="⚠️-本周易错点"><a href="#⚠️-本周易错点" class="headerlink" title="⚠️ 本周易错点"></a>⚠️ 本周易错点</h3><table>
+<thead>
+<tr>
+<th align="left">类型</th>
+<th align="left">常见错误</th>
+<th align="left">正确做法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">dp 大小</td>
+<td align="left">一维 dp 用 <code>n+1</code></td>
+<td align="left">一维 dp 用 <code>P+1</code>（P &#x3D; target&#x2F;容量）</td>
+</tr>
+<tr>
+<td align="left">边界检查</td>
+<td align="left">漏掉 <code>abs(target) &gt; sum</code></td>
+<td align="left">P 可能为负数 → 数组越界</td>
+</tr>
+<tr>
+<td align="left">奇偶判断</td>
+<td align="left">检查 <code>sum % 2</code></td>
+<td align="left">检查 <code>(target + sum) % 2</code></td>
+</tr>
+<tr>
+<td align="left">一维倒序</td>
+<td align="left">正序遍历</td>
+<td align="left">倒序保证每个数只用一次</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="🏆-里程碑-3"><a href="#🏆-里程碑-3" class="headerlink" title="🏆 里程碑"></a>🏆 里程碑</h3><ul>
+<li><input checked disabled type="checkbox"> <strong>0-1 背包 bool 版模板掌握</strong>：416</li>
+<li><input checked disabled type="checkbox"> <strong>0-1 背包计数版模板掌握</strong>：494 → 数学化简 + 一维倒序</li>
+<li><input checked disabled type="checkbox"> <strong>总题数达到 86 道</strong> 🎉</li>
+</ul>
+<hr>
+<h3 id="📊-八周对比"><a href="#📊-八周对比" class="headerlink" title="📊 八周对比"></a>📊 八周对比</h3><table>
+<thead>
+<tr>
+<th align="center">维度</th>
+<th align="center">W1 数组</th>
+<th align="center">W2 链表</th>
+<th align="center">W3 栈</th>
+<th align="center">W4 二叉树</th>
+<th align="center">W5 图</th>
+<th align="center">W6 二分+回溯</th>
+<th align="center">W7 DP</th>
+<th align="center"><strong>W8 背包</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">题目数</td>
+<td align="center">16</td>
+<td align="center">11</td>
+<td align="center">6</td>
+<td align="center">20</td>
+<td align="center">12</td>
+<td align="center">13</td>
+<td align="center">14</td>
+<td align="center"><strong>2</strong></td>
+</tr>
+<tr>
+<td align="center">Easy</td>
+<td align="center">10</td>
+<td align="center">7</td>
+<td align="center">2</td>
+<td align="center">10</td>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">4</td>
+<td align="center"><strong>0</strong></td>
+</tr>
+<tr>
+<td align="center">Medium</td>
+<td align="center">6</td>
+<td align="center">4</td>
+<td align="center">3</td>
+<td align="center">10</td>
+<td align="center">11</td>
+<td align="center">13</td>
+<td align="center">10</td>
+<td align="center"><strong>2</strong></td>
+</tr>
+<tr>
+<td align="center">Hard</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center"><strong>0</strong></td>
+</tr>
+<tr>
+<td align="center">核心技巧</td>
+<td align="center">8种</td>
+<td align="center">5种</td>
+<td align="center">4种</td>
+<td align="center">10种</td>
+<td align="center">5种</td>
+<td align="center">二分+回溯</td>
+<td align="center">7种DP模板</td>
+<td align="center"><strong>0-1背包模板</strong></td>
+</tr>
+<tr>
+<td align="center">重点</td>
+<td align="center">哈希&#x2F;窗口</td>
+<td align="center">链表</td>
+<td align="center">单调栈</td>
+<td align="center">二叉树</td>
+<td align="center">图</td>
+<td align="center">核心算法</td>
+<td align="center">动态规划</td>
+<td align="center"><strong>背包入门</strong></td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="💡-学习心得-8"><a href="#💡-学习心得-8" class="headerlink" title="💡 学习心得"></a>💡 学习心得</h3><ol>
+<li><strong>0-1 背包两模板</strong>：bool 版（416）和计数版（494）共享同一个”选&#x2F;不选”框架，只是 dp 类型和转移操作不同</li>
+<li><strong>数学化简是钥匙</strong>：494 从符号分配 → 子集和，没有这一步就解不出来</li>
+<li><strong>假期周不勉强</strong>：忙游戏开发就专注做好一件事，学习保持手感就好 🎮</li>
+<li><strong>背包进阶铺垫</strong>：完全背包（物品无限次使用）是 0-1 背包的下一步，区别只在遍历方向</li>
+</ol>
+<hr>
+<h3 id="📚-节后计划"><a href="#📚-节后计划" class="headerlink" title="📚 节后计划"></a>📚 节后计划</h3><table>
+<thead>
+<tr>
+<th align="left">主题</th>
+<th align="left">重点题目</th>
+<th align="left">核心技能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">完全背包</td>
+<td align="left">322 Coin Change（进阶）、518 Coin Change II</td>
+<td align="left">正序遍历、无限选取</td>
+</tr>
+<tr>
+<td align="left">背包综合</td>
+<td align="left">474 Ones and Zeroes</td>
+<td align="left">二维 0-1 背包</td>
+</tr>
+<tr>
+<td align="left">背包变体</td>
+<td align="left">1049 Last Stone Weight II</td>
+<td align="left">背包思维转化</td>
+</tr>
+</tbody></table>
+<hr>
+<p><strong>第八周圆满完成！0-1 背包两大模板已掌握！</strong> 🎉</p>
+<p><strong>总进度：86 道题，覆盖 8 大专题！</strong> 🚀</p>
+<p><strong>端午安康，假期愉快！</strong> 🐉</p>
+
+</article>
+    
+    
+
+</div>
+<div class="trm-post-next-prev row">
+    <div class="col-lg-12">
+        <!-- title -->
+        <h5 class="trm-title-with-divider">
+            其他文章
+            <span data-number="02"></span>
+        </h5>
+    </div>
+    
+        <div class="col-lg-6">
+    <div class="trm-blog-card trm-scroll-animation">
+        <a href="/ZeroDream/2026/04/21/LeetCode/LeetCode-%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-2026-04-21/" class="trm-cover-frame trm-anima-link">
+            
+            
+                <img alt="cover" class="no-fancybox" src="/ZeroDream/images/post/leetcode/cover-06.png">
+            
+        </a>
+        
+        <div class="trm-card-descr">
+            <div class="trm-label trm-category trm-mb-20">
+                <a href=" /ZeroDream/categories/LeetCode/">
+                    LeetCode
+                </a>
+            </div>
+            <h5>
+                <a href="/ZeroDream/2026/04/21/LeetCode/LeetCode-%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-2026-04-21/" class="trm-anima-link">
+                    LeetCode 学习记录 2026-04-21
+                </a>
+            </h5>
+            <div class="trm-divider trm-mb-20 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>26/04/21</li>
+                <li>23:00</li>
+                
+                
+            </ul>
+        </div>
+    </div>
+</div>
+    
+    
+        <div class="col-lg-6">
+    <div class="trm-blog-card trm-scroll-animation">
+        <a href="/ZeroDream/2026/04/17/LeetCode/LeetCode-%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-2026-04-17/" class="trm-cover-frame trm-anima-link">
+            
+            
+                <img alt="cover" class="no-fancybox" src="/ZeroDream/images/post/leetcode/cover-01.png">
+            
+        </a>
+        
+        <div class="trm-card-descr">
+            <div class="trm-label trm-category trm-mb-20">
+                <a href=" /ZeroDream/categories/LeetCode/">
+                    LeetCode
+                </a>
+            </div>
+            <h5>
+                <a href="/ZeroDream/2026/04/17/LeetCode/LeetCode-%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-2026-04-17/" class="trm-anima-link">
+                    LeetCode 学习记录 2026-04-17
+                </a>
+            </h5>
+            <div class="trm-divider trm-mb-20 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>26/04/17</li>
+                <li>23:00</li>
+                
+                
+            </ul>
+        </div>
+    </div>
+</div>
+    
+</div>
+
+    
+
+    <div id="giscus-wrap" class="trm-card trm-scroll-animation comment-container"></div>
+<script data-swup-reload-script>
+    function loadGiscus() {
+        let nowTheme = document.documentElement.classList.contains('dark') ? '' : ''
+        const config = {
+            src: 'https://giscus.app/client.js',
+            "data-repo": 'xiaomengxmeng/ZeroDream',
+            "data-repo-id": 'R_kgDOQHFw4Q',
+            "data-category": 'Announcements',
+            "data-category-id": 'DIC_kwDOQHFw4c4CxyP3',
+            "data-mapping": 'pathname',
+            "data-reactions-enabled": '1',
+            "data-emit-metadata": '0',
+            "data-theme": nowTheme,
+            "data-lang": 'zh-CN',
+            crossorigin: "anonymous",
+            async: true
+        }
+        let ele = document.createElement('script')
+        for (let key in config) {
+            ele.setAttribute(key, config[key])
+        }
+        document.getElementById('giscus-wrap').insertAdjacentElement('afterbegin', ele)
+    }
+
+    function changeGiscusTheme() {
+        let theme = document.documentElement.classList.contains('dark') ? '' : ''
+
+        function sendMessage(message) {
+            const iframe = document.querySelector('iframe.giscus-frame');
+            if (!iframe) return;
+            iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+
+        sendMessage({
+            setConfig: {
+                theme: theme
+            }
+        });
+    }
+
+    loadGiscus();
+</script>
+
+
+
+                    <div class="trm-divider footer-divider"></div>
+
+                    <!-- footer -->
+                    <footer class="trm-footer-card trm-scroll-animation">
+
+    
+
+    
+
+    
+        <div class="trm-footer-item">
+            <span>
+                由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v7.3.0
+            </span>
+            <span class="footer-separator" data-separator=" | "></span>
+            <span> 
+                主题 - 
+                <a rel="noopener" href='https://github.com/MaLuns/hexo-theme-async' target='_blank'>Async</a>
+                v2.2.6
+            </span>
+        </div>
+      
+
+     
+
+     
+</footer>
+                    <!-- footer end -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+            <!-- body end -->
+
+            
+
+            
+<div class="trm-fixed-container">
+    
+    
+        <div class="trm-fixed-btn" data-title="阅读模式" onclick="asyncFun.switchReadMode()">
+            <i class="iconfont fas fa-book-reader"></i>
+        </div>
+    
+    
+    <div id="trm-back-top" class="trm-fixed-btn" data-title="回到顶部">
+        <i class="iconfont fas fa-arrow-up"></i>
+    </div>
+</div>
+        </div>
+      </div>
+      <!-- scroll container end -->
+  </div>
+  <!-- app wrapper end -->
+
+  
+    <div class="trm-search-popup">
+        <div class="trm-search-wrapper">
+            <div class="form trm-search-form">
+                <div class="trm-search-input-icon">
+                    <i class="iconfont fas fa-search"></i>
+                </div>
+                <input class="trm-search-input" type="text" placeholder="搜索文章...">
+                <div class="trm-search-btn-close">
+                    <i class="iconfont fas fa-times"></i>
+                </div>
+            </div>
+            <div class="trm-search-result-container">
+                <div class="trm-search-empty">
+                    请输入关键词进行搜索
+                </div>
+            </div>
+            <div class="trm-search-footer">
+                <div class="trm-search-stats"></div>
+                <ul class="trm-search-commands">
+                    <li>
+                        <kbd class="command-palette-commands-key">
+                            <svg width="15" height="15" aria-label="Escape key" role="img">
+                                <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="1.2">
+                                    <path
+                                        d="M13.6167 8.936c-.1065.3583-.6883.962-1.4875.962-.7993 0-1.653-.9165-1.653-2.1258v-.5678c0-1.2548.7896-2.1016 1.653-2.1016.8634 0 1.3601.4778 1.4875 1.0724M9 6c-.1352-.4735-.7506-.9219-1.46-.8972-.7092.0246-1.344.57-1.344 1.2166s.4198.8812 1.3445.9805C8.465 7.3992 8.968 7.9337 9 8.5c.032.5663-.454 1.398-1.4595 1.398C6.6593 9.898 6 9 5.963 8.4851m-1.4748.5368c-.2635.5941-.8099.876-1.5443.876s-1.7073-.6248-1.7073-2.204v-.4603c0-1.0416.721-2.131 1.7073-2.131.9864 0 1.6425 1.031 1.5443 2.2492h-2.956">
+                                    </path>
+                                </g>
+                            </svg>
+                        </kbd>
+                        <span class="command-palette-Label">to close</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+  <!-- Plugin -->
+
+
+
+
+    
+    
+<script src="https://unpkg.com/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+
+    
+
+    
+
+    
+
+    <!-- 数学公式 -->
+    
+
+    <!-- 评论插件 -->
+    
+        
+
+        
+    
+
+		
+
+
+
+
+    <!-- Service Worker -->
+    
+    <!-- baidu push -->
+    
+
+
+<script id="async-script" src="/ZeroDream/js/main.js?v=2.2.6"></script>
+
+<!-- CDN -->
+
+
+    
+
+    
+
+    
+
+
+
+</body>
+
+</html>

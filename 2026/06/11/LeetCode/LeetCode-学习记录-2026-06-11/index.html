@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="x5-fullscreen" content="true">
+<meta name="full-screen" content="yes">
+<meta name="theme-color" content="#317EFB" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=0" name="viewport">
+<meta name="description" content="思考过程📝 2026-06-11 学习思考过程 — 动态规划 Day 4：双序列 DP Day 3 完成了零钱兑换 + LIS ✅，今天进入双序列 DP：LCS（最长公共子序列）   [Medium] 最长公共子序列 (1143)🤔 我的原始思路 dp[i][j] 表示两个字符串以对应位置结尾的最长 LCS 的长度 text1[i] &#x3D;&#x3D; text2[j] 时这个字符一定在">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode 学习记录 2026-06-11">
+<meta property="og:url" content="https://xiaomengxmeng.github.io/ZeroDream/2026/06/11/LeetCode/LeetCode-%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-2026-06-11/index.html">
+<meta property="og:site_name" content="ZeroDream Blog">
+<meta property="og:description" content="思考过程📝 2026-06-11 学习思考过程 — 动态规划 Day 4：双序列 DP Day 3 完成了零钱兑换 + LIS ✅，今天进入双序列 DP：LCS（最长公共子序列）   [Medium] 最长公共子序列 (1143)🤔 我的原始思路 dp[i][j] 表示两个字符串以对应位置结尾的最长 LCS 的长度 text1[i] &#x3D;&#x3D; text2[j] 时这个字符一定在">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-06-11T15:00:00.000Z">
+<meta property="article:modified_time" content="2026-07-24T16:44:44.780Z">
+<meta property="article:author" content="ZeroDream">
+<meta property="article:tag" content="LeetCode">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="学习记录">
+<meta name="twitter:card" content="summary">
+
+
+<title >LeetCode 学习记录 2026-06-11</title>
+
+<!-- Favicon -->
+
+    <link href='/ZeroDream/images/favicon.ico?v=2.2.6' rel='icon' type='image/png' sizes='16x16' ></link>
+
+
+    <link href='/ZeroDream/images/favicon.ico?v=2.2.6' rel='icon' type='image/png' sizes='32x32' ></link>
+
+
+
+
+<!-- Plugin -->
+
+
+
+
+    
+<link rel="stylesheet" href="/ZeroDream/css/plugins/bootstrap.row.css">
+
+    
+<link rel="stylesheet" href="https://unpkg.com/@fancyapps/ui@4.0/dist/fancybox.css">
+
+    
+    
+
+
+
+
+<!-- Icon -->
+
+    
+<link rel="stylesheet" href="/ZeroDream/css/plugins/font-awesome.min.css">
+
+
+
+
+<!-- Variable -->
+<script>window.ASYNC_CONFIG = {"hostname":"xiaomengxmeng.github.io","author":"ZeroDream","root":"/ZeroDream/","typed_text":null,"theme_version":"2.2.6","theme":{"switch":true,"default":"style-light"},"favicon":{"logo":"/images/favicon.ico","icon16":"/images/favicon.ico","icon32":"/images/favicon.ico","apple_touch_icon":null,"webmanifest":null,"visibilitychange":true,"hidden":"/failure.ico","show_text":"(/≧▽≦/)咦！又好了！","hide_text":"(●—●)喔哟，崩溃啦！"},"i18n":{"placeholder":"搜索文章...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）","author":"本文作者：","copyright_link":"本文链接：","copyright_license_title":"版权声明：","copyright_license_content":"本博客所有文章除特别声明外，均默认采用 undefined 许可协议。","copy_success":"复制成功","copy_failure":"复制失败","open_read_mode":"进入阅读模式","exit_read_mode":"退出阅读模式","notice_outdate_message":"距离上次更新已经 undefined 天了, 文章内容可能已经过时。","sticky":"置顶","just":"刚刚","min":"分钟前","hour":"小时前","day":"天前","month":"个月前"},"swup":false,"plugin":{"flickr_justified_gallery":"https://unpkg.com/flickr-justified-gallery@latest/dist/fjGallery.min.js"},"icons":{"sun":"far fa-sun","moon":"far fa-moon","play":"fas fa-play","email":"far fa-envelope","next":"fas fa-arrow-right","calendar":"far fa-calendar-alt","clock":"far fa-clock","user":"far fa-user","back_top":"fas fa-arrow-up","close":"fas fa-times","search":"fas fa-search","reward":"fas fa-hand-holding-usd","toc_tag":"fas fa-th-list","read":"fas fa-book-reader","arrows":"fas fa-arrows-alt-h","double_arrows":"fas fa-angle-double-down","copy":"fas fa-copy"},"icontype":"font","highlight":{"plugin":"highlighjs","theme":true,"copy":true,"lang":true,"title":"default","height_limit":false},"toc":{"post_title":true},"live_time":{"start_time":"","prefix":"博客已萌萌哒运行 undefined 天"},"danmu":{"enable":false,"el":".trm-banner"}};</script>
+<script id="async-page-config">window.PAGE_CONFIG = {"isPost":true,"isHome":false,"postUpdate":"2026-07-25 00:44:44"};</script>
+
+<!-- Theme mode css -->
+<link data-swup-theme rel="stylesheet" href="/ZeroDream/css/index.css?v=2.2.6" id="trm-switch-style">
+<script>
+    let defaultMode = ASYNC_CONFIG.theme.default !=='auto' ?  ASYNC_CONFIG.theme.default : (window.matchMedia("(prefers-color-scheme: light)").matches ? 'style-light' : 'style-dark')
+    let catchMode = localStorage.getItem('theme-mode') || defaultMode;
+    let type = catchMode === 'style-dark' ? 'add' : 'remove';
+    document.documentElement.classList[type]('dark')
+</script>
+
+<!-- CDN -->
+
+
+    
+    
+
+
+
+<!-- Site Analytics -->
+
+ 
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+
+  <!-- app wrapper -->
+  <div class="trm-app-frame">
+
+    <!-- page preloader -->
+    <div class="trm-preloader">
+    <div class="trm-holder">
+        <div class="preloader">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+</div>
+    <!-- page preloader end -->
+
+    <!-- change mode preloader -->
+    <div class="trm-mode-swich-animation-frame">
+    <div class="trm-mode-swich-animation">
+        <i class="i-sun"><i class="iconfont far fa-sun"></i></i>
+        <div class="trm-horizon"></div>
+        <i class="i-moon"><i class="iconfont far fa-moon"></i></i>
+    </div>
+</div>
+    <!-- change mode preloader end -->
+
+      <!-- scroll container -->
+      <div id="trm-dynamic-content" class="trm-swup-animation">
+        <div id="trm-scroll-container" class="trm-scroll-container" style="opacity: 0">
+            <!-- top bar -->
+            <header class="trm-top-bar">
+	<div class="container">
+		<div class="trm-left-side">
+			<!-- logo -->
+<a href="/ZeroDream/" class="trm-logo-frame trm-anima-link">
+    
+        <img alt="logo" src="/ZeroDream/images/favicon.ico">
+    
+    
+        <div class="trm-logo-text">
+            小梦<span>随笔</span>
+        </div>
+    
+</a>
+<!-- logo end -->
+		</div>
+		<div class="trm-right-side">
+			<!-- menu -->
+<div class="trm-menu">
+    <nav>
+        <ul>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/ZeroDream/" target="">
+                    首页
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/ZeroDream/archives/" target="">
+                    归档
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/ZeroDream/tags/" target="">
+                    menu.tags
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/ZeroDream/categories/" target="">
+                    menu.categories
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/ZeroDream/about/" target="">
+                    关于
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/ZeroDream/links/" target="">
+                    友链
+                </a>
+                
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+<!-- menu end -->
+			
+    <!-- mode switcher place -->
+    <div class="trm-mode-switcher-place">
+        <div class="trm-mode-switcher">
+            <i class="iconfont far fa-sun"></i>
+            <input class="tgl tgl-light" id="trm-swich" type="checkbox">
+            <label class="trm-swich" for="trm-swich"></label>
+            <i class="iconfont far fa-moon"></i>
+        </div>
+    </div>
+    <!-- mode switcher place end -->
+
+			
+     
+
+		</div>
+		<div class="trm-menu-btn">
+			<span></span>
+		</div>
+	</div>
+</header>
+            <!-- top bar end -->
+
+            <!-- body -->
+            
+<div class="trm-content-start">
+    <!-- banner -->
+    <div class="trm-banner">
+    
+    <!-- banner cover -->
+    <img style="object-position:top;object-fit:cover;" alt="banner" class="trm-banner-cover" src="/ZeroDream/images/background/%E5%A5%B3%E9%AB%98%E4%B8%89%E4%BA%BA.png">
+    <!-- banner cover end -->
+    
+
+    <!-- banner content -->
+    <div class="trm-banner-content trm-overlay">
+        <div class="container">
+            <div class="row">
+                
+                <div class="col-lg-4"></div>
+                
+                <div class="col-lg-8">
+
+                    <!-- banner title -->
+                    <div class="trm-banner-text ">
+                        <div class="trm-label trm-mb-20">
+                            NEWS LETTER
+                        </div>
+                        <h1 class="trm-mb-30 trm-hsmb-font">
+                            LeetCode 学习记录 2026-06-11
+                        </h1>
+
+                        
+                            <ul class="trm-breadcrumbs trm-label">
+                                <li>
+                                    <a href="/ZeroDream/" class="trm-anima-link">Home</a>
+                                </li>
+                                <li>
+                                    <span>
+                                        2026
+                                    </span>
+                                </li>
+                            </ul>
+                        
+                    </div>
+                    <!-- banner title end -->
+
+                    <!-- scroll hint -->
+                    <span id="scroll-triger" class="trm-scroll-hint-frame">
+                        <div class="trm-scroll-hint"></div>
+                        <span class="trm-label">Scroll down</span>
+                    </span>
+                    <!-- scroll hint end -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- banner content end -->
+</div>
+    <!-- banner end -->
+    <div class="container">
+        <div class="row">
+            
+                <div class="trm-page-sidebar col-lg-4 hidden-sm">
+                    <!-- main card -->
+                    <div class="trm-main-card-frame trm-sidebar">
+    <div class="trm-main-card"> 
+        <!-- card header -->
+<div class="trm-mc-header">
+    <div class="trm-avatar-frame trm-mb-20">
+        <img alt="Avatar" class="trm-avatar trm-light-icon" src="/ZeroDream/images/head/head.jpg"> <img alt="Avatar" class="trm-avatar trm-dark-icon" src="/ZeroDream/images/head/darkhead.jpg">
+    </div>
+    <h5 class="trm-name trm-mb-15">
+        ZeroDream
+    </h5>
+    
+</div>
+<!-- card header end -->
+        <!-- sidebar social -->
+
+<div class="trm-divider trm-mb-40 trm-mt-40"></div>
+<div class="trm-social">
+    
+        <a href="https://github.com" title="Github" rel="nofollow" target="_blank">
+            <i class="iconfont fab fa-github"></i>
+        </a>
+    
+</div>
+
+<!-- sidebar social end -->
+        <!-- info -->
+<div class="trm-divider trm-mb-40 trm-mt-40"></div>
+<ul class="trm-table trm-mb-20">
+    
+        <li>
+            <div class="trm-label">
+                地址:
+            </div>
+            <div class="trm-label trm-label-light">
+                中国 江西
+            </div>
+        </li>
+    
+        <li>
+            <div class="trm-label">
+                职业:
+            </div>
+            <div class="trm-label trm-label-light">
+                开发者
+            </div>
+        </li>
+    
+</ul>
+<!-- info end -->
+
+        
+    <div class="trm-divider trm-mb-40 trm-mt-40"></div>
+    <!-- action button -->
+    <div class="text-center">
+        <a href="mailto:xuanmeng404@163.com" class="trm-btn">
+            联系我
+            <i class="iconfont far fa-envelope"></i>
+        </a>
+    </div>
+    <!-- action button end -->
+
+    </div>
+</div>
+                    <!-- main card end -->
+                </div>
+            
+            <div class="trm-page-content col-lg-8">
+                <div id="trm-content" class="trm-content">
+                    <div class="trm-post-info row hidden-sm">
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-calendar-alt trm-icon"></i><br>
+            06/11
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-clock trm-icon"></i><br>
+            23:00
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div id="post-author" class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-user trm-icon"></i><br>
+            ZeroDream
+        </div>
+    </div>
+</div>
+<div class="trm-card ">
+    <article id="article-container" class="trm-publication">
+    <h2 id="思考过程"><a href="#思考过程" class="headerlink" title="思考过程"></a>思考过程</h2><h2 id="📝-2026-06-11-学习思考过程-—-动态规划-Day-4：双序列-DP"><a href="#📝-2026-06-11-学习思考过程-—-动态规划-Day-4：双序列-DP" class="headerlink" title="📝 2026-06-11 学习思考过程 — 动态规划 Day 4：双序列 DP"></a>📝 2026-06-11 学习思考过程 — 动态规划 Day 4：双序列 DP</h2><blockquote>
+<p>Day 3 完成了零钱兑换 + LIS ✅，今天进入双序列 DP：LCS（最长公共子序列）</p>
+</blockquote>
+<hr>
+<h3 id="Medium-最长公共子序列-1143"><a href="#Medium-最长公共子序列-1143" class="headerlink" title="[Medium] 最长公共子序列 (1143)"></a>[Medium] 最长公共子序列 (1143)</h3><h4 id="🤔-我的原始思路"><a href="#🤔-我的原始思路" class="headerlink" title="🤔 我的原始思路"></a>🤔 我的原始思路</h4><ul>
+<li>dp[i][j] 表示两个字符串以对应位置结尾的最长 LCS 的长度</li>
+<li>text1[i] &#x3D;&#x3D; text2[j] 时这个字符一定在 LCS 中</li>
+<li>dp 表需要处理边界，建 dp(m+1, vector<int>(n+1, 0))，下标从 1 开始</int></li>
+</ul>
+<h4 id="🔍-我的思考过程"><a href="#🔍-我的思考过程" class="headerlink" title="🔍 我的思考过程"></a>🔍 我的思考过程</h4><ol>
+<li><strong>状态定义</strong>：dp[i][j] &#x3D; text1[0..i-1] 和 text2[0..j-1] 的 LCS 长度（用 size+1 处理边界）</li>
+<li><strong>相等时</strong>：text1[i-1] &#x3D;&#x3D; text2[j-1] → dp[i][j] &#x3D; dp[i-1][j-1] + 1</li>
+<li><strong>不相等时</strong>：dp[i][j] &#x3D; max(dp[i-1][j], dp[i][j-1]) — 跳过 text1[i-1] 或 text2[j-1]</li>
+<li><strong>边界</strong>：dp[0][<em>] &#x3D; dp[</em>][0] &#x3D; 0，空字符串没有公共子序列</li>
+<li><strong>初始化</strong>：用 <code>vector&lt;vector&lt;int&gt;&gt; dp(m+1, vector&lt;int&gt;(n+1, 0))</code></li>
+</ol>
+<h4 id="💡-对比收获"><a href="#💡-对比收获" class="headerlink" title="💡 对比收获"></a>💡 对比收获</h4><ul>
+<li><strong>LIS → LCS</strong>：从一维”以 i 结尾”扩展到二维”前 i 和前 j”，两个不同的”结尾”视角</li>
+<li><strong>新的转移模式</strong>：相等时左上+1，不等时取左&#x2F;上最大值 — 不同于 LIS 的遍历所有 j</li>
+<li><strong>size+1 技巧</strong>：统一处理边界，避免 i-1&#x2F;j-1 越界判断</li>
+<li><strong>与 62&#x2F;63 二维路径对比</strong>：62 只能向右&#x2F;下走，LCS 可以”跳过”字符，转移不同</li>
+<li><strong>空间优化</strong>：二维 DP 只依赖三格（上、左、左上），可优化为一维滚动数组，空间 O(n)</li>
+</ul>
+<hr>
+<h3 id="Medium-最长回文子序列-516"><a href="#Medium-最长回文子序列-516" class="headerlink" title="[Medium] 最长回文子序列 (516)"></a>[Medium] 最长回文子序列 (516)</h3><h4 id="🤔-我的原始思路-1"><a href="#🤔-我的原始思路-1" class="headerlink" title="🤔 我的原始思路"></a>🤔 我的原始思路</h4><!-- 用户填写 -->
+<p>回文子序列<br>直接反转后LCS</p>
+<h4 id="🔍-我的思考过程-1"><a href="#🔍-我的思考过程-1" class="headerlink" title="🔍 我的思考过程"></a>🔍 我的思考过程</h4><ol>
+<li><strong>关键洞察</strong>：回文正反读一样 → LPS(s) &#x3D; LCS(s, reverse(s))</li>
+<li>直接复用刚写好的 LCS 代码，反转 s 后调用</li>
+<li>一行代码解决核心逻辑</li>
+</ol>
+<h4 id="💡-对比收获-1"><a href="#💡-对比收获-1" class="headerlink" title="💡 对比收获"></a>💡 对比收获</h4><ul>
+<li><strong>回文 ↔ LCS 的等价转换</strong>：这是 DP 中”问题转化”的经典案例 — 不写新 DP，而是把新问题映射到已解决的问题</li>
+<li><strong>区间 DP 备选</strong>：也可以直接在原串上 dp[i][j] 表示 s[i..j] 的 LPS</li>
+<li>两种方法核心转移一样：相等 +2 &#x2F; 不等取 max</li>
+<li>复用的力量：1143 写完，516 几乎零成本解决</li>
+</ul>
+<hr>
+<h3 id="Medium-最长回文子串-5"><a href="#Medium-最长回文子串-5" class="headerlink" title="[Medium] 最长回文子串 (5)"></a>[Medium] 最长回文子串 (5)</h3><h4 id="🤔-我的原始思路-2"><a href="#🤔-我的原始思路-2" class="headerlink" title="🤔 我的原始思路"></a>🤔 我的原始思路</h4><p>子串必须连续<br>以每个字符开始扩散找到所有回文子串<br>dp[i][j]表示s[i,j]为回文子串</p>
+<h4 id="🔍-我的思考过程-2"><a href="#🔍-我的思考过程-2" class="headerlink" title="🔍 我的思考过程"></a>🔍 我的思考过程</h4><ol>
+<li><strong>先写中心扩散</strong>：expand(l, r) 向两边扩散，while 结束后回文范围是 [left+1, right-1]</li>
+<li><strong>踩坑</strong>：expand 返回 {left, right} 导致 substr 取错，修正为 {left+1, right-1}</li>
+<li><strong>对比写法</strong>：更简洁的写法是 expand 直接返回长度 (r - l - 1)，用 start + maxLen 记录</li>
+<li><strong>区间 DP 留到明天</strong>：按长度从小到大遍历，dp[i][j] 为 bool</li>
+</ol>
+<h4 id="💡-对比收获-2"><a href="#💡-对比收获-2" class="headerlink" title="💡 对比收获"></a>💡 对比收获</h4><ul>
+<li><strong>中心扩散法</strong>：O(n²) 时间，O(1) 空间，面试常用</li>
+<li><strong>substring vs subsequence</strong>：516 可跳字符→LCS 转化，5 必须连续→中心扩散</li>
+<li><strong>区间 DP 遍历顺序</strong>：按长度从小到大（和 LCS 按下标顺序不同！）</li>
+<li><strong>三种回文 DP 排布</strong>：<ul>
+<li>516 LPS：dp[i][j] &#x3D; 长度，可跳字符</li>
+<li>5 LPS：dp[i][j] &#x3D; bool，连续</li>
+<li>647 回文计数：bool dp + count</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="📌-今日进度"><a href="#📌-今日进度" class="headerlink" title="📌 今日进度"></a>📌 今日进度</h3><table>
+<thead>
+<tr>
+<th align="center">题号</th>
+<th align="left">题目</th>
+<th align="left">核心技巧</th>
+<th align="center">状态</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1143</td>
+<td align="left">Longest Common Subsequence</td>
+<td align="left">双序列 DP</td>
+<td align="center">✅</td>
+</tr>
+<tr>
+<td align="center">516</td>
+<td align="left">Longest Palindromic Subsequence</td>
+<td align="left">LCS 应用</td>
+<td align="center">✅</td>
+</tr>
+</tbody></table>
+<h2 id="学习记录"><a href="#学习记录" class="headerlink" title="学习记录"></a>学习记录</h2><h2 id="📚-2026-06-11-学习总结-—-动态规划-Day-4：双序列-DP"><a href="#📚-2026-06-11-学习总结-—-动态规划-Day-4：双序列-DP" class="headerlink" title="📚 2026-06-11 学习总结 — 动态规划 Day 4：双序列 DP"></a>📚 2026-06-11 学习总结 — 动态规划 Day 4：双序列 DP</h2><blockquote>
+<p>从 LIS 到 LCS：一维”以 i 结尾” → 二维”前 i 和前 j”，双序列 DP 入门</p>
+</blockquote>
+<hr>
+<h3 id="Medium-最长公共子序列-1143-1"><a href="#Medium-最长公共子序列-1143-1" class="headerlink" title="[Medium] 最长公共子序列 (1143)"></a>[Medium] 最长公共子序列 (1143)</h3><h4 id="🎯-核心思路"><a href="#🎯-核心思路" class="headerlink" title="🎯 核心思路"></a>🎯 核心思路</h4><p>二维 DP：dp[i][j] 表示 text1[0..i-1] 和 text2[0..j-1] 的 LCS 长度。关键转移：</p>
+<ul>
+<li>末尾字符相等 → 接上这个字符：dp[i][j] &#x3D; dp[i-1][j-1] + 1</li>
+<li>末尾不等 → 取跳过其中一个的最大值：dp[i][j] &#x3D; max(dp[i-1][j], dp[i][j-1])</li>
+</ul>
+<h4 id="🔑-关键代码片段"><a href="#🔑-关键代码片段" class="headerlink" title="🔑 关键代码片段"></a>🔑 关键代码片段</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">longestCommonSubsequence</span><span class="params">(string text1, string text2)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> m = text<span class="number">1.</span><span class="built_in">size</span>(), n = text<span class="number">2.</span><span class="built_in">size</span>();</span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">dp</span>(m + <span class="number">1</span>, <span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;(n + <span class="number">1</span>, <span class="number">0</span>));</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= m; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt;= n; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (text1[i<span class="number">-1</span>] == text2[j<span class="number">-1</span>])</span><br><span class="line">                dp[i][j] = dp[i<span class="number">-1</span>][j<span class="number">-1</span>] + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                dp[i][j] = <span class="built_in">max</span>(dp[i<span class="number">-1</span>][j], dp[i][j<span class="number">-1</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp[m][n];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="📚-学到的知识点"><a href="#📚-学到的知识点" class="headerlink" title="📚 学到的知识点"></a>📚 学到的知识点</h4><ul>
+<li><strong>双序列 DP 框架</strong>：两个序列&#x2F;字符串的比较问题，常用 dp[i][j] 表示”前 i 和前 j”</li>
+<li><strong>三种转移来源</strong>：左上（匹配）、上（跳过 text1）、左（跳过 text2）— 二维 DP 的经典三角依赖</li>
+<li><strong>size+1 技巧</strong>：dp(m+1)×(n+1) 让边界自动为 0，下标 1-based，简化代码</li>
+<li><strong>LIS → LCS</strong>：一维”以 i 结尾”扩展到二维”前 i 和前 j”，子序列 DP 的两种视角</li>
+<li><strong>滚动数组优化</strong>：dp[i][j] 只依赖 dp[i-1][j-1]、dp[i-1][j]、dp[i][j-1]，可优化为 O(n) 空间</li>
+</ul>
+<h4 id="⚠️-易错点-反思"><a href="#⚠️-易错点-反思" class="headerlink" title="⚠️ 易错点 &amp; 反思"></a>⚠️ 易错点 &amp; 反思</h4><ul>
+<li>⚠️ 下标对应：dp[i][j] 对应 text1[i-1]、text2[j-1]，不是 text1[i]、text2[j]</li>
+<li>⚠️ 不要写成 dp(i, j) 从 0 开始，否则 i-1&#x2F;j-1 越界需要额外 if 判断</li>
+<li>✨ 和 62&#x2F;63 对比：62 的二维 DP 路径只能向右&#x2F;下，LCS 可以”跳过”字符，机动性更大</li>
+<li>✨ 和 LIS 对比：LIS 需要遍历所有 j &lt; i，LCS 只需看 i-1&#x2F;j-1 这一步——牺牲一维换来了 O(1) 转移</li>
+</ul>
+<h4 id="🔗-关联题目"><a href="#🔗-关联题目" class="headerlink" title="🔗 关联题目"></a>🔗 关联题目</h4><ul>
+<li><ol start="583">
+<li>Delete Operation for Two Strings（m + n - 2*LCS）</li>
+</ol>
+</li>
+<li><ol start="712">
+<li>Minimum ASCII Delete Sum for Two Strings（LCS 加权版）</li>
+</ol>
+</li>
+<li><ol start="516">
+<li>Longest Palindromic Subsequence（LCS(s, reverse(s))！）</li>
+</ol>
+</li>
+<li><ol start="5">
+<li>Longest Palindromic Substring（连续版，中心扩散&#x2F;DP）</li>
+</ol>
+</li>
+</ul>
+<hr>
+<hr>
+<h3 id="Medium-最长回文子序列-516-1"><a href="#Medium-最长回文子序列-516-1" class="headerlink" title="[Medium] 最长回文子序列 (516)"></a>[Medium] 最长回文子序列 (516)</h3><h4 id="🎯-核心思路-1"><a href="#🎯-核心思路-1" class="headerlink" title="🎯 核心思路"></a>🎯 核心思路</h4><p>回文正反读一样 → LPS(s) &#x3D; LCS(s, reverse(s))。将原问题转化为已解决的 LCS 问题，复用 1143 的代码即可。一行核心逻辑：<code>return longestCommonSubsequence(s, string(s.rbegin(), s.rend()))</code>。</p>
+<h4 id="🔑-关键代码片段-1"><a href="#🔑-关键代码片段-1" class="headerlink" title="🔑 关键代码片段"></a>🔑 关键代码片段</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">longestPalindromeSubseq</span><span class="params">(string s)</span> </span>&#123;</span><br><span class="line">    string rev = <span class="built_in">string</span>(s.<span class="built_in">rbegin</span>(), s.<span class="built_in">rend</span>());</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">longestCommonSubsequence</span>(s, rev);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">longestCommonSubsequence</span><span class="params">(string text1, string text2)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> m = text<span class="number">1.</span><span class="built_in">size</span>(), n = text<span class="number">2.</span><span class="built_in">size</span>();</span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">dp</span>(m + <span class="number">1</span>, <span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;(n + <span class="number">1</span>, <span class="number">0</span>));</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= m; i++)</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt;= n; j++)</span><br><span class="line">            <span class="keyword">if</span> (text1[i<span class="number">-1</span>] == text2[j<span class="number">-1</span>])</span><br><span class="line">                dp[i][j] = dp[i<span class="number">-1</span>][j<span class="number">-1</span>] + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                dp[i][j] = <span class="built_in">max</span>(dp[i<span class="number">-1</span>][j], dp[i][j<span class="number">-1</span>]);</span><br><span class="line">    <span class="keyword">return</span> dp[m][n];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="📚-学到的知识点-1"><a href="#📚-学到的知识点-1" class="headerlink" title="📚 学到的知识点"></a>📚 学到的知识点</h4><ul>
+<li><strong>问题转化</strong>：将回文问题映射为 LCS，不需设计新 DP</li>
+<li>**LPS(s) &#x3D; LCS(s, reverse(s))**：回文的对称性决定反转后不变</li>
+<li><strong>区间 DP 替代方案</strong>：dp[i][j] 表示 s[i..j] 的 LPS，s[i]&#x3D;s[j] 时 +2 向两边扩展</li>
+<li><strong>复用思维</strong>：写完 LCS 后 LPS 几乎零成本解决，体现了模块化复用的价值</li>
+</ul>
+<h4 id="⚠️-易错点-反思-1"><a href="#⚠️-易错点-反思-1" class="headerlink" title="⚠️ 易错点 &amp; 反思"></a>⚠️ 易错点 &amp; 反思</h4><ul>
+<li>⚠️ 反转字符串用 <code>s.rbegin(), s.rend()</code> 而非额外循环</li>
+<li>⚠️ 注意是 subsequence 不是 substring — 可以跳字符</li>
+<li>✨ 连续版见 5. Longest Palindromic Substring（不能跳字符，解法不同）</li>
+<li>✨ 对比区间 DP：LCS 法写法简单，区间 DP 空间可优化</li>
+</ul>
+<h4 id="🔗-关联题目-1"><a href="#🔗-关联题目-1" class="headerlink" title="🔗 关联题目"></a>🔗 关联题目</h4><ul>
+<li><ol start="5">
+<li>Longest Palindromic Substring（连续回文子串）</li>
+</ol>
+</li>
+<li><ol start="647">
+<li>Palindromic Substrings（回文子串计数）</li>
+</ol>
+</li>
+<li><ol start="583">
+<li>Delete Operation for Two Strings（m + n - 2*LCS）</li>
+</ol>
+</li>
+</ul>
+<hr>
+<h3 id="Medium-最长回文子串-5-1"><a href="#Medium-最长回文子串-5-1" class="headerlink" title="[Medium] 最长回文子串 (5)"></a>[Medium] 最长回文子串 (5)</h3><h4 id="🎯-核心思路-2"><a href="#🎯-核心思路-2" class="headerlink" title="🎯 核心思路"></a>🎯 核心思路</h4><p>中心扩散法：每个位置作为中心向两边扩展，检查回文。区分奇数长度（单字符中心）和偶数长度（双字符中心）。用 expand 函数返回回文长度，<code>start + maxLen</code> 记录全局最长。</p>
+<h4 id="🔑-关键代码片段-2"><a href="#🔑-关键代码片段-2" class="headerlink" title="🔑 关键代码片段"></a>🔑 关键代码片段</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">expand</span><span class="params">(<span class="type">const</span> string&amp; s, <span class="type">int</span> l, <span class="type">int</span> r)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (l &gt;= <span class="number">0</span> &amp;&amp; r &lt; s.<span class="built_in">size</span>() &amp;&amp; s[l] == s[r]) &#123;</span><br><span class="line">        l--; r++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> r - l - <span class="number">1</span>;  <span class="comment">// 回文长度</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">string <span class="title">longestPalindrome</span><span class="params">(string s)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> start = <span class="number">0</span>, maxLen = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; s.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">        <span class="type">int</span> len = <span class="built_in">max</span>(<span class="built_in">expand</span>(s, i, i), <span class="built_in">expand</span>(s, i, i + <span class="number">1</span>));</span><br><span class="line">        <span class="keyword">if</span> (len &gt; maxLen) &#123;</span><br><span class="line">            maxLen = len;</span><br><span class="line">            start = i - (len - <span class="number">1</span>) / <span class="number">2</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> s.<span class="built_in">substr</span>(start, maxLen);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="📚-学到的知识点-2"><a href="#📚-学到的知识点-2" class="headerlink" title="📚 学到的知识点"></a>📚 学到的知识点</h4><ul>
+<li><strong>中心扩散法</strong>：O(n²) 时间 O(1) 空间，面试常考，实现简单</li>
+<li><strong>奇偶统一</strong>：奇数中心是 i,i，偶数中心是 i,i+1，用 max 取较大者</li>
+<li><strong>start 计算</strong>：<code>i - (len-1)/2</code> 从中心回推到起始位置</li>
+</ul>
+<h4 id="⚠️-易错点-反思-2"><a href="#⚠️-易错点-反思-2" class="headerlink" title="⚠️ 易错点 &amp; 反思"></a>⚠️ 易错点 &amp; 反思</h4><ul>
+<li>⚠️ expand 返回 <code>r - l - 1</code> 而不是 <code>r - l + 1</code>（while 多走了一步）</li>
+<li>⚠️ 奇偶分开处理，不要只考虑奇数中心</li>
+<li>✨ 区间 DP 版留到明天练习：按长度从小到大遍历，dp[i][j] &#x3D; bool</li>
+<li>✨ substring 和 subsequence 的解法完全不同（对比 516）</li>
+</ul>
+<h4 id="🔗-关联题目-2"><a href="#🔗-关联题目-2" class="headerlink" title="🔗 关联题目"></a>🔗 关联题目</h4><ul>
+<li><ol start="516">
+<li>Longest Palindromic Subsequence（子序列版）</li>
+</ol>
+</li>
+<li><ol start="647">
+<li>Palindromic Substrings（计数版，也是中心扩散）</li>
+</ol>
+</li>
+<li><ol start="214">
+<li>Shortest Palindrome（中心扩散 + KMP）</li>
+</ol>
+</li>
+</ul>
+<hr>
+<h3 id="📌-今日进度-1"><a href="#📌-今日进度-1" class="headerlink" title="📌 今日进度"></a>📌 今日进度</h3><table>
+<thead>
+<tr>
+<th align="center">题号</th>
+<th align="left">题目</th>
+<th align="left">核心技巧</th>
+<th align="center">状态</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1143</td>
+<td align="left">Longest Common Subsequence</td>
+<td align="left">双序列 DP</td>
+<td align="center">✅</td>
+</tr>
+<tr>
+<td align="center">516</td>
+<td align="left">Longest Palindromic Subsequence</td>
+<td align="left">LCS 应用</td>
+<td align="center">✅</td>
+</tr>
+<tr>
+<td align="center">5</td>
+<td align="left">Longest Palindromic Substring</td>
+<td align="left">中心扩散&#x2F;区间DP</td>
+<td align="center">✅</td>
+</tr>
+</tbody></table>
+
+</article>
+    
+    
+
+</div>
+<div class="trm-post-next-prev row">
+    <div class="col-lg-12">
+        <!-- title -->
+        <h5 class="trm-title-with-divider">
+            其他文章
+            <span data-number="02"></span>
+        </h5>
+    </div>
+    
+        <div class="col-lg-6">
+    <div class="trm-blog-card trm-scroll-animation">
+        <a href="/ZeroDream/2026/06/12/LeetCode/LeetCode-%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-2026-06-12/" class="trm-cover-frame trm-anima-link">
+            
+            
+                <img alt="cover" class="no-fancybox" src="/ZeroDream/images/post/leetcode/cover-09.png">
+            
+        </a>
+        
+        <div class="trm-card-descr">
+            <div class="trm-label trm-category trm-mb-20">
+                <a href=" /ZeroDream/categories/LeetCode/">
+                    LeetCode
+                </a>
+            </div>
+            <h5>
+                <a href="/ZeroDream/2026/06/12/LeetCode/LeetCode-%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-2026-06-12/" class="trm-anima-link">
+                    LeetCode 学习记录 2026-06-12
+                </a>
+            </h5>
+            <div class="trm-divider trm-mb-20 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>26/06/12</li>
+                <li>23:00</li>
+                
+                
+            </ul>
+        </div>
+    </div>
+</div>
+    
+    
+        <div class="col-lg-6">
+    <div class="trm-blog-card trm-scroll-animation">
+        <a href="/ZeroDream/2026/06/10/LeetCode/LeetCode-%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-2026-06-10/" class="trm-cover-frame trm-anima-link">
+            
+            
+                <img alt="cover" class="no-fancybox" src="/ZeroDream/images/post/leetcode/cover-20.png">
+            
+        </a>
+        
+        <div class="trm-card-descr">
+            <div class="trm-label trm-category trm-mb-20">
+                <a href=" /ZeroDream/categories/LeetCode/">
+                    LeetCode
+                </a>
+            </div>
+            <h5>
+                <a href="/ZeroDream/2026/06/10/LeetCode/LeetCode-%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-2026-06-10/" class="trm-anima-link">
+                    LeetCode 学习记录 2026-06-10
+                </a>
+            </h5>
+            <div class="trm-divider trm-mb-20 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>26/06/10</li>
+                <li>23:00</li>
+                
+                
+            </ul>
+        </div>
+    </div>
+</div>
+    
+</div>
+
+    
+
+    <div id="giscus-wrap" class="trm-card trm-scroll-animation comment-container"></div>
+<script data-swup-reload-script>
+    function loadGiscus() {
+        let nowTheme = document.documentElement.classList.contains('dark') ? '' : ''
+        const config = {
+            src: 'https://giscus.app/client.js',
+            "data-repo": 'xiaomengxmeng/ZeroDream',
+            "data-repo-id": 'R_kgDOQHFw4Q',
+            "data-category": 'Announcements',
+            "data-category-id": 'DIC_kwDOQHFw4c4CxyP3',
+            "data-mapping": 'pathname',
+            "data-reactions-enabled": '1',
+            "data-emit-metadata": '0',
+            "data-theme": nowTheme,
+            "data-lang": 'zh-CN',
+            crossorigin: "anonymous",
+            async: true
+        }
+        let ele = document.createElement('script')
+        for (let key in config) {
+            ele.setAttribute(key, config[key])
+        }
+        document.getElementById('giscus-wrap').insertAdjacentElement('afterbegin', ele)
+    }
+
+    function changeGiscusTheme() {
+        let theme = document.documentElement.classList.contains('dark') ? '' : ''
+
+        function sendMessage(message) {
+            const iframe = document.querySelector('iframe.giscus-frame');
+            if (!iframe) return;
+            iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+
+        sendMessage({
+            setConfig: {
+                theme: theme
+            }
+        });
+    }
+
+    loadGiscus();
+</script>
+
+
+
+                    <div class="trm-divider footer-divider"></div>
+
+                    <!-- footer -->
+                    <footer class="trm-footer-card trm-scroll-animation">
+
+    
+
+    
+
+    
+        <div class="trm-footer-item">
+            <span>
+                由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v7.3.0
+            </span>
+            <span class="footer-separator" data-separator=" | "></span>
+            <span> 
+                主题 - 
+                <a rel="noopener" href='https://github.com/MaLuns/hexo-theme-async' target='_blank'>Async</a>
+                v2.2.6
+            </span>
+        </div>
+      
+
+     
+
+     
+</footer>
+                    <!-- footer end -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+            <!-- body end -->
+
+            
+
+            
+<div class="trm-fixed-container">
+    
+    
+        <div class="trm-fixed-btn" data-title="阅读模式" onclick="asyncFun.switchReadMode()">
+            <i class="iconfont fas fa-book-reader"></i>
+        </div>
+    
+    
+    <div id="trm-back-top" class="trm-fixed-btn" data-title="回到顶部">
+        <i class="iconfont fas fa-arrow-up"></i>
+    </div>
+</div>
+        </div>
+      </div>
+      <!-- scroll container end -->
+  </div>
+  <!-- app wrapper end -->
+
+  
+    <div class="trm-search-popup">
+        <div class="trm-search-wrapper">
+            <div class="form trm-search-form">
+                <div class="trm-search-input-icon">
+                    <i class="iconfont fas fa-search"></i>
+                </div>
+                <input class="trm-search-input" type="text" placeholder="搜索文章...">
+                <div class="trm-search-btn-close">
+                    <i class="iconfont fas fa-times"></i>
+                </div>
+            </div>
+            <div class="trm-search-result-container">
+                <div class="trm-search-empty">
+                    请输入关键词进行搜索
+                </div>
+            </div>
+            <div class="trm-search-footer">
+                <div class="trm-search-stats"></div>
+                <ul class="trm-search-commands">
+                    <li>
+                        <kbd class="command-palette-commands-key">
+                            <svg width="15" height="15" aria-label="Escape key" role="img">
+                                <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="1.2">
+                                    <path
+                                        d="M13.6167 8.936c-.1065.3583-.6883.962-1.4875.962-.7993 0-1.653-.9165-1.653-2.1258v-.5678c0-1.2548.7896-2.1016 1.653-2.1016.8634 0 1.3601.4778 1.4875 1.0724M9 6c-.1352-.4735-.7506-.9219-1.46-.8972-.7092.0246-1.344.57-1.344 1.2166s.4198.8812 1.3445.9805C8.465 7.3992 8.968 7.9337 9 8.5c.032.5663-.454 1.398-1.4595 1.398C6.6593 9.898 6 9 5.963 8.4851m-1.4748.5368c-.2635.5941-.8099.876-1.5443.876s-1.7073-.6248-1.7073-2.204v-.4603c0-1.0416.721-2.131 1.7073-2.131.9864 0 1.6425 1.031 1.5443 2.2492h-2.956">
+                                    </path>
+                                </g>
+                            </svg>
+                        </kbd>
+                        <span class="command-palette-Label">to close</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+  <!-- Plugin -->
+
+
+
+
+    
+    
+<script src="https://unpkg.com/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+
+    
+
+    
+
+    
+
+    <!-- 数学公式 -->
+    
+
+    <!-- 评论插件 -->
+    
+        
+
+        
+    
+
+		
+
+
+
+
+    <!-- Service Worker -->
+    
+    <!-- baidu push -->
+    
+
+
+<script id="async-script" src="/ZeroDream/js/main.js?v=2.2.6"></script>
+
+<!-- CDN -->
+
+
+    
+
+    
+
+    
+
+
+
+</body>
+
+</html>

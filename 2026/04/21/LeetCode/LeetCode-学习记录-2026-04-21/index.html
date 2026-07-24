@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="x5-fullscreen" content="true">
+<meta name="full-screen" content="yes">
+<meta name="theme-color" content="#317EFB" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=0" name="viewport">
+<meta name="description" content="思考过程[Medium] Swap Nodes in Pairs (24)🤔 我的原始思路两两交换节点第一步保留当前节点的前一个节点 保留下一节点指向的节点pre cur next next-&gt;next第二步 pre指向next next 指向 cur cur指向next-&gt;next奇数个节点最后一个节点不需要交换需要虚拟头节点来辅助头节点交换时正确指向头节点 🔍 我的思考过程St">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode 学习记录 2026-04-21">
+<meta property="og:url" content="https://xiaomengxmeng.github.io/ZeroDream/2026/04/21/LeetCode/LeetCode-%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-2026-04-21/index.html">
+<meta property="og:site_name" content="ZeroDream Blog">
+<meta property="og:description" content="思考过程[Medium] Swap Nodes in Pairs (24)🤔 我的原始思路两两交换节点第一步保留当前节点的前一个节点 保留下一节点指向的节点pre cur next next-&gt;next第二步 pre指向next next 指向 cur cur指向next-&gt;next奇数个节点最后一个节点不需要交换需要虚拟头节点来辅助头节点交换时正确指向头节点 🔍 我的思考过程St">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-04-21T15:00:00.000Z">
+<meta property="article:modified_time" content="2026-07-24T16:44:44.779Z">
+<meta property="article:author" content="ZeroDream">
+<meta property="article:tag" content="LeetCode">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="学习记录">
+<meta name="twitter:card" content="summary">
+
+
+<title >LeetCode 学习记录 2026-04-21</title>
+
+<!-- Favicon -->
+
+    <link href='/ZeroDream/images/favicon.ico?v=2.2.6' rel='icon' type='image/png' sizes='16x16' ></link>
+
+
+    <link href='/ZeroDream/images/favicon.ico?v=2.2.6' rel='icon' type='image/png' sizes='32x32' ></link>
+
+
+
+
+<!-- Plugin -->
+
+
+
+
+    
+<link rel="stylesheet" href="/ZeroDream/css/plugins/bootstrap.row.css">
+
+    
+<link rel="stylesheet" href="https://unpkg.com/@fancyapps/ui@4.0/dist/fancybox.css">
+
+    
+    
+
+
+
+
+<!-- Icon -->
+
+    
+<link rel="stylesheet" href="/ZeroDream/css/plugins/font-awesome.min.css">
+
+
+
+
+<!-- Variable -->
+<script>window.ASYNC_CONFIG = {"hostname":"xiaomengxmeng.github.io","author":"ZeroDream","root":"/ZeroDream/","typed_text":null,"theme_version":"2.2.6","theme":{"switch":true,"default":"style-light"},"favicon":{"logo":"/images/favicon.ico","icon16":"/images/favicon.ico","icon32":"/images/favicon.ico","apple_touch_icon":null,"webmanifest":null,"visibilitychange":true,"hidden":"/failure.ico","show_text":"(/≧▽≦/)咦！又好了！","hide_text":"(●—●)喔哟，崩溃啦！"},"i18n":{"placeholder":"搜索文章...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）","author":"本文作者：","copyright_link":"本文链接：","copyright_license_title":"版权声明：","copyright_license_content":"本博客所有文章除特别声明外，均默认采用 undefined 许可协议。","copy_success":"复制成功","copy_failure":"复制失败","open_read_mode":"进入阅读模式","exit_read_mode":"退出阅读模式","notice_outdate_message":"距离上次更新已经 undefined 天了, 文章内容可能已经过时。","sticky":"置顶","just":"刚刚","min":"分钟前","hour":"小时前","day":"天前","month":"个月前"},"swup":false,"plugin":{"flickr_justified_gallery":"https://unpkg.com/flickr-justified-gallery@latest/dist/fjGallery.min.js"},"icons":{"sun":"far fa-sun","moon":"far fa-moon","play":"fas fa-play","email":"far fa-envelope","next":"fas fa-arrow-right","calendar":"far fa-calendar-alt","clock":"far fa-clock","user":"far fa-user","back_top":"fas fa-arrow-up","close":"fas fa-times","search":"fas fa-search","reward":"fas fa-hand-holding-usd","toc_tag":"fas fa-th-list","read":"fas fa-book-reader","arrows":"fas fa-arrows-alt-h","double_arrows":"fas fa-angle-double-down","copy":"fas fa-copy"},"icontype":"font","highlight":{"plugin":"highlighjs","theme":true,"copy":true,"lang":true,"title":"default","height_limit":false},"toc":{"post_title":true},"live_time":{"start_time":"","prefix":"博客已萌萌哒运行 undefined 天"},"danmu":{"enable":false,"el":".trm-banner"}};</script>
+<script id="async-page-config">window.PAGE_CONFIG = {"isPost":true,"isHome":false,"postUpdate":"2026-07-25 00:44:44"};</script>
+
+<!-- Theme mode css -->
+<link data-swup-theme rel="stylesheet" href="/ZeroDream/css/index.css?v=2.2.6" id="trm-switch-style">
+<script>
+    let defaultMode = ASYNC_CONFIG.theme.default !=='auto' ?  ASYNC_CONFIG.theme.default : (window.matchMedia("(prefers-color-scheme: light)").matches ? 'style-light' : 'style-dark')
+    let catchMode = localStorage.getItem('theme-mode') || defaultMode;
+    let type = catchMode === 'style-dark' ? 'add' : 'remove';
+    document.documentElement.classList[type]('dark')
+</script>
+
+<!-- CDN -->
+
+
+    
+    
+
+
+
+<!-- Site Analytics -->
+
+ 
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+
+  <!-- app wrapper -->
+  <div class="trm-app-frame">
+
+    <!-- page preloader -->
+    <div class="trm-preloader">
+    <div class="trm-holder">
+        <div class="preloader">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+</div>
+    <!-- page preloader end -->
+
+    <!-- change mode preloader -->
+    <div class="trm-mode-swich-animation-frame">
+    <div class="trm-mode-swich-animation">
+        <i class="i-sun"><i class="iconfont far fa-sun"></i></i>
+        <div class="trm-horizon"></div>
+        <i class="i-moon"><i class="iconfont far fa-moon"></i></i>
+    </div>
+</div>
+    <!-- change mode preloader end -->
+
+      <!-- scroll container -->
+      <div id="trm-dynamic-content" class="trm-swup-animation">
+        <div id="trm-scroll-container" class="trm-scroll-container" style="opacity: 0">
+            <!-- top bar -->
+            <header class="trm-top-bar">
+	<div class="container">
+		<div class="trm-left-side">
+			<!-- logo -->
+<a href="/ZeroDream/" class="trm-logo-frame trm-anima-link">
+    
+        <img alt="logo" src="/ZeroDream/images/favicon.ico">
+    
+    
+        <div class="trm-logo-text">
+            小梦<span>随笔</span>
+        </div>
+    
+</a>
+<!-- logo end -->
+		</div>
+		<div class="trm-right-side">
+			<!-- menu -->
+<div class="trm-menu">
+    <nav>
+        <ul>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/ZeroDream/" target="">
+                    首页
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/ZeroDream/archives/" target="">
+                    归档
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/ZeroDream/tags/" target="">
+                    menu.tags
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/ZeroDream/categories/" target="">
+                    menu.categories
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/ZeroDream/about/" target="">
+                    关于
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/ZeroDream/links/" target="">
+                    友链
+                </a>
+                
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+<!-- menu end -->
+			
+    <!-- mode switcher place -->
+    <div class="trm-mode-switcher-place">
+        <div class="trm-mode-switcher">
+            <i class="iconfont far fa-sun"></i>
+            <input class="tgl tgl-light" id="trm-swich" type="checkbox">
+            <label class="trm-swich" for="trm-swich"></label>
+            <i class="iconfont far fa-moon"></i>
+        </div>
+    </div>
+    <!-- mode switcher place end -->
+
+			
+     
+
+		</div>
+		<div class="trm-menu-btn">
+			<span></span>
+		</div>
+	</div>
+</header>
+            <!-- top bar end -->
+
+            <!-- body -->
+            
+<div class="trm-content-start">
+    <!-- banner -->
+    <div class="trm-banner">
+    
+    <!-- banner cover -->
+    <img style="object-position:top;object-fit:cover;" alt="banner" class="trm-banner-cover" src="/ZeroDream/images/background/%E5%A5%B3%E9%AB%98%E4%B8%89%E4%BA%BA.png">
+    <!-- banner cover end -->
+    
+
+    <!-- banner content -->
+    <div class="trm-banner-content trm-overlay">
+        <div class="container">
+            <div class="row">
+                
+                <div class="col-lg-4"></div>
+                
+                <div class="col-lg-8">
+
+                    <!-- banner title -->
+                    <div class="trm-banner-text ">
+                        <div class="trm-label trm-mb-20">
+                            NEWS LETTER
+                        </div>
+                        <h1 class="trm-mb-30 trm-hsmb-font">
+                            LeetCode 学习记录 2026-04-21
+                        </h1>
+
+                        
+                            <ul class="trm-breadcrumbs trm-label">
+                                <li>
+                                    <a href="/ZeroDream/" class="trm-anima-link">Home</a>
+                                </li>
+                                <li>
+                                    <span>
+                                        2026
+                                    </span>
+                                </li>
+                            </ul>
+                        
+                    </div>
+                    <!-- banner title end -->
+
+                    <!-- scroll hint -->
+                    <span id="scroll-triger" class="trm-scroll-hint-frame">
+                        <div class="trm-scroll-hint"></div>
+                        <span class="trm-label">Scroll down</span>
+                    </span>
+                    <!-- scroll hint end -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- banner content end -->
+</div>
+    <!-- banner end -->
+    <div class="container">
+        <div class="row">
+            
+                <div class="trm-page-sidebar col-lg-4 hidden-sm">
+                    <!-- main card -->
+                    <div class="trm-main-card-frame trm-sidebar">
+    <div class="trm-main-card"> 
+        <!-- card header -->
+<div class="trm-mc-header">
+    <div class="trm-avatar-frame trm-mb-20">
+        <img alt="Avatar" class="trm-avatar trm-light-icon" src="/ZeroDream/images/head/head.jpg"> <img alt="Avatar" class="trm-avatar trm-dark-icon" src="/ZeroDream/images/head/darkhead.jpg">
+    </div>
+    <h5 class="trm-name trm-mb-15">
+        ZeroDream
+    </h5>
+    
+</div>
+<!-- card header end -->
+        <!-- sidebar social -->
+
+<div class="trm-divider trm-mb-40 trm-mt-40"></div>
+<div class="trm-social">
+    
+        <a href="https://github.com" title="Github" rel="nofollow" target="_blank">
+            <i class="iconfont fab fa-github"></i>
+        </a>
+    
+</div>
+
+<!-- sidebar social end -->
+        <!-- info -->
+<div class="trm-divider trm-mb-40 trm-mt-40"></div>
+<ul class="trm-table trm-mb-20">
+    
+        <li>
+            <div class="trm-label">
+                地址:
+            </div>
+            <div class="trm-label trm-label-light">
+                中国 江西
+            </div>
+        </li>
+    
+        <li>
+            <div class="trm-label">
+                职业:
+            </div>
+            <div class="trm-label trm-label-light">
+                开发者
+            </div>
+        </li>
+    
+</ul>
+<!-- info end -->
+
+        
+    <div class="trm-divider trm-mb-40 trm-mt-40"></div>
+    <!-- action button -->
+    <div class="text-center">
+        <a href="mailto:xuanmeng404@163.com" class="trm-btn">
+            联系我
+            <i class="iconfont far fa-envelope"></i>
+        </a>
+    </div>
+    <!-- action button end -->
+
+    </div>
+</div>
+                    <!-- main card end -->
+                </div>
+            
+            <div class="trm-page-content col-lg-8">
+                <div id="trm-content" class="trm-content">
+                    <div class="trm-post-info row hidden-sm">
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-calendar-alt trm-icon"></i><br>
+            04/21
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-clock trm-icon"></i><br>
+            23:00
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div id="post-author" class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-user trm-icon"></i><br>
+            ZeroDream
+        </div>
+    </div>
+</div>
+<div class="trm-card ">
+    <article id="article-container" class="trm-publication">
+    <h2 id="思考过程"><a href="#思考过程" class="headerlink" title="思考过程"></a>思考过程</h2><h3 id="Medium-Swap-Nodes-in-Pairs-24"><a href="#Medium-Swap-Nodes-in-Pairs-24" class="headerlink" title="[Medium] Swap Nodes in Pairs (24)"></a>[Medium] Swap Nodes in Pairs (24)</h3><h4 id="🤔-我的原始思路"><a href="#🤔-我的原始思路" class="headerlink" title="🤔 我的原始思路"></a>🤔 我的原始思路</h4><p>两两交换节点<br>第一步保留当前节点的前一个节点 保留下一节点指向的节点<br>pre cur next next-&gt;next<br>第二步 pre指向next next 指向 cur cur指向next-&gt;next<br>奇数个节点最后一个节点不需要交换<br>需要虚拟头节点来辅助头节点交换时正确指向头节点</p>
+<h4 id="🔍-我的思考过程"><a href="#🔍-我的思考过程" class="headerlink" title="🔍 我的思考过程"></a>🔍 我的思考过程</h4><p><strong>Step 1: 问题分析</strong></p>
+<ol>
+<li>核心要求：两两交换相邻节点，不能只改变值</li>
+<li>与 Reverse Linked List 的区别：部分交换而非全部反转</li>
+<li>关键：虚拟头节点 + 正确的交换顺序</li>
+</ol>
+<p><strong>Step 2: 设计方案</strong></p>
+<ul>
+<li><strong>虚拟头节点</strong>：统一处理头节点交换</li>
+<li><strong>四个节点</strong>：prev、cur、n1、n2</li>
+<li><strong>交换顺序</strong>：先连后断，先存后改</li>
+</ul>
+<p><strong>Step 3: 代码实现（迭代版）</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ListNode* <span class="title">swapPairs</span><span class="params">(ListNode* head)</span> </span>&#123;</span><br><span class="line">    ListNode* dummy = <span class="keyword">new</span> <span class="built_in">ListNode</span>(<span class="number">0</span>);</span><br><span class="line">    dummy-&gt;next = head;</span><br><span class="line">    ListNode* prev = dummy;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> (prev-&gt;next &amp;&amp; prev-&gt;next-&gt;next) &#123;</span><br><span class="line">        ListNode* cur = prev-&gt;next;</span><br><span class="line">        ListNode* n1 = cur-&gt;next;</span><br><span class="line">        ListNode* n2 = n1-&gt;next;</span><br><span class="line">        </span><br><span class="line">        prev-&gt;next = n1;    <span class="comment">// 先连</span></span><br><span class="line">        n1-&gt;next = cur;</span><br><span class="line">        cur-&gt;next = n2;     <span class="comment">// 后断</span></span><br><span class="line">        </span><br><span class="line">        prev = cur;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dummy-&gt;next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Step 4: 递归版本</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ListNode* <span class="title">swapPairs</span><span class="params">(ListNode* head)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!head || !head-&gt;next) <span class="keyword">return</span> head;</span><br><span class="line">    </span><br><span class="line">    ListNode* n1 = head-&gt;next;</span><br><span class="line">    ListNode* n2 = n1-&gt;next;</span><br><span class="line">    </span><br><span class="line">    n1-&gt;next = head;</span><br><span class="line">    head-&gt;next = <span class="built_in">swapPairs</span>(n2);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> n1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Step 5: 关键问题解答</strong></p>
+<p><strong>Q1: 为什么交换顺序不能换？</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">如果先 cur-&gt;next = n2：</span><br><span class="line">cur → n2</span><br><span class="line">n1 与链表断开！无法再访问 n1-&gt;next</span><br><span class="line"></span><br><span class="line">正确：先保存 n2，再改变指针</span><br><span class="line">口诀：先连后断，先存后改</span><br></pre></td></tr></table></figure>
+
+<p><strong>Q2: 循环 → 递归 转换技巧</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">循环 → 递归 三步走：</span><br><span class="line">1. 终止条件：while (条件) → if (!条件) return</span><br><span class="line">2. 处理当前：循环体 → 递归函数体</span><br><span class="line">3. 处理剩余：更新变量 → 递归调用</span><br><span class="line"></span><br><span class="line">对比：</span><br><span class="line">| 循环 | 递归 |</span><br><span class="line">|------|------|</span><br><span class="line">| prev-&gt;next &amp;&amp; prev-&gt;next-&gt;next | head &amp;&amp; head-&gt;next |</span><br><span class="line">| prev = cur | swapPairs(n2) |</span><br><span class="line">| O(1) 空间 | O(n) 递归栈 |</span><br></pre></td></tr></table></figure>
+
+<h4 id="💡-对比收获"><a href="#💡-对比收获" class="headerlink" title="💡 对比收获"></a>💡 对比收获</h4><p><strong>新学到的知识点</strong>：</p>
+<ol>
+<li><strong>虚拟头节点</strong>：统一处理边界情况</li>
+<li><strong>交换顺序原则</strong>：先连后断，先存后改</li>
+<li><strong>循环转递归模板</strong>：终止条件 → 处理当前 → 递归调用</li>
+<li><strong>递归简洁性</strong>：代码更短，但空间复杂度更高</li>
+</ol>
+<h3 id="Easy-Linked-List-Cycle-141"><a href="#Easy-Linked-List-Cycle-141" class="headerlink" title="[Easy] Linked List Cycle (141)"></a>[Easy] Linked List Cycle (141)</h3><h4 id="🤔-我的原始思路-1"><a href="#🤔-我的原始思路-1" class="headerlink" title="🤔 我的原始思路"></a>🤔 我的原始思路</h4><p>链表中的节点指向了之前的节点<br>链表有环时，遍历会遍历到之前遍历过的节点<br>可以使用额外空间记录已访问节点<br>快指针在足够久时会与慢指针重合</p>
+<h4 id="🔍-我的思考过程-1"><a href="#🔍-我的思考过程-1" class="headerlink" title="🔍 我的思考过程"></a>🔍 我的思考过程</h4><p><strong>Step 1: 问题分析</strong></p>
+<ol>
+<li>核心要求：判断链表是否有环</li>
+<li>两种思路：哈希表记录已访问 &#x2F; 快慢指针相遇</li>
+</ol>
+<p><strong>Step 2: 初版代码实现</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(fast-&gt;next!=<span class="literal">nullptr</span> &amp;&amp; slow-&gt;next!=<span class="literal">nullptr</span>)&#123;</span><br><span class="line">    fast = fast-&gt;next;</span><br><span class="line">    slow = slow-&gt;next;</span><br><span class="line">    <span class="keyword">if</span>(fast==slow) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">if</span>(fast-&gt;next!=<span class="literal">nullptr</span>) fast = fast-&gt;next;</span><br><span class="line">    <span class="keyword">if</span>(fast==slow) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Step 3: 发现问题</strong></p>
+<ul>
+<li>❌ 当 <code>head == nullptr</code> 时，<code>fast-&gt;next</code> 崩溃</li>
+<li>❌ 循环条件应该检查 <code>fast &amp;&amp; fast-&gt;next</code></li>
+<li>❌ 两次检查 <code>fast == slow</code> 冗余</li>
+<li>❌ 快指针移动方式不标准</li>
+</ul>
+<p><strong>Step 4: 正确实现</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (fast &amp;&amp; fast-&gt;next) &#123;</span><br><span class="line">    slow = slow-&gt;next;          <span class="comment">// 慢指针走1步</span></span><br><span class="line">    fast = fast-&gt;next-&gt;next;    <span class="comment">// 快指针走2步</span></span><br><span class="line">    <span class="keyword">if</span> (slow == fast) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Step 5: 为什么快慢指针一定能相遇？</strong></p>
+<ul>
+<li>快指针比慢指针每轮多走 1 步</li>
+<li>在环内，每轮距离缩短 1</li>
+<li>最终距离变为 0（相遇）</li>
+</ul>
+<h4 id="💡-对比收获-1"><a href="#💡-对比收获-1" class="headerlink" title="💡 对比收获"></a>💡 对比收获</h4><p><strong>两种方法对比</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>空间复杂度</th>
+<th>思路</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>快慢指针</td>
+<td>O(1) ⭐</td>
+<td>追逐相遇</td>
+</tr>
+<tr>
+<td>哈希表</td>
+<td>O(n)</td>
+<td>记录已访问</td>
+</tr>
+</tbody></table>
+<p><strong>新学到的知识点</strong>：</p>
+<ol>
+<li><strong>快慢指针原理</strong>：速度差导致距离缩短，最终相遇</li>
+<li><strong>循环条件</strong>：<code>fast &amp;&amp; fast-&gt;next</code> 确保安全访问</li>
+<li><strong>空指针检查</strong>：先检查指针非空，再访问其成员</li>
+</ol>
+<h3 id="Medium-Linked-List-Cycle-II-142"><a href="#Medium-Linked-List-Cycle-II-142" class="headerlink" title="[Medium] Linked List Cycle II (142)"></a>[Medium] Linked List Cycle II (142)</h3><h4 id="🤔-我的原始思路-2"><a href="#🤔-我的原始思路-2" class="headerlink" title="🤔 我的原始思路"></a>🤔 我的原始思路</h4><p>相遇点不是环的入口<br>相遇点和头节点同时再走可以走到入口！</p>
+<h4 id="🔍-我的思考过程-2"><a href="#🔍-我的思考过程-2" class="headerlink" title="🔍 我的思考过程"></a>🔍 我的思考过程</h4><p><strong>Step 1: 问题分析</strong></p>
+<ol>
+<li>核心要求：找到环的入口节点</li>
+<li>与 [141] 的区别：需要定位，不只是判断</li>
+</ol>
+<p><strong>Step 2: 数学推导</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">设：a = 头到入口，b = 入口到相遇点，c = 相遇点到入口</span><br><span class="line"></span><br><span class="line">慢指针：a + b</span><br><span class="line">快指针：a + b + nr（n圈）</span><br><span class="line"></span><br><span class="line">2(a + b) = a + b + nr</span><br><span class="line">a = nr - b = c</span><br><span class="line"></span><br><span class="line">结论：a = c（头到入口 = 相遇点到入口）</span><br></pre></td></tr></table></figure>
+
+<p><strong>Step 3: 两阶段法</strong></p>
+<ul>
+<li>阶段1：快慢指针找相遇点</li>
+<li>阶段2：两个指针从头和相遇点同时出发，相遇即为入口</li>
+</ul>
+<p><strong>Step 4: 代码实现</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Step 1: 找相遇点</span></span><br><span class="line"><span class="keyword">while</span> (fast &amp;&amp; fast-&gt;next) &#123;</span><br><span class="line">    slow = slow-&gt;next;</span><br><span class="line">    fast = fast-&gt;next-&gt;next;</span><br><span class="line">    <span class="keyword">if</span> (slow == fast) <span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (!fast || !fast-&gt;next) <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Step 2: 找入口</span></span><br><span class="line">ListNode *p1 = head, *p2 = slow;</span><br><span class="line"><span class="keyword">while</span> (p1 != p2) &#123;</span><br><span class="line">    p1 = p1-&gt;next;</span><br><span class="line">    p2 = p2-&gt;next;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> p1;</span><br></pre></td></tr></table></figure>
+
+<h4 id="💡-对比收获-2"><a href="#💡-对比收获-2" class="headerlink" title="💡 对比收获"></a>💡 对比收获</h4><p><strong>与 [141] 的关系</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>题目</th>
+<th>要求</th>
+<th>方法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>[141]</td>
+<td>判断是否有环</td>
+<td>快慢指针相遇</td>
+</tr>
+<tr>
+<td>[142]</td>
+<td>找入口节点</td>
+<td>相遇后二次出发</td>
+</tr>
+</tbody></table>
+<p><strong>新学到的知识点</strong>：</p>
+<ol>
+<li><strong>数学推导能力</strong>：通过公式推导证明 a &#x3D; c</li>
+<li><strong>两阶段算法</strong>：先找相遇点，再找入口</li>
+<li><strong>空间优化</strong>：O(1) 空间解决定位问题</li>
+</ol>
+<h3 id="Easy-Middle-of-the-Linked-List-876"><a href="#Easy-Middle-of-the-Linked-List-876" class="headerlink" title="[Easy] Middle of the Linked List (876)"></a>[Easy] Middle of the Linked List (876)</h3><h4 id="🤔-我的原始思路-3"><a href="#🤔-我的原始思路-3" class="headerlink" title="🤔 我的原始思路"></a>🤔 我的原始思路</h4><p>快指针走两步，慢指针1布，快指针到末尾时，慢指针在中点<br>奇偶处理<br>奇数 当fast-&gt;next&#x3D;nullptr时 slow 走一步到中点<br>偶数 因为返回第二个中间节点 slow 再走一步<br>循环条件 fast!&#x3D;nullprt||fast-&gt;next!&#x3D;nullptr</p>
+<h4 id="🔍-我的思考过程-3"><a href="#🔍-我的思考过程-3" class="headerlink" title="🔍 我的思考过程"></a>🔍 我的思考过程</h4><p><strong>Step 1: 问题分析</strong></p>
+<ol>
+<li>核心要求：找链表中间节点，偶数返回第二个</li>
+<li>快慢指针：快指针走2步，慢指针走1步</li>
+</ol>
+<p><strong>Step 2: 奇偶分析</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">奇数 [1,2,3,4,5]：</span><br><span class="line">slow: 1→2→3, fast: 1→3→5</span><br><span class="line">fast-&gt;next=nullptr 时结束，slow=3 ✅</span><br><span class="line"></span><br><span class="line">偶数 [1,2,3,4,5,6]：</span><br><span class="line">slow: 1→2→3→4, fast: 1→3→5→nullptr</span><br><span class="line">fast=nullptr 时结束，slow=4 ✅（第二个中间节点）</span><br></pre></td></tr></table></figure>
+
+<p><strong>Step 3: 循环条件修正</strong></p>
+<ul>
+<li>❌ 原始：<code>fast != nullptr || fast-&gt;next != nullptr</code></li>
+<li>✅ 正确：<code>fast &amp;&amp; fast-&gt;next</code></li>
+<li>原因：<code>||</code> 会导致逻辑错误，必须两个条件都满足才能继续</li>
+</ul>
+<p><strong>Step 4: 代码实现</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ListNode* <span class="title">middleNode</span><span class="params">(ListNode* head)</span> </span>&#123;</span><br><span class="line">    ListNode *slow = head, *fast = head;</span><br><span class="line">    <span class="keyword">while</span> (fast &amp;&amp; fast-&gt;next) &#123;</span><br><span class="line">        slow = slow-&gt;next;</span><br><span class="line">        fast = fast-&gt;next-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> slow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="💡-对比收获-3"><a href="#💡-对比收获-3" class="headerlink" title="💡 对比收获"></a>💡 对比收获</h4><p><strong>快慢指针三种应用</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>题目</th>
+<th>目标</th>
+<th>循环条件</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>[141]</td>
+<td>判断有环</td>
+<td><code>fast &amp;&amp; fast-&gt;next</code></td>
+</tr>
+<tr>
+<td>[142]</td>
+<td>找环入口</td>
+<td><code>fast &amp;&amp; fast-&gt;next</code></td>
+</tr>
+<tr>
+<td>[876]</td>
+<td>找中点</td>
+<td><code>fast &amp;&amp; fast-&gt;next</code></td>
+</tr>
+</tbody></table>
+<p><strong>新学到的知识点</strong>：</p>
+<ol>
+<li><strong>循环条件统一</strong>：三种场景用相同条件</li>
+<li><strong>奇偶自动处理</strong>：无需手动判断</li>
+<li><strong>题目要求匹配</strong>：返回第二个中间节点正好符合</li>
+</ol>
+<p>因为判断了 fast &amp;&amp; fast-&gt;next 两个节点<br>返回第一个中间节点的话就额外保存一下指向的节点slow  当 偶数时 返回该节点，奇数时正常返回slow</p>
+<h2 id="学习记录"><a href="#学习记录" class="headerlink" title="学习记录"></a>学习记录</h2><h3 id="Medium-Swap-Nodes-in-Pairs-24-1"><a href="#Medium-Swap-Nodes-in-Pairs-24-1" class="headerlink" title="[Medium] Swap Nodes in Pairs (24)"></a>[Medium] Swap Nodes in Pairs (24)</h3><h4 id="🎯-核心思路"><a href="#🎯-核心思路" class="headerlink" title="🎯 核心思路"></a>🎯 核心思路</h4><p>使用虚拟头节点统一处理边界情况，两两交换相邻节点。关键原则：先连后断，先存后改。迭代版 O(1) 空间，递归版更简洁但 O(n) 空间。</p>
+<h4 id="🔑-关键代码片段"><a href="#🔑-关键代码片段" class="headerlink" title="🔑 关键代码片段"></a>🔑 关键代码片段</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 迭代版</span></span><br><span class="line"><span class="function">ListNode* <span class="title">swapPairs</span><span class="params">(ListNode* head)</span> </span>&#123;</span><br><span class="line">    ListNode* dummy = <span class="keyword">new</span> <span class="built_in">ListNode</span>(<span class="number">0</span>);</span><br><span class="line">    dummy-&gt;next = head;</span><br><span class="line">    ListNode* prev = dummy;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> (prev-&gt;next &amp;&amp; prev-&gt;next-&gt;next) &#123;</span><br><span class="line">        ListNode* cur = prev-&gt;next;</span><br><span class="line">        ListNode* n1 = cur-&gt;next;</span><br><span class="line">        ListNode* n2 = n1-&gt;next;</span><br><span class="line">        </span><br><span class="line">        prev-&gt;next = n1;</span><br><span class="line">        n1-&gt;next = cur;</span><br><span class="line">        cur-&gt;next = n2;</span><br><span class="line">        prev = cur;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dummy-&gt;next;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 递归版</span></span><br><span class="line"><span class="function">ListNode* <span class="title">swapPairs</span><span class="params">(ListNode* head)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!head || !head-&gt;next) <span class="keyword">return</span> head;</span><br><span class="line">    ListNode* n1 = head-&gt;next;</span><br><span class="line">    head-&gt;next = <span class="built_in">swapPairs</span>(n1-&gt;next);</span><br><span class="line">    n1-&gt;next = head;</span><br><span class="line">    <span class="keyword">return</span> n1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="📚-学到的知识点"><a href="#📚-学到的知识点" class="headerlink" title="📚 学到的知识点"></a>📚 学到的知识点</h4><ul>
+<li><strong>虚拟头节点</strong>：统一处理头节点边界情况</li>
+<li><strong>交换顺序原则</strong>：先连后断，先存后改</li>
+<li><strong>循环转递归模板</strong>：终止条件 → 处理当前 → 递归调用</li>
+<li><strong>递归 vs 迭代</strong>：递归简洁但空间高，迭代高效但代码长</li>
+</ul>
+<h4 id="⚠️-易错点-反思"><a href="#⚠️-易错点-反思" class="headerlink" title="⚠️ 易错点 &amp; 反思"></a>⚠️ 易错点 &amp; 反思</h4><ul>
+<li>❌ 循环条件用 <code>||</code> 导致空指针崩溃，应该用 <code>&amp;&amp;</code></li>
+<li>❌ 循环条件用 <code>head</code> 而不是 <code>prev-&gt;next</code>，head 不会更新</li>
+<li>💡 <strong>交换顺序</strong>：必须先保存 n2，再改变指针</li>
+<li>💡 <strong>循环→递归</strong>：while 条件 → if 终止，变量更新 → 递归调用</li>
+</ul>
+<h4 id="🔗-关联题目"><a href="#🔗-关联题目" class="headerlink" title="🔗 关联题目"></a>🔗 关联题目</h4><ul>
+<li>[206] Reverse Linked List - 链表反转基础</li>
+<li>[25] Reverse Nodes in k-Group - K个一组反转（进阶）</li>
+<li>[92] Reverse Linked List II - 反转部分链表</li>
+</ul>
+<h3 id="Easy-Linked-List-Cycle-141-1"><a href="#Easy-Linked-List-Cycle-141-1" class="headerlink" title="[Easy] Linked List Cycle (141)"></a>[Easy] Linked List Cycle (141)</h3><h4 id="🎯-核心思路-1"><a href="#🎯-核心思路-1" class="headerlink" title="🎯 核心思路"></a>🎯 核心思路</h4><p>使用快慢指针检测环。快指针每次走2步，慢指针每次走1步。如果链表有环，快指针最终会追上慢指针；如果无环，快指针会到达 nullptr。时间复杂度 O(n)，空间复杂度 O(1)。</p>
+<h4 id="🔑-关键代码片段-1"><a href="#🔑-关键代码片段-1" class="headerlink" title="🔑 关键代码片段"></a>🔑 关键代码片段</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 快慢指针法（O(1) 空间）</span></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">hasCycle</span><span class="params">(ListNode *head)</span> </span>&#123;</span><br><span class="line">    ListNode *slow = head, *fast = head;</span><br><span class="line">    <span class="keyword">while</span> (fast &amp;&amp; fast-&gt;next) &#123;</span><br><span class="line">        slow = slow-&gt;next;</span><br><span class="line">        fast = fast-&gt;next-&gt;next;</span><br><span class="line">        <span class="keyword">if</span> (slow == fast) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 哈希表法（O(n) 空间）</span></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">hasCycle</span><span class="params">(ListNode *head)</span> </span>&#123;</span><br><span class="line">    unordered_set&lt;ListNode*&gt; visited;</span><br><span class="line">    <span class="keyword">while</span> (head) &#123;</span><br><span class="line">        <span class="keyword">if</span> (visited.<span class="built_in">count</span>(head)) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        visited.<span class="built_in">insert</span>(head);</span><br><span class="line">        head = head-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="📚-学到的知识点-1"><a href="#📚-学到的知识点-1" class="headerlink" title="📚 学到的知识点"></a>📚 学到的知识点</h4><ul>
+<li><strong>快慢指针原理</strong>：快指针比慢指针每轮多走1步，环内距离逐渐缩短直到相遇</li>
+<li><strong>循环条件</strong>：<code>fast &amp;&amp; fast-&gt;next</code>，确保快指针可以安全走两步</li>
+<li><strong>两种方法对比</strong>：快慢指针 O(1) 空间更优，哈希表更直观</li>
+</ul>
+<h4 id="⚠️-易错点-反思-1"><a href="#⚠️-易错点-反思-1" class="headerlink" title="⚠️ 易错点 &amp; 反思"></a>⚠️ 易错点 &amp; 反思</h4><ul>
+<li>❌ 循环条件写 <code>fast-&gt;next</code> 而不是 <code>fast</code>，当 head 为空时崩溃</li>
+<li>❌ 检查 <code>slow-&gt;next</code> 没有意义，慢指针不需要提前判断</li>
+<li>❌ 快指针移动方式不标准，应该 <code>fast-&gt;next-&gt;next</code> 一次走两步</li>
+<li>💡 <strong>关键技巧</strong>：先检查指针非空，再访问其 next</li>
+</ul>
+<h4 id="🔗-关联题目-1"><a href="#🔗-关联题目-1" class="headerlink" title="🔗 关联题目"></a>🔗 关联题目</h4><ul>
+<li>[142] Linked List Cycle II - 找到环的入口节点</li>
+<li>[876] Middle of the Linked List - 快慢指针找中点</li>
+<li>[202] Happy Number - 快慢指针检测循环</li>
+</ul>
+<h3 id="Medium-Linked-List-Cycle-II-142-1"><a href="#Medium-Linked-List-Cycle-II-142-1" class="headerlink" title="[Medium] Linked List Cycle II (142)"></a>[Medium] Linked List Cycle II (142)</h3><h4 id="🎯-核心思路-2"><a href="#🎯-核心思路-2" class="headerlink" title="🎯 核心思路"></a>🎯 核心思路</h4><p>分两步：① 快慢指针找到相遇点 ② 从相遇点和头节点同时出发，速度相同，相遇点即为入口。数学推导：a &#x3D; c（头到入口距离 &#x3D; 相遇点到入口距离）。</p>
+<h4 id="🔑-关键代码片段-2"><a href="#🔑-关键代码片段-2" class="headerlink" title="🔑 关键代码片段"></a>🔑 关键代码片段</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ListNode *<span class="title">detectCycle</span><span class="params">(ListNode *head)</span> </span>&#123;</span><br><span class="line">    ListNode *slow = head, *fast = head;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// Step 1: 找相遇点</span></span><br><span class="line">    <span class="keyword">while</span> (fast &amp;&amp; fast-&gt;next) &#123;</span><br><span class="line">        slow = slow-&gt;next;</span><br><span class="line">        fast = fast-&gt;next-&gt;next;</span><br><span class="line">        <span class="keyword">if</span> (slow == fast) <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 无环</span></span><br><span class="line">    <span class="keyword">if</span> (!fast || !fast-&gt;next) <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// Step 2: 找入口（a = c）</span></span><br><span class="line">    ListNode *p1 = head, *p2 = slow;</span><br><span class="line">    <span class="keyword">while</span> (p1 != p2) &#123;</span><br><span class="line">        p1 = p1-&gt;next;</span><br><span class="line">        p2 = p2-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> p1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="📚-学到的知识点-2"><a href="#📚-学到的知识点-2" class="headerlink" title="📚 学到的知识点"></a>📚 学到的知识点</h4><ul>
+<li><strong>数学推导</strong>：<code>a = nr - b = c</code>，头到入口 &#x3D; 相遇点到入口</li>
+<li><strong>两阶段法</strong>：先找相遇点，再找入口</li>
+<li><strong>与 [141] 的关系</strong>：[141] 是判断，[142] 是定位</li>
+</ul>
+<h4 id="⚠️-易错点-反思-2"><a href="#⚠️-易错点-反思-2" class="headerlink" title="⚠️ 易错点 &amp; 反思"></a>⚠️ 易错点 &amp; 反思</h4><ul>
+<li>❌ 忘记检查无环情况：<code>!fast || !fast-&gt;next</code></li>
+<li>❌ 第二步两个指针速度不同，应该都是 1 步</li>
+<li>💡 <strong>关键理解</strong>：相遇点不是入口，但可以用来找入口</li>
+</ul>
+<h4 id="🔗-关联题目-2"><a href="#🔗-关联题目-2" class="headerlink" title="🔗 关联题目"></a>🔗 关联题目</h4><ul>
+<li>[141] Linked List Cycle - 判断是否有环</li>
+<li>[876] Middle of the Linked List - 快慢指针找中点</li>
+<li>[287] Find the Duplicate Number - 类似环检测思想</li>
+</ul>
+<h3 id="Easy-Middle-of-the-Linked-List-876-1"><a href="#Easy-Middle-of-the-Linked-List-876-1" class="headerlink" title="[Easy] Middle of the Linked List (876)"></a>[Easy] Middle of the Linked List (876)</h3><h4 id="🎯-核心思路-3"><a href="#🎯-核心思路-3" class="headerlink" title="🎯 核心思路"></a>🎯 核心思路</h4><p>快指针走2步，慢指针走1步。当快指针到达末尾时，慢指针正好在中点。循环条件 <code>fast &amp;&amp; fast-&gt;next</code> 自动处理奇偶情况，偶数时返回第二个中间节点。</p>
+<h4 id="🔑-关键代码片段-3"><a href="#🔑-关键代码片段-3" class="headerlink" title="🔑 关键代码片段"></a>🔑 关键代码片段</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ListNode* <span class="title">middleNode</span><span class="params">(ListNode* head)</span> </span>&#123;</span><br><span class="line">    ListNode *slow = head, *fast = head;</span><br><span class="line">    <span class="keyword">while</span> (fast &amp;&amp; fast-&gt;next) &#123;</span><br><span class="line">        slow = slow-&gt;next;</span><br><span class="line">        fast = fast-&gt;next-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> slow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="📚-学到的知识点-3"><a href="#📚-学到的知识点-3" class="headerlink" title="📚 学到的知识点"></a>📚 学到的知识点</h4><ul>
+<li><strong>快慢指针找中点</strong>：快指针到末尾，慢指针在中点</li>
+<li><strong>循环条件</strong>：<code>fast &amp;&amp; fast-&gt;next</code> 自动处理奇偶</li>
+<li><strong>三种应用统一</strong>：[141][142][876] 都用相同条件</li>
+</ul>
+<h4 id="⚠️-易错点-反思-3"><a href="#⚠️-易错点-反思-3" class="headerlink" title="⚠️ 易错点 &amp; 反思"></a>⚠️ 易错点 &amp; 反思</h4><ul>
+<li>❌ 循环条件用 <code>||</code> 而不是 <code>&amp;&amp;</code></li>
+<li>❌ 手动处理奇偶情况，其实循环条件自动处理</li>
+<li>💡 <strong>扩展思考</strong>：返回第一个中间节点可用 prev 指针记录</li>
+</ul>
+<h4 id="🔗-关联题目-3"><a href="#🔗-关联题目-3" class="headerlink" title="🔗 关联题目"></a>🔗 关联题目</h4><ul>
+<li>[141] Linked List Cycle - 快慢指针检测环</li>
+<li>[142] Linked List Cycle II - 快慢指针找入口</li>
+<li>[234] Palindrome Linked List - 找中点 + 反转</li>
+</ul>
+
+</article>
+    
+    
+
+</div>
+<div class="trm-post-next-prev row">
+    <div class="col-lg-12">
+        <!-- title -->
+        <h5 class="trm-title-with-divider">
+            其他文章
+            <span data-number="02"></span>
+        </h5>
+    </div>
+    
+        <div class="col-lg-6">
+    <div class="trm-blog-card trm-scroll-animation">
+        <a href="/ZeroDream/2026/04/22/LeetCode/LeetCode-%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-2026-04-22/" class="trm-cover-frame trm-anima-link">
+            
+            
+                <img alt="cover" class="no-fancybox" src="/ZeroDream/images/post/leetcode/cover-07.png">
+            
+        </a>
+        
+        <div class="trm-card-descr">
+            <div class="trm-label trm-category trm-mb-20">
+                <a href=" /ZeroDream/categories/LeetCode/">
+                    LeetCode
+                </a>
+            </div>
+            <h5>
+                <a href="/ZeroDream/2026/04/22/LeetCode/LeetCode-%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-2026-04-22/" class="trm-anima-link">
+                    LeetCode 学习记录 2026-04-22
+                </a>
+            </h5>
+            <div class="trm-divider trm-mb-20 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>26/04/22</li>
+                <li>23:00</li>
+                
+                
+            </ul>
+        </div>
+    </div>
+</div>
+    
+    
+        <div class="col-lg-6">
+    <div class="trm-blog-card trm-scroll-animation">
+        <a href="/ZeroDream/2026/04/17/LeetCode/LeetCode-%E5%91%A8%E6%80%BB%E7%BB%93/" class="trm-cover-frame trm-anima-link">
+            
+            
+                <img alt="cover" class="no-fancybox" src="/ZeroDream/images/post/leetcode/cover-10.png">
+            
+        </a>
+        
+        <div class="trm-card-descr">
+            <div class="trm-label trm-category trm-mb-20">
+                <a href=" /ZeroDream/categories/LeetCode/">
+                    LeetCode
+                </a>
+            </div>
+            <h5>
+                <a href="/ZeroDream/2026/04/17/LeetCode/LeetCode-%E5%91%A8%E6%80%BB%E7%BB%93/" class="trm-anima-link">
+                    LeetCode 周总结
+                </a>
+            </h5>
+            <div class="trm-divider trm-mb-20 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>26/04/17</li>
+                <li>23:00</li>
+                
+                
+            </ul>
+        </div>
+    </div>
+</div>
+    
+</div>
+
+    
+
+    <div id="giscus-wrap" class="trm-card trm-scroll-animation comment-container"></div>
+<script data-swup-reload-script>
+    function loadGiscus() {
+        let nowTheme = document.documentElement.classList.contains('dark') ? '' : ''
+        const config = {
+            src: 'https://giscus.app/client.js',
+            "data-repo": 'xiaomengxmeng/ZeroDream',
+            "data-repo-id": 'R_kgDOQHFw4Q',
+            "data-category": 'Announcements',
+            "data-category-id": 'DIC_kwDOQHFw4c4CxyP3',
+            "data-mapping": 'pathname',
+            "data-reactions-enabled": '1',
+            "data-emit-metadata": '0',
+            "data-theme": nowTheme,
+            "data-lang": 'zh-CN',
+            crossorigin: "anonymous",
+            async: true
+        }
+        let ele = document.createElement('script')
+        for (let key in config) {
+            ele.setAttribute(key, config[key])
+        }
+        document.getElementById('giscus-wrap').insertAdjacentElement('afterbegin', ele)
+    }
+
+    function changeGiscusTheme() {
+        let theme = document.documentElement.classList.contains('dark') ? '' : ''
+
+        function sendMessage(message) {
+            const iframe = document.querySelector('iframe.giscus-frame');
+            if (!iframe) return;
+            iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+
+        sendMessage({
+            setConfig: {
+                theme: theme
+            }
+        });
+    }
+
+    loadGiscus();
+</script>
+
+
+
+                    <div class="trm-divider footer-divider"></div>
+
+                    <!-- footer -->
+                    <footer class="trm-footer-card trm-scroll-animation">
+
+    
+
+    
+
+    
+        <div class="trm-footer-item">
+            <span>
+                由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v7.3.0
+            </span>
+            <span class="footer-separator" data-separator=" | "></span>
+            <span> 
+                主题 - 
+                <a rel="noopener" href='https://github.com/MaLuns/hexo-theme-async' target='_blank'>Async</a>
+                v2.2.6
+            </span>
+        </div>
+      
+
+     
+
+     
+</footer>
+                    <!-- footer end -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+            <!-- body end -->
+
+            
+
+            
+<div class="trm-fixed-container">
+    
+    
+        <div class="trm-fixed-btn" data-title="阅读模式" onclick="asyncFun.switchReadMode()">
+            <i class="iconfont fas fa-book-reader"></i>
+        </div>
+    
+    
+    <div id="trm-back-top" class="trm-fixed-btn" data-title="回到顶部">
+        <i class="iconfont fas fa-arrow-up"></i>
+    </div>
+</div>
+        </div>
+      </div>
+      <!-- scroll container end -->
+  </div>
+  <!-- app wrapper end -->
+
+  
+    <div class="trm-search-popup">
+        <div class="trm-search-wrapper">
+            <div class="form trm-search-form">
+                <div class="trm-search-input-icon">
+                    <i class="iconfont fas fa-search"></i>
+                </div>
+                <input class="trm-search-input" type="text" placeholder="搜索文章...">
+                <div class="trm-search-btn-close">
+                    <i class="iconfont fas fa-times"></i>
+                </div>
+            </div>
+            <div class="trm-search-result-container">
+                <div class="trm-search-empty">
+                    请输入关键词进行搜索
+                </div>
+            </div>
+            <div class="trm-search-footer">
+                <div class="trm-search-stats"></div>
+                <ul class="trm-search-commands">
+                    <li>
+                        <kbd class="command-palette-commands-key">
+                            <svg width="15" height="15" aria-label="Escape key" role="img">
+                                <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="1.2">
+                                    <path
+                                        d="M13.6167 8.936c-.1065.3583-.6883.962-1.4875.962-.7993 0-1.653-.9165-1.653-2.1258v-.5678c0-1.2548.7896-2.1016 1.653-2.1016.8634 0 1.3601.4778 1.4875 1.0724M9 6c-.1352-.4735-.7506-.9219-1.46-.8972-.7092.0246-1.344.57-1.344 1.2166s.4198.8812 1.3445.9805C8.465 7.3992 8.968 7.9337 9 8.5c.032.5663-.454 1.398-1.4595 1.398C6.6593 9.898 6 9 5.963 8.4851m-1.4748.5368c-.2635.5941-.8099.876-1.5443.876s-1.7073-.6248-1.7073-2.204v-.4603c0-1.0416.721-2.131 1.7073-2.131.9864 0 1.6425 1.031 1.5443 2.2492h-2.956">
+                                    </path>
+                                </g>
+                            </svg>
+                        </kbd>
+                        <span class="command-palette-Label">to close</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+  <!-- Plugin -->
+
+
+
+
+    
+    
+<script src="https://unpkg.com/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+
+    
+
+    
+
+    
+
+    <!-- 数学公式 -->
+    
+
+    <!-- 评论插件 -->
+    
+        
+
+        
+    
+
+		
+
+
+
+
+    <!-- Service Worker -->
+    
+    <!-- baidu push -->
+    
+
+
+<script id="async-script" src="/ZeroDream/js/main.js?v=2.2.6"></script>
+
+<!-- CDN -->
+
+
+    
+
+    
+
+    
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="x5-fullscreen" content="true">
+<meta name="full-screen" content="yes">
+<meta name="theme-color" content="#317EFB" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=0" name="viewport">
+<meta name="description" content="学习记录📚 2026-06-04 周复习 Day 4 — 图 + 多源 BFS  [Medium] Number of Islands (200)🎯 核心思路网格 DFS（水淹法）：遍历整个网格，遇到 &#39;1&#39; 就计数 + DFS 淹没整块岛屿（标记为 &#39;0&#39;）。 🔑 关键代码片段12345678910111213141516int dirs[4][2] &#x3D; &amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode 学习记录 2026-06-04">
+<meta property="og:url" content="https://xiaomengxmeng.github.io/ZeroDream/2026/06/04/LeetCode/LeetCode-%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-2026-06-04/index.html">
+<meta property="og:site_name" content="ZeroDream Blog">
+<meta property="og:description" content="学习记录📚 2026-06-04 周复习 Day 4 — 图 + 多源 BFS  [Medium] Number of Islands (200)🎯 核心思路网格 DFS（水淹法）：遍历整个网格，遇到 &#39;1&#39; 就计数 + DFS 淹没整块岛屿（标记为 &#39;0&#39;）。 🔑 关键代码片段12345678910111213141516int dirs[4][2] &#x3D; &amp;">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-06-04T15:00:00.000Z">
+<meta property="article:modified_time" content="2026-07-24T16:44:44.780Z">
+<meta property="article:author" content="ZeroDream">
+<meta property="article:tag" content="LeetCode">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="学习记录">
+<meta name="twitter:card" content="summary">
+
+
+<title >LeetCode 学习记录 2026-06-04</title>
+
+<!-- Favicon -->
+
+    <link href='/ZeroDream/images/favicon.ico?v=2.2.6' rel='icon' type='image/png' sizes='16x16' ></link>
+
+
+    <link href='/ZeroDream/images/favicon.ico?v=2.2.6' rel='icon' type='image/png' sizes='32x32' ></link>
+
+
+
+
+<!-- Plugin -->
+
+
+
+
+    
+<link rel="stylesheet" href="/ZeroDream/css/plugins/bootstrap.row.css">
+
+    
+<link rel="stylesheet" href="https://unpkg.com/@fancyapps/ui@4.0/dist/fancybox.css">
+
+    
+    
+
+
+
+
+<!-- Icon -->
+
+    
+<link rel="stylesheet" href="/ZeroDream/css/plugins/font-awesome.min.css">
+
+
+
+
+<!-- Variable -->
+<script>window.ASYNC_CONFIG = {"hostname":"xiaomengxmeng.github.io","author":"ZeroDream","root":"/ZeroDream/","typed_text":null,"theme_version":"2.2.6","theme":{"switch":true,"default":"style-light"},"favicon":{"logo":"/images/favicon.ico","icon16":"/images/favicon.ico","icon32":"/images/favicon.ico","apple_touch_icon":null,"webmanifest":null,"visibilitychange":true,"hidden":"/failure.ico","show_text":"(/≧▽≦/)咦！又好了！","hide_text":"(●—●)喔哟，崩溃啦！"},"i18n":{"placeholder":"搜索文章...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）","author":"本文作者：","copyright_link":"本文链接：","copyright_license_title":"版权声明：","copyright_license_content":"本博客所有文章除特别声明外，均默认采用 undefined 许可协议。","copy_success":"复制成功","copy_failure":"复制失败","open_read_mode":"进入阅读模式","exit_read_mode":"退出阅读模式","notice_outdate_message":"距离上次更新已经 undefined 天了, 文章内容可能已经过时。","sticky":"置顶","just":"刚刚","min":"分钟前","hour":"小时前","day":"天前","month":"个月前"},"swup":false,"plugin":{"flickr_justified_gallery":"https://unpkg.com/flickr-justified-gallery@latest/dist/fjGallery.min.js"},"icons":{"sun":"far fa-sun","moon":"far fa-moon","play":"fas fa-play","email":"far fa-envelope","next":"fas fa-arrow-right","calendar":"far fa-calendar-alt","clock":"far fa-clock","user":"far fa-user","back_top":"fas fa-arrow-up","close":"fas fa-times","search":"fas fa-search","reward":"fas fa-hand-holding-usd","toc_tag":"fas fa-th-list","read":"fas fa-book-reader","arrows":"fas fa-arrows-alt-h","double_arrows":"fas fa-angle-double-down","copy":"fas fa-copy"},"icontype":"font","highlight":{"plugin":"highlighjs","theme":true,"copy":true,"lang":true,"title":"default","height_limit":false},"toc":{"post_title":true},"live_time":{"start_time":"","prefix":"博客已萌萌哒运行 undefined 天"},"danmu":{"enable":false,"el":".trm-banner"}};</script>
+<script id="async-page-config">window.PAGE_CONFIG = {"isPost":true,"isHome":false,"postUpdate":"2026-07-25 00:44:44"};</script>
+
+<!-- Theme mode css -->
+<link data-swup-theme rel="stylesheet" href="/ZeroDream/css/index.css?v=2.2.6" id="trm-switch-style">
+<script>
+    let defaultMode = ASYNC_CONFIG.theme.default !=='auto' ?  ASYNC_CONFIG.theme.default : (window.matchMedia("(prefers-color-scheme: light)").matches ? 'style-light' : 'style-dark')
+    let catchMode = localStorage.getItem('theme-mode') || defaultMode;
+    let type = catchMode === 'style-dark' ? 'add' : 'remove';
+    document.documentElement.classList[type]('dark')
+</script>
+
+<!-- CDN -->
+
+
+    
+    
+
+
+
+<!-- Site Analytics -->
+
+ 
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+
+  <!-- app wrapper -->
+  <div class="trm-app-frame">
+
+    <!-- page preloader -->
+    <div class="trm-preloader">
+    <div class="trm-holder">
+        <div class="preloader">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+</div>
+    <!-- page preloader end -->
+
+    <!-- change mode preloader -->
+    <div class="trm-mode-swich-animation-frame">
+    <div class="trm-mode-swich-animation">
+        <i class="i-sun"><i class="iconfont far fa-sun"></i></i>
+        <div class="trm-horizon"></div>
+        <i class="i-moon"><i class="iconfont far fa-moon"></i></i>
+    </div>
+</div>
+    <!-- change mode preloader end -->
+
+      <!-- scroll container -->
+      <div id="trm-dynamic-content" class="trm-swup-animation">
+        <div id="trm-scroll-container" class="trm-scroll-container" style="opacity: 0">
+            <!-- top bar -->
+            <header class="trm-top-bar">
+	<div class="container">
+		<div class="trm-left-side">
+			<!-- logo -->
+<a href="/ZeroDream/" class="trm-logo-frame trm-anima-link">
+    
+        <img alt="logo" src="/ZeroDream/images/favicon.ico">
+    
+    
+        <div class="trm-logo-text">
+            小梦<span>随笔</span>
+        </div>
+    
+</a>
+<!-- logo end -->
+		</div>
+		<div class="trm-right-side">
+			<!-- menu -->
+<div class="trm-menu">
+    <nav>
+        <ul>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/ZeroDream/" target="">
+                    首页
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/ZeroDream/archives/" target="">
+                    归档
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/ZeroDream/tags/" target="">
+                    menu.tags
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/ZeroDream/categories/" target="">
+                    menu.categories
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/ZeroDream/about/" target="">
+                    关于
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/ZeroDream/links/" target="">
+                    友链
+                </a>
+                
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+<!-- menu end -->
+			
+    <!-- mode switcher place -->
+    <div class="trm-mode-switcher-place">
+        <div class="trm-mode-switcher">
+            <i class="iconfont far fa-sun"></i>
+            <input class="tgl tgl-light" id="trm-swich" type="checkbox">
+            <label class="trm-swich" for="trm-swich"></label>
+            <i class="iconfont far fa-moon"></i>
+        </div>
+    </div>
+    <!-- mode switcher place end -->
+
+			
+     
+
+		</div>
+		<div class="trm-menu-btn">
+			<span></span>
+		</div>
+	</div>
+</header>
+            <!-- top bar end -->
+
+            <!-- body -->
+            
+<div class="trm-content-start">
+    <!-- banner -->
+    <div class="trm-banner">
+    
+    <!-- banner cover -->
+    <img style="object-position:top;object-fit:cover;" alt="banner" class="trm-banner-cover" src="/ZeroDream/images/background/%E5%A5%B3%E9%AB%98%E4%B8%89%E4%BA%BA.png">
+    <!-- banner cover end -->
+    
+
+    <!-- banner content -->
+    <div class="trm-banner-content trm-overlay">
+        <div class="container">
+            <div class="row">
+                
+                <div class="col-lg-4"></div>
+                
+                <div class="col-lg-8">
+
+                    <!-- banner title -->
+                    <div class="trm-banner-text ">
+                        <div class="trm-label trm-mb-20">
+                            NEWS LETTER
+                        </div>
+                        <h1 class="trm-mb-30 trm-hsmb-font">
+                            LeetCode 学习记录 2026-06-04
+                        </h1>
+
+                        
+                            <ul class="trm-breadcrumbs trm-label">
+                                <li>
+                                    <a href="/ZeroDream/" class="trm-anima-link">Home</a>
+                                </li>
+                                <li>
+                                    <span>
+                                        2026
+                                    </span>
+                                </li>
+                            </ul>
+                        
+                    </div>
+                    <!-- banner title end -->
+
+                    <!-- scroll hint -->
+                    <span id="scroll-triger" class="trm-scroll-hint-frame">
+                        <div class="trm-scroll-hint"></div>
+                        <span class="trm-label">Scroll down</span>
+                    </span>
+                    <!-- scroll hint end -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- banner content end -->
+</div>
+    <!-- banner end -->
+    <div class="container">
+        <div class="row">
+            
+                <div class="trm-page-sidebar col-lg-4 hidden-sm">
+                    <!-- main card -->
+                    <div class="trm-main-card-frame trm-sidebar">
+    <div class="trm-main-card"> 
+        <!-- card header -->
+<div class="trm-mc-header">
+    <div class="trm-avatar-frame trm-mb-20">
+        <img alt="Avatar" class="trm-avatar trm-light-icon" src="/ZeroDream/images/head/head.jpg"> <img alt="Avatar" class="trm-avatar trm-dark-icon" src="/ZeroDream/images/head/darkhead.jpg">
+    </div>
+    <h5 class="trm-name trm-mb-15">
+        ZeroDream
+    </h5>
+    
+</div>
+<!-- card header end -->
+        <!-- sidebar social -->
+
+<div class="trm-divider trm-mb-40 trm-mt-40"></div>
+<div class="trm-social">
+    
+        <a href="https://github.com" title="Github" rel="nofollow" target="_blank">
+            <i class="iconfont fab fa-github"></i>
+        </a>
+    
+</div>
+
+<!-- sidebar social end -->
+        <!-- info -->
+<div class="trm-divider trm-mb-40 trm-mt-40"></div>
+<ul class="trm-table trm-mb-20">
+    
+        <li>
+            <div class="trm-label">
+                地址:
+            </div>
+            <div class="trm-label trm-label-light">
+                中国 江西
+            </div>
+        </li>
+    
+        <li>
+            <div class="trm-label">
+                职业:
+            </div>
+            <div class="trm-label trm-label-light">
+                开发者
+            </div>
+        </li>
+    
+</ul>
+<!-- info end -->
+
+        
+    <div class="trm-divider trm-mb-40 trm-mt-40"></div>
+    <!-- action button -->
+    <div class="text-center">
+        <a href="mailto:xuanmeng404@163.com" class="trm-btn">
+            联系我
+            <i class="iconfont far fa-envelope"></i>
+        </a>
+    </div>
+    <!-- action button end -->
+
+    </div>
+</div>
+                    <!-- main card end -->
+                </div>
+            
+            <div class="trm-page-content col-lg-8">
+                <div id="trm-content" class="trm-content">
+                    <div class="trm-post-info row hidden-sm">
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-calendar-alt trm-icon"></i><br>
+            06/04
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-clock trm-icon"></i><br>
+            23:00
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div id="post-author" class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-user trm-icon"></i><br>
+            ZeroDream
+        </div>
+    </div>
+</div>
+<div class="trm-card ">
+    <article id="article-container" class="trm-publication">
+    <h2 id="学习记录"><a href="#学习记录" class="headerlink" title="学习记录"></a>学习记录</h2><h2 id="📚-2026-06-04-周复习-Day-4-—-图-多源-BFS"><a href="#📚-2026-06-04-周复习-Day-4-—-图-多源-BFS" class="headerlink" title="📚 2026-06-04 周复习 Day 4 — 图 + 多源 BFS"></a>📚 2026-06-04 周复习 Day 4 — 图 + 多源 BFS</h2><!-- Each problem entry will be filled after Step 5 review -->
+
+<h3 id="Medium-Number-of-Islands-200"><a href="#Medium-Number-of-Islands-200" class="headerlink" title="[Medium] Number of Islands (200)"></a>[Medium] Number of Islands (200)</h3><h4 id="🎯-核心思路"><a href="#🎯-核心思路" class="headerlink" title="🎯 核心思路"></a>🎯 核心思路</h4><p>网格 DFS（水淹法）：遍历整个网格，遇到 <code>&#39;1&#39;</code> 就计数 + DFS 淹没整块岛屿（标记为 <code>&#39;0&#39;</code>）。</p>
+<h4 id="🔑-关键代码片段"><a href="#🔑-关键代码片段" class="headerlink" title="🔑 关键代码片段"></a>🔑 关键代码片段</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> dirs[<span class="number">4</span>][<span class="number">2</span>] = &#123;&#123;<span class="number">1</span>,<span class="number">0</span>&#125;,&#123;<span class="number">-1</span>,<span class="number">0</span>&#125;,&#123;<span class="number">0</span>,<span class="number">1</span>&#125;,&#123;<span class="number">0</span>,<span class="number">-1</span>&#125;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs</span><span class="params">(vector&lt;vector&lt;<span class="type">char</span>&gt;&gt;&amp; grid, <span class="type">int</span> i, <span class="type">int</span> j)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (i &lt; <span class="number">0</span> || i &gt;= grid.<span class="built_in">size</span>() || j &lt; <span class="number">0</span> || j &gt;= grid[<span class="number">0</span>].<span class="built_in">size</span>() || grid[i][j] == <span class="string">&#x27;0&#x27;</span>)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    grid[i][j] = <span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span>&amp; d : dirs) <span class="built_in">dfs</span>(grid, i + d[<span class="number">0</span>], j + d[<span class="number">1</span>]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">numIslands</span><span class="params">(vector&lt;vector&lt;<span class="type">char</span>&gt;&gt;&amp; grid)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> res = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; grid.<span class="built_in">size</span>(); i++)</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; grid[<span class="number">0</span>].<span class="built_in">size</span>(); j++)</span><br><span class="line">            <span class="keyword">if</span> (grid[i][j] == <span class="string">&#x27;1&#x27;</span>) &#123; res++; <span class="built_in">dfs</span>(grid, i, j); &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="📚-对比原解法"><a href="#📚-对比原解法" class="headerlink" title="📚 对比原解法"></a>📚 对比原解法</h4><p><strong>一致</strong> ✅ — 思路完全正确，方向数组写法更规范了</p>
+<h4 id="⚠️-易错点-反思"><a href="#⚠️-易错点-反思" class="headerlink" title="⚠️ 易错点 &amp; 反思"></a>⚠️ 易错点 &amp; 反思</h4><ul>
+<li>内层循环条件 <code>i &lt; grid[0].size()</code> 写成了 <code>i</code> 而不是 <code>j</code>，导致死循环 💥</li>
+<li>网格题建议习惯性先 <code>if (grid.empty() || grid[0].empty()) return 0;</code></li>
+<li>边界条件合并写在一个 if 里比分开写更简洁</li>
+<li>BFS 版本可用队列避免递归爆栈，但递归版更简洁</li>
+<li>与 695 (Max Area) 的区别：695 的 DFS 需要返回面积，200 只需淹没标记</li>
+</ul>
+<h3 id="Medium-Course-Schedule-207"><a href="#Medium-Course-Schedule-207" class="headerlink" title="[Medium] Course Schedule (207)"></a>[Medium] Course Schedule (207)</h3><h4 id="🎯-核心思路-1"><a href="#🎯-核心思路-1" class="headerlink" title="🎯 核心思路"></a>🎯 核心思路</h4><p>三色 DFS 检测有向图环：0&#x3D;未访问（白），1&#x3D;正在访问（灰），2&#x3D;已访问（黑）。遇到灰色即发现环。</p>
+<h4 id="🔑-关键代码片段-1"><a href="#🔑-关键代码片段-1" class="headerlink" title="🔑 关键代码片段"></a>🔑 关键代码片段</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">graph</span>(numCourses);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">auto</span>&amp; p : prerequisites) graph[p[<span class="number">1</span>]].<span class="built_in">push_back</span>(p[<span class="number">0</span>]);</span><br><span class="line"></span><br><span class="line"><span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">status</span><span class="params">(numCourses, <span class="number">0</span>)</span></span>;  <span class="comment">// 0=白, 1=灰, 2=黑</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">dfs</span><span class="params">(<span class="type">const</span> vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; graph, vector&lt;<span class="type">int</span>&gt;&amp; status, <span class="type">int</span> node)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (status[node] == <span class="number">1</span>) <span class="keyword">return</span> <span class="literal">false</span>;  <span class="comment">// 灰 → 环</span></span><br><span class="line">    <span class="keyword">if</span> (status[node] == <span class="number">2</span>) <span class="keyword">return</span> <span class="literal">true</span>;   <span class="comment">// 黑 → 已确认无环</span></span><br><span class="line">    status[node] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> neighbor : graph[node])</span><br><span class="line">        <span class="keyword">if</span> (!<span class="built_in">dfs</span>(graph, status, neighbor)) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    status[node] = <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="📚-对比原解法-1"><a href="#📚-对比原解法-1" class="headerlink" title="📚 对比原解法"></a>📚 对比原解法</h4><p><strong>一致</strong> ✅ — 三色 DFS 写得完全正确，建图方式一致</p>
+<h4 id="🔍-三色法可视化（示例2"><a href="#🔍-三色法可视化（示例2" class="headerlink" title="🔍 三色法可视化（示例2)"></a>🔍 三色法可视化（示例2)</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dfs(0) → status[0]=1 (灰)</span><br><span class="line">  └─ dfs(1) → status[1]=1 (灰)</span><br><span class="line">       └─ dfs(0) → status[0]==1 → 遇到灰！环！💥</span><br></pre></td></tr></table></figure>
+<h4 id="⚠️-易错点-反思-1"><a href="#⚠️-易错点-反思-1" class="headerlink" title="⚠️ 易错点 &amp; 反思"></a>⚠️ 易错点 &amp; 反思</h4><ul>
+<li>三色法的巧妙：2 种状态不够（bool visited 分不清”正在访问”和”已访问完”），3 种才能检测有向环</li>
+<li>遇到 1（灰）&#x3D; 当前递归栈上这个节点正在处理 &#x3D; 有环</li>
+<li>遇到 2（黑）&#x3D; 之前确认过无环，直接剪枝</li>
+<li>建图方向：<code>[ai, bi]</code> → <code>bi → ai</code>（先修课指向后修课），不要搞反</li>
+<li>外层循环用 <code>!status[i] &amp;&amp; !dfs()</code> 短路：已黑的跳过，没黑的遇到环才返回 false</li>
+<li>210 题只多一步：在 <code>status[node]=2</code> 时收集到答案数组即可得拓扑顺序</li>
+</ul>
+<h3 id="Medium-Surrounded-Regions-130"><a href="#Medium-Surrounded-Regions-130" class="headerlink" title="[Medium] Surrounded Regions (130)"></a>[Medium] Surrounded Regions (130)</h3><h4 id="🎯-核心思路-2"><a href="#🎯-核心思路-2" class="headerlink" title="🎯 核心思路"></a>🎯 核心思路</h4><p>逆向思维：从边界 O 出发 DFS，标记连到边界的 O 为 <code>&#39;T&#39;</code>（临时标记），然后遍历全图：<code>&#39;O&#39;→&#39;X&#39;</code>（被包围的）、<code>&#39;T&#39;→&#39;O&#39;</code>（还原连边界的）。</p>
+<h4 id="🔑-关键代码片段-2"><a href="#🔑-关键代码片段-2" class="headerlink" title="🔑 关键代码片段"></a>🔑 关键代码片段</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">(vector&lt;vector&lt;<span class="type">char</span>&gt;&gt;&amp; board)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (board.<span class="built_in">empty</span>()) <span class="keyword">return</span>;</span><br><span class="line">    <span class="type">int</span> m = board.<span class="built_in">size</span>(), n = board[<span class="number">0</span>].<span class="built_in">size</span>();</span><br><span class="line">    <span class="comment">// Step 1: 从边界 O 出发 DFS，标记为 &#x27;T&#x27;</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; m; i++)</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; n; j++)</span><br><span class="line">            <span class="keyword">if</span> ((i==<span class="number">0</span> || j==<span class="number">0</span> || i==m<span class="number">-1</span> || j==n<span class="number">-1</span>) &amp;&amp; board[i][j]==<span class="string">&#x27;O&#x27;</span>)</span><br><span class="line">                <span class="built_in">dfs</span>(board, i, j);</span><br><span class="line">    <span class="comment">// Step 2: 遍历全图，O→X（被包围），T→O（还原）</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; m; i++)</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; n; j++)</span><br><span class="line">            <span class="keyword">if</span> (board[i][j] == <span class="string">&#x27;O&#x27;</span>) board[i][j] = <span class="string">&#x27;X&#x27;</span>;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (board[i][j] == <span class="string">&#x27;T&#x27;</span>) board[i][j] = <span class="string">&#x27;O&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs</span><span class="params">(vector&lt;vector&lt;<span class="type">char</span>&gt;&gt;&amp; board, <span class="type">int</span> i, <span class="type">int</span> j)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (i&lt;<span class="number">0</span> || j&lt;<span class="number">0</span> || i&gt;=board.<span class="built_in">size</span>() || j&gt;=board[<span class="number">0</span>].<span class="built_in">size</span>() || board[i][j]!=<span class="string">&#x27;O&#x27;</span>)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    board[i][j] = <span class="string">&#x27;T&#x27;</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span>&amp; d : dir) <span class="built_in">dfs</span>(board, i + d[<span class="number">0</span>], j + d[<span class="number">1</span>]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="📚-对比原解法-2"><a href="#📚-对比原解法-2" class="headerlink" title="📚 对比原解法"></a>📚 对比原解法</h4><p><strong>一致</strong> ✅ — 逆向思维完全正确，三步骤流程清晰</p>
+<h4 id="⚠️-易错点-反思-2"><a href="#⚠️-易错点-反思-2" class="headerlink" title="⚠️ 易错点 &amp; 反思"></a>⚠️ 易错点 &amp; 反思</h4><ul>
+<li>🐛 <strong>变量遮蔽（shadow）</strong>：DFS 中 <code>for (int i = 0; i &lt; 4; i++)</code> 的 <code>i</code> 覆盖了参数 <code>i</code>，导致递归坐标全错！→ 循环变量用 <code>d</code>&#x2F;<code>k</code> 而非 <code>i</code></li>
+<li><strong>逆向思维通用模式</strong>：”不该改的”先标记 → 剩下的全改 → 还原标记。类似 417 (Pacific Atlantic) 的”反向 DFS→取交集”</li>
+<li>防御检查：<code>board.empty()</code> 能防空输入，但 <code>board[0].empty()</code> 也需要考虑（空列情况）</li>
+</ul>
+<h3 id="Medium-Rotting-Oranges-994"><a href="#Medium-Rotting-Oranges-994" class="headerlink" title="[Medium] Rotting Oranges (994)"></a>[Medium] Rotting Oranges (994)</h3><h4 id="🎯-核心思路-3"><a href="#🎯-核心思路-3" class="headerlink" title="🎯 核心思路"></a>🎯 核心思路</h4><p>多源 BFS + 分层计时：所有烂橘子同时入队，按层扩散，每层 &#x3D; 1 分钟。</p>
+<h4 id="🔑-关键代码片段-3"><a href="#🔑-关键代码片段-3" class="headerlink" title="🔑 关键代码片段"></a>🔑 关键代码片段</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">queue&lt;pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt;&gt; q;</span><br><span class="line"><span class="type">int</span> fresh = <span class="number">0</span>, minutes = <span class="number">0</span>;</span><br><span class="line"><span class="comment">// 所有烂橘子入队，统计新鲜橘子数</span></span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; m; i++)</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; n; j++)</span><br><span class="line">        <span class="keyword">if</span> (grid[i][j] == <span class="number">2</span>) q.<span class="built_in">push</span>(&#123;i, j&#125;);</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (grid[i][j] == <span class="number">1</span>) fresh++;</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> (!q.<span class="built_in">empty</span>() &amp;&amp; fresh) &#123;</span><br><span class="line">    <span class="type">int</span> size = q.<span class="built_in">size</span>();</span><br><span class="line">    <span class="keyword">while</span> (size--) &#123;</span><br><span class="line">        <span class="keyword">auto</span> [i, j] = q.<span class="built_in">front</span>(); q.<span class="built_in">pop</span>();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span>&amp; d : dir) &#123;</span><br><span class="line">            <span class="type">int</span> ni = i + d[<span class="number">0</span>], nj = j + d[<span class="number">1</span>];</span><br><span class="line">            <span class="keyword">if</span> (ni&gt;=<span class="number">0</span> &amp;&amp; ni&lt;m &amp;&amp; nj&gt;=<span class="number">0</span> &amp;&amp; nj&lt;n &amp;&amp; grid[ni][nj]==<span class="number">1</span>) &#123;</span><br><span class="line">                grid[ni][nj] = <span class="number">2</span>; fresh--;</span><br><span class="line">                q.<span class="built_in">push</span>(&#123;ni, nj&#125;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    minutes++;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> fresh == <span class="number">0</span> ? minutes : <span class="number">-1</span>;</span><br></pre></td></tr></table></figure>
+<h4 id="📚-对比原解法-3"><a href="#📚-对比原解法-3" class="headerlink" title="📚 对比原解法"></a>📚 对比原解法</h4><p><strong>一致</strong> ✅ — 多源 BFS 模板完全正确，分层计时写得好</p>
+<h4 id="⚠️-易错点-反思-3"><a href="#⚠️-易错点-反思-3" class="headerlink" title="⚠️ 易错点 &amp; 反思"></a>⚠️ 易错点 &amp; 反思</h4><ul>
+<li><code>pair</code> 用法：<code>queue&lt;pair&lt;int,int&gt;&gt;</code> + <code>q.push(&#123;i,j&#125;)</code> + <code>q.front().first/second</code></li>
+<li>C++17 结构化绑定 <code>auto [i, j] = q.front()</code> 可让代码更清晰</li>
+<li>方向数组 vs 4 个 if：功能等价，方向数组更 DRY，4 个 if 更直观</li>
+<li><strong>关键优化</strong>：用 <code>fresh</code> 变量计数，避免最后全遍历检查 O(m×n)，同时可以提前结束（<code>while(... &amp;&amp; fresh)</code>）</li>
+<li>与 542 的关系：994 的分钟数 &#x3D; 542 的距离，都是多源 BFS 逐层计数</li>
+</ul>
+<h3 id="Medium-01-Matrix-542"><a href="#Medium-01-Matrix-542" class="headerlink" title="[Medium] 01 Matrix (542)"></a>[Medium] 01 Matrix (542)</h3><h4 id="🎯-核心思路-4"><a href="#🎯-核心思路-4" class="headerlink" title="🎯 核心思路"></a>🎯 核心思路</h4><p>多源 BFS：所有 0 同时入队，距离初始为 0；其余格子初始 <code>INT_MAX</code>（未访问）。BFS 首次访问即更新为最短距离。</p>
+<h4 id="🔑-关键代码片段-4"><a href="#🔑-关键代码片段-4" class="headerlink" title="🔑 关键代码片段"></a>🔑 关键代码片段</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">res</span>(m, <span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;(n, INT_MAX));</span><br><span class="line">queue&lt;pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt;&gt; q;</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; m; i++)</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; n; j++)</span><br><span class="line">        <span class="keyword">if</span> (mat[i][j] == <span class="number">0</span>) &#123; res[i][j] = <span class="number">0</span>; q.<span class="built_in">push</span>(&#123;i, j&#125;); &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> (!q.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">    <span class="keyword">auto</span> [x, y] = q.<span class="built_in">front</span>(); q.<span class="built_in">pop</span>();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span>&amp; d : dir) &#123;</span><br><span class="line">        <span class="type">int</span> nx = x + d[<span class="number">0</span>], ny = y + d[<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">if</span> (nx &gt;= <span class="number">0</span> &amp;&amp; nx &lt; m &amp;&amp; ny &gt;= <span class="number">0</span> &amp;&amp; ny &lt; n &amp;&amp; res[nx][ny] == INT_MAX) &#123;</span><br><span class="line">            res[nx][ny] = res[x][y] + <span class="number">1</span>;</span><br><span class="line">            q.<span class="built_in">push</span>(&#123;nx, ny&#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="📚-对比原解法-4"><a href="#📚-对比原解法-4" class="headerlink" title="📚 对比原解法"></a>📚 对比原解法</h4><p><strong>一致</strong> ✅ — 多源 BFS 完全正确，INT_MAX 做未访问标记很巧妙</p>
+<h4 id="⚠️-易错点-反思-4"><a href="#⚠️-易错点-反思-4" class="headerlink" title="⚠️ 易错点 &amp; 反思"></a>⚠️ 易错点 &amp; 反思</h4><ul>
+<li>与 994 的区别：542 <strong>不需要分层</strong>（<code>size</code> 循环），因为每个格子单独存距离而非统计层数</li>
+<li><code>INT_MAX</code> 作为未访问标记：比 bool visited 省一个数组，+1 也不会溢出（格数 ≤ 10⁴）</li>
+<li>结构化绑定 <code>auto [x, y]</code> 让 pair 操作更可读</li>
+<li><strong>关键理解</strong>：BFS 第一次到达的距离 &#x3D; 最短距离，这是 BFS 的天然性质</li>
+</ul>
+
+</article>
+    
+    
+
+</div>
+<div class="trm-post-next-prev row">
+    <div class="col-lg-12">
+        <!-- title -->
+        <h5 class="trm-title-with-divider">
+            其他文章
+            <span data-number="02"></span>
+        </h5>
+    </div>
+    
+        <div class="col-lg-6">
+    <div class="trm-blog-card trm-scroll-animation">
+        <a href="/ZeroDream/2026/06/05/LeetCode/LeetCode-%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-2026-06-05/" class="trm-cover-frame trm-anima-link">
+            
+            
+                <img alt="cover" class="no-fancybox" src="/ZeroDream/images/post/leetcode/cover-14.png">
+            
+        </a>
+        
+        <div class="trm-card-descr">
+            <div class="trm-label trm-category trm-mb-20">
+                <a href=" /ZeroDream/categories/LeetCode/">
+                    LeetCode
+                </a>
+            </div>
+            <h5>
+                <a href="/ZeroDream/2026/06/05/LeetCode/LeetCode-%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-2026-06-05/" class="trm-anima-link">
+                    LeetCode 学习记录 2026-06-05
+                </a>
+            </h5>
+            <div class="trm-divider trm-mb-20 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>26/06/05</li>
+                <li>23:00</li>
+                
+                
+            </ul>
+        </div>
+    </div>
+</div>
+    
+    
+        <div class="col-lg-6">
+    <div class="trm-blog-card trm-scroll-animation">
+        <a href="/ZeroDream/2026/06/03/LeetCode/LeetCode-%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-2026-06-03/" class="trm-cover-frame trm-anima-link">
+            
+            
+                <img alt="cover" class="no-fancybox" src="/ZeroDream/images/post/leetcode/cover-08.png">
+            
+        </a>
+        
+        <div class="trm-card-descr">
+            <div class="trm-label trm-category trm-mb-20">
+                <a href=" /ZeroDream/categories/LeetCode/">
+                    LeetCode
+                </a>
+            </div>
+            <h5>
+                <a href="/ZeroDream/2026/06/03/LeetCode/LeetCode-%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-2026-06-03/" class="trm-anima-link">
+                    LeetCode 学习记录 2026-06-03
+                </a>
+            </h5>
+            <div class="trm-divider trm-mb-20 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>26/06/03</li>
+                <li>23:00</li>
+                
+                
+            </ul>
+        </div>
+    </div>
+</div>
+    
+</div>
+
+    
+
+    <div id="giscus-wrap" class="trm-card trm-scroll-animation comment-container"></div>
+<script data-swup-reload-script>
+    function loadGiscus() {
+        let nowTheme = document.documentElement.classList.contains('dark') ? '' : ''
+        const config = {
+            src: 'https://giscus.app/client.js',
+            "data-repo": 'xiaomengxmeng/ZeroDream',
+            "data-repo-id": 'R_kgDOQHFw4Q',
+            "data-category": 'Announcements',
+            "data-category-id": 'DIC_kwDOQHFw4c4CxyP3',
+            "data-mapping": 'pathname',
+            "data-reactions-enabled": '1',
+            "data-emit-metadata": '0',
+            "data-theme": nowTheme,
+            "data-lang": 'zh-CN',
+            crossorigin: "anonymous",
+            async: true
+        }
+        let ele = document.createElement('script')
+        for (let key in config) {
+            ele.setAttribute(key, config[key])
+        }
+        document.getElementById('giscus-wrap').insertAdjacentElement('afterbegin', ele)
+    }
+
+    function changeGiscusTheme() {
+        let theme = document.documentElement.classList.contains('dark') ? '' : ''
+
+        function sendMessage(message) {
+            const iframe = document.querySelector('iframe.giscus-frame');
+            if (!iframe) return;
+            iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+
+        sendMessage({
+            setConfig: {
+                theme: theme
+            }
+        });
+    }
+
+    loadGiscus();
+</script>
+
+
+
+                    <div class="trm-divider footer-divider"></div>
+
+                    <!-- footer -->
+                    <footer class="trm-footer-card trm-scroll-animation">
+
+    
+
+    
+
+    
+        <div class="trm-footer-item">
+            <span>
+                由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v7.3.0
+            </span>
+            <span class="footer-separator" data-separator=" | "></span>
+            <span> 
+                主题 - 
+                <a rel="noopener" href='https://github.com/MaLuns/hexo-theme-async' target='_blank'>Async</a>
+                v2.2.6
+            </span>
+        </div>
+      
+
+     
+
+     
+</footer>
+                    <!-- footer end -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+            <!-- body end -->
+
+            
+
+            
+<div class="trm-fixed-container">
+    
+    
+        <div class="trm-fixed-btn" data-title="阅读模式" onclick="asyncFun.switchReadMode()">
+            <i class="iconfont fas fa-book-reader"></i>
+        </div>
+    
+    
+    <div id="trm-back-top" class="trm-fixed-btn" data-title="回到顶部">
+        <i class="iconfont fas fa-arrow-up"></i>
+    </div>
+</div>
+        </div>
+      </div>
+      <!-- scroll container end -->
+  </div>
+  <!-- app wrapper end -->
+
+  
+    <div class="trm-search-popup">
+        <div class="trm-search-wrapper">
+            <div class="form trm-search-form">
+                <div class="trm-search-input-icon">
+                    <i class="iconfont fas fa-search"></i>
+                </div>
+                <input class="trm-search-input" type="text" placeholder="搜索文章...">
+                <div class="trm-search-btn-close">
+                    <i class="iconfont fas fa-times"></i>
+                </div>
+            </div>
+            <div class="trm-search-result-container">
+                <div class="trm-search-empty">
+                    请输入关键词进行搜索
+                </div>
+            </div>
+            <div class="trm-search-footer">
+                <div class="trm-search-stats"></div>
+                <ul class="trm-search-commands">
+                    <li>
+                        <kbd class="command-palette-commands-key">
+                            <svg width="15" height="15" aria-label="Escape key" role="img">
+                                <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="1.2">
+                                    <path
+                                        d="M13.6167 8.936c-.1065.3583-.6883.962-1.4875.962-.7993 0-1.653-.9165-1.653-2.1258v-.5678c0-1.2548.7896-2.1016 1.653-2.1016.8634 0 1.3601.4778 1.4875 1.0724M9 6c-.1352-.4735-.7506-.9219-1.46-.8972-.7092.0246-1.344.57-1.344 1.2166s.4198.8812 1.3445.9805C8.465 7.3992 8.968 7.9337 9 8.5c.032.5663-.454 1.398-1.4595 1.398C6.6593 9.898 6 9 5.963 8.4851m-1.4748.5368c-.2635.5941-.8099.876-1.5443.876s-1.7073-.6248-1.7073-2.204v-.4603c0-1.0416.721-2.131 1.7073-2.131.9864 0 1.6425 1.031 1.5443 2.2492h-2.956">
+                                    </path>
+                                </g>
+                            </svg>
+                        </kbd>
+                        <span class="command-palette-Label">to close</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+  <!-- Plugin -->
+
+
+
+
+    
+    
+<script src="https://unpkg.com/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+
+    
+
+    
+
+    
+
+    <!-- 数学公式 -->
+    
+
+    <!-- 评论插件 -->
+    
+        
+
+        
+    
+
+		
+
+
+
+
+    <!-- Service Worker -->
+    
+    <!-- baidu push -->
+    
+
+
+<script id="async-script" src="/ZeroDream/js/main.js?v=2.2.6"></script>
+
+<!-- CDN -->
+
+
+    
+
+    
+
+    
+
+
+
+</body>
+
+</html>
